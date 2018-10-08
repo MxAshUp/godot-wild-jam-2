@@ -5,6 +5,10 @@
 
 * John Gabriel - Composer
 
+<<<<<<< HEAD
 * Zach777 - UI/UX Designer and does grunt work programming
 
 * Seba - graphics (2D/3D)
+
+* Zach777 - UI/UX Designer and does grunt work programming XD
+>>>>>>> master
