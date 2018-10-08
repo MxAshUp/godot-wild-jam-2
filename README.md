@@ -5,4 +5,4 @@
 
 * John Gabriel - Composer
 
-* Zach777 - UI/UX Designer and does grunt work programming 
+* Zach777 - UI/UX Designer and does grunt work programming XD
