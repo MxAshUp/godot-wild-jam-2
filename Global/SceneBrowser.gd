@@ -9,13 +9,10 @@ extends Node
 #Add the path to scenes in get_scene
 var loader : ResourceInteractiveLoader
 
-func load_scene( scene_name ):
-	#Add the path to scenes here.
-
-	if scene_name == "Path Test" :
-		return load( "res://PrototypeScenes/Patrol/PathTest.tscn" )
-	if scene_name == "Integration Test" :
-		return load( "res://PrototypeScenes/GameplayIntegration/Test-1.tscn" )
+export var scene_map : Dictionary = {
+	"Path Test": "res://PrototypeScenes/Patrol/PathTest.tscn",
+	"Integration Test": "res://PrototypeScenes/GameplayIntegration/Test-1.tscn"
+}
 
 func change_scene( scene_name ):
 	var new = get_scene( scene_name )
@@ -35,10 +32,7 @@ func change_scene_with_load( scene_name, loader_name = "Hi" ):
 
 #ADD HERE
 func get_scene( scene_name ):
-	#Return a string for the load methods to use.
-	#Add the path to the scenes here.
-	if scene_name == "Test" :
-		return "res://PrototypeScenes/Patrol/PathTest.tscn"
+	return scene_map[scene_name]
  #end
 
 

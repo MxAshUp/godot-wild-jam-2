@@ -1,12 +1,7 @@
 extends Node2D
 
-var scenes : Array = [
-	"Path Test",
-	"Integration Test"
-]
-
 func _ready():
-	for scene_name in scenes:
+	for scene_name in SceneBrowser.scene_map.keys():
 		$ItemList.add_item(scene_name)
 	
 func _on_ItemList_item_activated(index):
