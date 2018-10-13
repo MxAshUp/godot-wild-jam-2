@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tools/Patrol.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -22,7 +22,6 @@ preview = false
 being_controlled = false
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-rotation = -1.5708
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -30,9 +29,21 @@ rotate = false
 cubic_interp = true
 loop = true
 lookahead = 4.0
+_sections_unfolded = [ "Transform" ]
 
-[node name="Sprite" type="Sprite" parent="PathFollow2D"]
+[node name="CharacterSprite" type="Sprite" parent="PathFollow2D"]
 texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 64, 288, 32, 32 )
+_sections_unfolded = [ "Region", "Transform", "texture" ]
+
+[node name="IndicatorSprite" type="Sprite" parent="PathFollow2D"]
+visible = false
+position = Vector2( 0, -32 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 128, 256, 32, 32 )
+_sections_unfolded = [ "Region", "Transform", "texture" ]
 
 [node name="JumpArea" type="Area2D" parent="PathFollow2D"]
 editor/display_folded = true

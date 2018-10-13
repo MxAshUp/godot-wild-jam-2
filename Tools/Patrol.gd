@@ -11,6 +11,7 @@ onready var path_follow : PathFollow2D = get_node("PathFollow2D")
 onready var path : Path2D = get_node("Path2D")
 onready var static_body : StaticBody2D = get_node("PathFollow2D/StaticBody")
 onready var jump_area : Area2D = get_node("PathFollow2D/JumpArea")
+onready var indicator_sprite : Sprite = get_node("PathFollow2D/IndicatorSprite")
 
 var collision_circle : CircleShape2D = null
 var preview_offset = 0
@@ -18,6 +19,7 @@ var jumpable_bodies : Array = Array()
 
 func _ready():
 	
+	# Set collision shape based on jump_radius
 	collision_circle = CircleShape2D.new()
 	collision_circle.radius = jump_radius
 	$PathFollow2D/JumpArea/CollisionShape2D.shape = collision_circle
@@ -36,6 +38,7 @@ func _process(delta):
 		
 	else:
 		process_movement(delta)
+		process_animation(delta)
 
 # Actual game movement
 func process_movement(delta):
@@ -51,6 +54,12 @@ func process_tool(delta):
 			update()
 		else:
 			path_follow.offset = start_offset
+
+func process_animation(delta):
+	if being_controlled:
+		indicator_sprite.visible = true
+	else:
+		indicator_sprite.visible = false
 
 func _draw():
 	# Show radius of jump
