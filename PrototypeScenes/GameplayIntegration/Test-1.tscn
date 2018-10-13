@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PrototypeScenes/Patrol/PathFollow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PrototypeScenes/Influence/Influence.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 180, 150, 0, 0, 0, 0, 710, 150, 0, 0, 0, 0, 710, 310, 0, 0, 0, 0, 180, 310, 0, 0, 0, 0, 180, 150 )
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Guard" parent="." instance=ExtResource( 1 )]
+preview = true
+
+[node name="Path2D" type="Path2D" parent="Guard"]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 1 )
+
+[node name="Influence" parent="." instance=ExtResource( 2 )]
+position = Vector2( 458.388, 100 )
+
+[node name="Influence2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 470, 360 )
+rotation = 3.14159
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="body_entered" from="Guard/Path2D/PathFollow2D/JumpArea" to="Guard" method="_on_JumpArea_body_entered"]
+[connection signal="body_exited" from="Guard/Path2D/PathFollow2D/JumpArea" to="Guard" method="_on_JumpArea_body_exited"]
+[connection signal="jumped" from="Guard/Path2D/PathFollow2D/StaticBody" to="Guard" method="_on_StaticBody_jumped"]
