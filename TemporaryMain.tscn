@@ -1,6 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TemporaryMain.gd" type="Script" id=1]
 
 [node name="TemporaryMain" type="Node2D"]
+script = ExtResource( 1 )
 
 [node name="NOTE" type="RichTextLabel" parent="."]
 anchor_left = 0.0
@@ -16,27 +19,61 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 bbcode_enabled = false
-bbcode_text = "Hi team.
-
+bbcode_text = "ZACH777:
+-----------------------------------------------------------------------------------------------------------
+Hi team.
 
  I find that this is a good way of laying out basic notes within the game scene.
 
 
-This is just a temporary scene that should be deleted as the project moves on."
+This is just a temporary scene that should be deleted as the project moves on.
+
+I went ahead and made this into a temporary main menu. Add the path to your 
+gameplay scene directly into the play() method of TemporyMain
+-----------------------------------------------------------------------------------------------------------"
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "Hi team.
-
+text = "ZACH777:
+-----------------------------------------------------------------------------------------------------------
+Hi team.
 
  I find that this is a good way of laying out basic notes within the game scene.
 
 
-This is just a temporary scene that should be deleted as the project moves on."
+This is just a temporary scene that should be deleted as the project moves on.
+
+I went ahead and made this into a temporary main menu. Add the path to your 
+gameplay scene directly into the play() method of TemporyMain
+-----------------------------------------------------------------------------------------------------------"
 scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
+
+[node name="Play" type="Button" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 427.0
+margin_top = 373.0
+margin_right = 613.0
+margin_bottom = 451.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Play"
+flat = false
+align = 1
 
