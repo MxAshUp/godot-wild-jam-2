@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://PrototypeScenes/Patrol/PathFollow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PrototypeScenes/Influence/Influence.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PrototypeScenes/Influence/Door/Door.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -69,6 +71,7 @@ self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 4 )
 
 [node name="description" type="RichTextLabel" parent="."]
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -101,6 +104,12 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
+
+[node name="Influence" parent="." instance=ExtResource( 2 )]
+position = Vector2( 916, 10 )
+
+[node name="Function" parent="Influence" instance=ExtResource( 3 )]
+position = Vector2( -916, -10 )
 
 [connection signal="body_entered" from="Node2D/Path2D/PathFollow2D/JumpArea" to="Node2D" method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="Node2D/Path2D/PathFollow2D/JumpArea" to="Node2D" method="_on_JumpArea_body_exited"]

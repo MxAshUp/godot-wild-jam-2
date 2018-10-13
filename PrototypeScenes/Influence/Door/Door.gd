@@ -6,14 +6,6 @@ export var door_open : bool = false
 
 #The door.
 
-func _ready():
-	get_node( "Button" ).connect( "pressed", self, "temp" )
-
-
-func temp():
-	perform_function()
-
-
 
 func perform_function():
 	if door_open :

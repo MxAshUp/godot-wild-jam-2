@@ -1,19 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://PrototypeScenes/Influence/Door/Door.gd" type="Script" id=1]
-[ext_resource path="res://PrototypeScenes/Patrol/PathFollow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 44.2632, 10.1053 )
-
-[sub_resource type="Curve2D" id=2]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.39386, 0.816589, 0, 0, 0, 0, -0.0533447, -180.703, 0, 0, 0, 0, 134.346, -170.689, 0, 0, 0, 0, 217.738, 15.6031, 0, 0, 0, 0, 10.9641, 165.319, 0, 0, 0, 0, -0.252411, 0.485107 )
-}
+extents = Vector2( 44.2632, 6.14934 )
 
 [node name="Door" type="StaticBody2D"]
 input_pickable = false
@@ -27,7 +20,6 @@ _sections_unfolded = [ "Collision" ]
 door_open = null
 
 [node name="Col" type="CollisionShape2D" parent="."]
-position = Vector2( 360, 261.053 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
@@ -55,7 +47,11 @@ this let me avoid collision issues between the guard and the door.
 
 The door animations can be placed inside extensions for the door.
 
-Get rid of the button and guard when finished testing."
+Get rid of the button and guard when finished testing.
+
+
+IGNORE THE SPRITE. I meant for it to be it's own scene for animating
+the games doors."
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
@@ -68,40 +64,22 @@ this let me avoid collision issues between the guard and the door.
 
 The door animations can be placed inside extensions for the door.
 
-Get rid of the button and guard when finished testing."
+Get rid of the button and guard when finished testing.
+
+
+IGNORE THE SPRITE. I meant for it to be it's own scene for animating
+the games doors."
 scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
 
-[node name="Guard" parent="." instance=ExtResource( 2 )]
-position = Vector2( 366, 390 )
-
-[node name="Path2D" type="Path2D" parent="Guard"]
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 2 )
-
-[node name="Button" type="Button" parent="."]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 551.0
-margin_top = 260.0
-margin_right = 692.0
-margin_bottom = 280.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-flat = false
-align = 1
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0.0909357, -0.198608 )
+scale = Vector2( 1.37062, 0.186952 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
 

@@ -15,6 +15,8 @@ var function
 func become_influenced():
 	#Should I pass a reference to the body that did
 	#the influencing?
+	if function == null :
+		print( name + "'s function null. Is the child named Function?" )
 	function.perform_function() 
  #end
 
@@ -26,17 +28,7 @@ func body_entered( body ):
 
 
 func body_exited( body ):
-	body.disconnect( "influence", self )
-
-
-
-func _process(delta):
-	#To avoid ready errors, keep looking for the Function
-	#node. When it is present, function gets assigned.
-	if self.has_node( "Function" ) :
-		function = get_node( "Function" )
-		set_process( false )
- #end
+	body.disconnect( "influence", self, "become_influenced" )
 
 
 
@@ -46,6 +38,13 @@ func _ready():
 	if has_node( "TwoWayCol" ) :
 		get_node("Col").queue_free()
 	
+	#Assign the Function node to function lol.
+	function = get_node( "Function" )
+	
 	self.connect( "body_entered", self, "body_entered" )
 	self.connect( "body_exited", self, "body_exited" )
+	
+	get_node( "BecomeInfluenced" ).connect( "pressed", self, "become_influenced")
  #end
+
+

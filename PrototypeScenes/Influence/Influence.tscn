@@ -18,6 +18,7 @@ polygon = PoolVector2Array( 100, 0, 98, 20, 93, 38, 84, 56, 71, 71, 56, 83, 38, 
 _sections_unfolded = [ "polygon" ]
 
 [node name="NOTE" type="RichTextLabel" parent="."]
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -46,4 +47,28 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
+
+[node name="BecomeInfluenced" type="Button" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -178.0
+margin_top = 30.0
+margin_right = -96.0
+margin_bottom = 67.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "DEBUG"
+flat = false
+align = 1
 
