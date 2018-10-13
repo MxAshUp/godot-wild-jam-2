@@ -11,5 +11,5 @@ dest_files=[ "res://.import/BodySwap.ogg-cb60e281f505d3862c9dceb7e757ec25.oggstr
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
