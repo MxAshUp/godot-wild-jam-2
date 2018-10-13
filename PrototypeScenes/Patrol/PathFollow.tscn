@@ -12,7 +12,9 @@ radius = 100.0
 
 script/source = "extends StaticBody2D
 
-signal jumped_from"
+# This script is simply for adding custom signal
+# That is why it is embedded
+signal jumped"
 
 [sub_resource type="CircleShape2D" id=3]
 
@@ -83,4 +85,4 @@ shape = SubResource( 3 )
 
 [connection signal="body_entered" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_exited"]
-[connection signal="jumped_from" from="PathFollow2D/StaticBody" to="." method="_on_StaticBody_jumped_from"]
+[connection signal="jumped" from="PathFollow2D/StaticBody" to="." method="_on_StaticBody_jumped"]

@@ -32,6 +32,7 @@ func _ready():
 	else:
 		set_process(false)
 
+
 func _process(delta):
 	if Engine.is_editor_hint():
 		process_tool(delta)
@@ -41,18 +42,21 @@ func _process(delta):
 		process_animation(delta)
 		process_input(delta)
 
+
 # Actual game movement
 func process_movement(delta):
 	path_follow.offset += delta * move_speed
 	jump_area.monitoring = being_controlled
 
+
 func process_input(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if jumpable_bodies.size() > 0:
 			var to_jump_body : PhysicsBody2D = jumpable_bodies[0]
-			to_jump_body.emit_signal("jumped_from", self)
+			to_jump_body.emit_signal("jumped", self)
 			jumpable_bodies.remove(0)
 			being_controlled = false
+
 
 # Process for just tooling around
 func process_tool(delta):
@@ -70,10 +74,12 @@ func process_animation(delta):
 	else:
 		indicator_sprite.visible = false
 
+
 func _draw():
 	# Show radius of jump
 	if Engine.is_editor_hint():
 		draw_circle(path_follow.position, jump_radius, Color(0.5, 0.5, 0, 0.5))
+
 
 func _on_JumpArea_body_entered(body : PhysicsBody2D):
 	if body != self.static_body:
@@ -81,11 +87,13 @@ func _on_JumpArea_body_entered(body : PhysicsBody2D):
 		if index == -1:
 			jumpable_bodies.append(body)
 
+
 func _on_JumpArea_body_exited(body):
 	if body != self.static_body:
 		var index = jumpable_bodies.find(body)
 		if index != -1:
 			jumpable_bodies.remove(index)
 
-func _on_StaticBody_jumped_from(jump_from_node : Node2D):
+
+func _on_StaticBody_jumped(jump_from_node : Node2D):
 	being_controlled = true
