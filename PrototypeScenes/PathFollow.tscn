@@ -1,26 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Tools/Patrol.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-
-[sub_resource type="Curve2D" id=1]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -160, 0, 0, 0, 0, 192, -160, 0, 0, 0, 0, 192, 0, 0, 0, 0, 0, 0, 0 )
-}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 move_speed = 100
 start_offset = 0
+jump_radius = 100
 preview = false
+being_controlled = false
 
-[node name="Path2D" type="Path2D" parent="."]
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 1 )
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
 rotation = -1.5708
 offset = 0.0
 h_offset = 0.0
@@ -30,6 +21,20 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="Sprite" type="Sprite" parent="Path2D/PathFollow2D"]
+[node name="Sprite" type="Sprite" parent="PathFollow2D"]
 texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="PathFollow2D"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Material", "Pause", "Script", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D"]
+visible = false
+_sections_unfolded = [ "shape" ]
 
