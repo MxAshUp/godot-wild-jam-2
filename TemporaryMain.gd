@@ -6,5 +6,5 @@ func _ready():
 
 func play():
 	#Place your gameplay scene here.
-#	get_tree().change_scene( "scene/path" )
+	SceneBrowser.change_scene( "Test" )
 	pass
