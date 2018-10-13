@@ -10,7 +10,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 525.0
+margin_right = 926.0
 margin_bottom = 286.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
@@ -30,7 +30,13 @@ This is just a temporary scene that should be deleted as the project moves on.
 
 I went ahead and made this into a temporary main menu. Add the path to your 
 gameplay scene directly into the play() method of TemporyMain
------------------------------------------------------------------------------------------------------------"
+-----------------------------------------------------------------------------------------------------------
+
+Altru:
+--------------------
+To add a scene to the options below, add an array item to the scenes variable
+at the top of TemporaryMain.gd.
+---------------------"
 visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
@@ -46,34 +52,40 @@ This is just a temporary scene that should be deleted as the project moves on.
 
 I went ahead and made this into a temporary main menu. Add the path to your 
 gameplay scene directly into the play() method of TemporyMain
------------------------------------------------------------------------------------------------------------"
+-----------------------------------------------------------------------------------------------------------
+
+Altru:
+--------------------
+To add a scene to the options below, add an array item to the scenes variable
+at the top of TemporaryMain.gd.
+---------------------"
 scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
 
-[node name="Play" type="Button" parent="."]
+[node name="ItemList" type="ItemList" parent="."]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 427.0
-margin_top = 373.0
-margin_right = 613.0
-margin_bottom = 451.0
+margin_left = 231.0
+margin_top = 278.0
+margin_right = 749.0
+margin_bottom = 435.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+rect_clip_content = true
 focus_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Play"
-flat = false
-align = 1
+items = [  ]
+select_mode = 0
+allow_reselect = false
+icon_mode = 1
+fixed_icon_size = Vector2( 0, 0 )
+_sections_unfolded = [ "Columns", "Icon" ]
 
+[connection signal="item_activated" from="ItemList" to="." method="_on_ItemList_item_activated"]
