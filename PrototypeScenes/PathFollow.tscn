@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tools/Patrol.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 32.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -24,19 +34,34 @@ lookahead = 4.0
 [node name="Sprite" type="Sprite" parent="PathFollow2D"]
 texture = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="PathFollow2D"]
+[node name="JumpArea" type="Area2D" parent="PathFollow2D"]
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitoring = false
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Material", "Pause", "Script", "Visibility" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/JumpArea"]
 visible = false
+shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
-[connection signal="area_entered" from="PathFollow2D/Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="area_exited" from="PathFollow2D/Area2D" to="." method="_on_Area2D_area_exited"]
+[node name="StaticBody" type="StaticBody2D" parent="PathFollow2D"]
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/StaticBody"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_entered"]
+[connection signal="body_exited" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_exited"]
