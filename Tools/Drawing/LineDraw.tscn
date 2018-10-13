@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tools/Drawing/LineDraw.gd" type="Script" id=1]
+[ext_resource path="res://Tools/Drawing/Start.gd" type="Script" id=2]
+[ext_resource path="res://Tools/Drawing/End.gd" type="Script" id=3]
+
+[node name="LineDraw" type="Node2D"]
+script = ExtResource( 1 )
+end_object = "End"
+start_object = "Start"
+end_value = "pos"
+start_value = "pos"
+
+[node name="Start" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="End" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="NOTE" type="RichTextLabel" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 357.0
+margin_bottom = 177.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = "The exported variables in LineDraw are used to specify what value to watch.
+
+start and end object are the object in the game tree.
+
+start and end values are the property you want to watch inside the specified object."
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "The exported variables in LineDraw are used to specify what value to watch.
+
+start and end object are the object in the game tree.
+
+start and end values are the property you want to watch inside the specified object."
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode" ]
+
