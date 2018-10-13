@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BodySwap.ogg-cb60e281f505d3862c9dceb7e757ec25.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/BodySwap.ogg"
+dest_files=[ "res://.import/BodySwap.ogg-cb60e281f505d3862c9dceb7e757ec25.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
