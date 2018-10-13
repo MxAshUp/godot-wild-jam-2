@@ -55,7 +55,10 @@ curve = SubResource( 3 )
 
 [connection signal="body_entered" from="Node2D2/Path2D/PathFollow2D/JumpArea" to="Node2D2" method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="Node2D2/Path2D/PathFollow2D/JumpArea" to="Node2D2" method="_on_JumpArea_body_exited"]
+[connection signal="jumped_from" from="Node2D2/Path2D/PathFollow2D/StaticBody" to="Node2D2" method="_on_StaticBody_jumped_from"]
 [connection signal="body_entered" from="Node2D3/Path2D/PathFollow2D/JumpArea" to="Node2D3" method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="Node2D3/Path2D/PathFollow2D/JumpArea" to="Node2D3" method="_on_JumpArea_body_exited"]
+[connection signal="jumped_from" from="Node2D3/Path2D/PathFollow2D/StaticBody" to="Node2D3" method="_on_StaticBody_jumped_from"]
 [connection signal="body_entered" from="Node2D4/Path2D/PathFollow2D/JumpArea" to="Node2D4" method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="Node2D4/Path2D/PathFollow2D/JumpArea" to="Node2D4" method="_on_JumpArea_body_exited"]
+[connection signal="jumped_from" from="Node2D4/Path2D/PathFollow2D/StaticBody" to="Node2D4" method="_on_StaticBody_jumped_from"]

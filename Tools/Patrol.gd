@@ -39,11 +39,20 @@ func _process(delta):
 	else:
 		process_movement(delta)
 		process_animation(delta)
+		process_input(delta)
 
 # Actual game movement
 func process_movement(delta):
 	path_follow.offset += delta * move_speed
 	jump_area.monitoring = being_controlled
+
+func process_input(delta):
+	if Input.is_action_just_pressed("ui_accept"):
+		if jumpable_bodies.size() > 0:
+			var to_jump_body : PhysicsBody2D = jumpable_bodies[0]
+			to_jump_body.emit_signal("jumped_from", self)
+			jumpable_bodies.remove(0)
+			being_controlled = false
 
 # Process for just tooling around
 func process_tool(delta):
@@ -77,3 +86,6 @@ func _on_JumpArea_body_exited(body):
 		var index = jumpable_bodies.find(body)
 		if index != -1:
 			jumpable_bodies.remove(index)
+
+func _on_StaticBody_jumped_from(jump_from_node : Node2D):
+	being_controlled = true

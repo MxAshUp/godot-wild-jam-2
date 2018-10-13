@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tools/Patrol.gd" type="Script" id=1]
 [ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
@@ -7,6 +7,12 @@
 
 custom_solver_bias = 0.0
 radius = 100.0
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends StaticBody2D
+
+signal jumped_from"
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -70,9 +76,11 @@ collision_mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 physics_material_override = null
+script = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/StaticBody"]
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_exited"]
+[connection signal="jumped_from" from="PathFollow2D/StaticBody" to="." method="_on_StaticBody_jumped_from"]
