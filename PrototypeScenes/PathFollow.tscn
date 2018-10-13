@@ -38,3 +38,5 @@ _sections_unfolded = [ "Material", "Pause", "Script", "Visibility" ]
 visible = false
 _sections_unfolded = [ "shape" ]
 
+[connection signal="area_entered" from="PathFollow2D/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="PathFollow2D/Area2D" to="." method="_on_Area2D_area_exited"]

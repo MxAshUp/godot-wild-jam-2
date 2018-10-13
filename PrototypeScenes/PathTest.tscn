@@ -52,3 +52,9 @@ preview = true
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 3 )
 
+[connection signal="area_entered" from="Node2D2/Path2D/PathFollow2D/Area2D" to="Node2D2" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Node2D2/Path2D/PathFollow2D/Area2D" to="Node2D2" method="_on_Area2D_area_exited"]
+[connection signal="area_entered" from="Node2D3/Path2D/PathFollow2D/Area2D" to="Node2D3" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Node2D3/Path2D/PathFollow2D/Area2D" to="Node2D3" method="_on_Area2D_area_exited"]
+[connection signal="area_entered" from="Node2D4/Path2D/PathFollow2D/Area2D" to="Node2D4" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Node2D4/Path2D/PathFollow2D/Area2D" to="Node2D4" method="_on_Area2D_area_exited"]
