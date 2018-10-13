@@ -9,7 +9,7 @@ extends Node
 func load_scene( scene_name ):
 	#Add the path to scenes here.
 	if scene_name == "Test" :
-		return load( "res://PrototypeScenes/PathTest.tscn" )
+		return load( "res://PrototypeScenes/Patrol/PathTest.tscn" )
 
 
 func change_scene( scene_name ):
