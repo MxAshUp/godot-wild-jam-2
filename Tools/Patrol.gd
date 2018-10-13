@@ -12,6 +12,7 @@ onready var path : Path2D = get_node("Path2D")
 onready var static_body : StaticBody2D = get_node("PathFollow2D/StaticBody")
 onready var jump_area : Area2D = get_node("PathFollow2D/JumpArea")
 onready var indicator_sprite : Sprite = get_node("PathFollow2D/IndicatorSprite")
+onready var body_swap_sound : AudioStreamPlayer2D = get_node("PathFollow2D/BodySwapSound")
 
 var collision_circle : CircleShape2D = null
 var preview_offset = 0
@@ -75,6 +76,11 @@ func process_animation(delta):
 		indicator_sprite.visible = false
 
 
+func become_controlled(jump_from : Node2D):
+	being_controlled = true
+	body_swap_sound.play()
+
+
 func _draw():
 	# Show radius of jump
 	if Engine.is_editor_hint():
@@ -96,4 +102,4 @@ func _on_JumpArea_body_exited(body):
 
 
 func _on_StaticBody_jumped(jump_from_node : Node2D):
-	being_controlled = true
+	become_controlled(jump_from_node)

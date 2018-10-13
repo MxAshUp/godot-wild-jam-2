@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tools/Patrol.gd" type="Script" id=1]
 [ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sounds/BodySwap.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -82,6 +83,17 @@ script = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/StaticBody"]
 shape = SubResource( 3 )
+
+[node name="BodySwapSound" type="AudioStreamPlayer2D" parent="PathFollow2D"]
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="body_entered" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_exited"]
