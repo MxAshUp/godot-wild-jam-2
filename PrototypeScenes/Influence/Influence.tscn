@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://PrototypeScenes/Influence/Influence.gd" type="Script" id=1]
+
+[node name="Influence" type="Area2D"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+
+[node name="Col" type="CollisionPolygon2D" parent="."]
+build_mode = 0
+polygon = PoolVector2Array( 100, 0, 98, 20, 93, 38, 84, 56, 71, 71, 56, 83, 38, 92, 19, 98, 0, 100, -20, 98, -39, 92, -56, 83, -71, 70, -83, 56, -92, 39, -98, 19, -100, 0 )
+_sections_unfolded = [ "polygon" ]
+
+[node name="NOTE" type="RichTextLabel" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 228.0
+margin_top = 131.0
+margin_right = 954.0
+margin_bottom = 560.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = "You can instance a scene within the Influence folder called TwoWayInfluenceCol.
+ This scene will let you set up two way doors."
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "You can instance a scene within the Influence folder called TwoWayInfluenceCol.
+ This scene will let you set up two way doors."
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode" ]
+
