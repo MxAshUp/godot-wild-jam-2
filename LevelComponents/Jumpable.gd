@@ -54,7 +54,6 @@ func process_input(delta):
 	if Input.is_action_just_pressed("jump") and !jump_cooling_off:
 		if jumpable_bodies.size() > 0:
 			var to_jump_body : PhysicsBody2D = jumpable_bodies[0]
-			jumpable_bodies.remove(0)
 			being_controlled = false
 			to_jump_body.emit_signal("jumped", self)
 			self.emit_signal("jumped_from", to_jump_body)
