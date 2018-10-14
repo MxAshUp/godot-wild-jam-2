@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=1]
+[ext_resource path="res://LevelComponents/Hostage.gd" type="Script" id=1]
+[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 19.3682, 17.5121 )
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id=6]
+
+custom_solver_bias = 0.0
+radius = 100.0
 
 [node name="Hostage" type="KinematicBody2D"]
 input_pickable = false
@@ -13,13 +24,53 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
+script = ExtResource( 1 )
+run_speed = 200
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Col" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
+
+[node name="CharacterSprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 257, 31, 32 )
+_sections_unfolded = [ "Region", "Transform", "texture" ]
+
+[node name="IndicatorSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -32 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 128, 256, 32, 32 )
+_sections_unfolded = [ "Region", "Transform", "texture" ]
+
+[node name="InteractArea" type="Area2D" parent="."]
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( -50, -130, 400, 520 )
-_sections_unfolded = [ "Region" ]
+[node name="JumpArea" type="Area2D" parent="."]
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitoring = false
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Material", "Pause", "Script", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea"]
+visible = false
+shape = SubResource( 6 )
+_sections_unfolded = [ "shape" ]
 
