@@ -15,6 +15,7 @@ var jumpable_bodies : Array = Array()
 var interactables : Array = Array()
 var jump_cooling_off = false
 var body_swap_sound : AudioStreamPlayer2D
+var selected_instance_to_jump : PhysicsBody2D
 
 
 func _enter_tree():
@@ -55,15 +56,39 @@ func _process(delta):
 
 func process_input(delta):
 	if Input.is_action_just_pressed("jump") and !jump_cooling_off:
-		if jumpable_bodies.size() > 0:
-			var to_jump_body : PhysicsBody2D = jumpable_bodies[0]
+		if selected_instance_to_jump:
 			being_controlled = false
-			to_jump_body.emit_signal("jumped", self)
-			self.emit_signal("jumped_from", to_jump_body)
+			selected_instance_to_jump.emit_signal("jumped", self)
+			self.emit_signal("jumped_from", selected_instance_to_jump)
 	
 	if Input.is_action_just_pressed("interact"):
 		for interactable in interactables:
 			(interactable as Node).emit_signal("interact")
+
+
+	if jumpable_bodies.size() > 0:
+		if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_right"):
+			cycle_select_jump_body(1)
+		
+		if Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left"):
+			cycle_select_jump_body(-1)
+		
+
+func cycle_select_jump_body(num):
+	var new_index = -1
+	if selected_instance_to_jump == null:
+		new_index = 0
+	else:
+		var index = jumpable_bodies.find(selected_instance_to_jump)
+		if index != -1:
+			new_index = int(fposmod(index + num, jumpable_bodies.size()))
+		else:
+			new_index = 0
+	
+	if new_index == -1:
+		selected_instance_to_jump = null
+	else:
+		selected_instance_to_jump = jumpable_bodies[new_index]
 
 
 # Process for just tooling around
@@ -99,6 +124,13 @@ func _draw():
 	# Show radius of jump
 	if Engine.is_editor_hint() or ProjectSettings.get_setting("Global/debug_overlay"):
 		draw_circle(Vector2(0,0), jump_radius, Color(0.5, 0.5, 0, 0.25))
+	
+	if being_controlled:
+		for jumpable in jumpable_bodies:
+			var jump_position = (jumpable as Node2D).global_position - global_position
+			draw_circle(jump_position, 64, Color(1, 1, 1, 0.25))
+			if selected_instance_to_jump == jumpable:
+				draw_circle(jump_position, 64, Color(1, 1, 1, 0.25))
 
 
 func _on_JumpArea_body_entered(body : PhysicsBody2D):
@@ -112,6 +144,9 @@ func _on_JumpArea_body_exited(body : PhysicsBody2D):
 	if body != self and is_jumpable(body):
 		var index = jumpable_bodies.find(body)
 		if index != -1:
+			if selected_instance_to_jump == body:
+				selected_instance_to_jump = null
+				
 			jumpable_bodies.remove(index)
 
 
