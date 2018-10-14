@@ -1,39 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://LevelComponents/Patrol.gd" type="Script" id=1]
-[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sounds/BodySwap.ogg" type="AudioStream" id=3]
-
-[sub_resource type="CircleShape2D" id=4]
-
-custom_solver_bias = 0.0
-radius = 50.0
-
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 100.0
-
-[sub_resource type="GDScript" id=2]
-
-script/source = "extends StaticBody2D
-
-# This script is simply for adding custom signal
-# That is why it is embedded
-signal jumped"
-
-[sub_resource type="CircleShape2D" id=3]
-
-custom_solver_bias = 0.0
-radius = 32.0
 
 [node name="Patrol" type="Node2D"]
 script = ExtResource( 1 )
 move_speed = 100
 start_offset = 0
-jump_radius = 100
 preview = false
-being_controlled = false
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 offset = 0.0
@@ -45,76 +18,3 @@ loop = true
 lookahead = 4.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="CharacterSprite" type="Sprite" parent="PathFollow2D"]
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 64, 288, 32, 32 )
-_sections_unfolded = [ "Region", "Transform", "texture" ]
-
-[node name="IndicatorSprite" type="Sprite" parent="PathFollow2D"]
-visible = false
-position = Vector2( 0, -32 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 128, 256, 32, 32 )
-_sections_unfolded = [ "Region", "Transform", "texture" ]
-
-[node name="InteractArea" type="Area2D" parent="PathFollow2D"]
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/InteractArea"]
-shape = SubResource( 4 )
-
-[node name="JumpArea" type="Area2D" parent="PathFollow2D"]
-editor/display_folded = true
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-monitoring = false
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Material", "Pause", "Script", "Visibility" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/JumpArea"]
-visible = false
-shape = SubResource( 1 )
-_sections_unfolded = [ "shape" ]
-
-[node name="StaticBody" type="StaticBody2D" parent="PathFollow2D"]
-editor/display_folded = true
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-physics_material_override = null
-script = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/StaticBody"]
-shape = SubResource( 3 )
-
-[node name="BodySwapSound" type="AudioStreamPlayer2D" parent="PathFollow2D"]
-stream = ExtResource( 3 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-stream_paused = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[connection signal="area_entered" from="PathFollow2D/InteractArea" to="." method="_on_InteractArea_area_entered"]
-[connection signal="area_exited" from="PathFollow2D/InteractArea" to="." method="_on_InteractArea_area_exited"]
-[connection signal="body_entered" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_entered"]
-[connection signal="body_exited" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_exited"]
-[connection signal="jumped" from="PathFollow2D/StaticBody" to="." method="_on_StaticBody_jumped"]
