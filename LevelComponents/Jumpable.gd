@@ -20,7 +20,10 @@ var body_swap_sound : AudioStreamPlayer2D
 func _enter_tree():
 	jump_area = Area2D.new()
 	var jump_collision_shape = CollisionShape2D.new()
+	jump_collision_shape.visible = false
 	jump_area.add_child(jump_collision_shape)
+	if Engine.is_editor_hint():
+		jump_area.show_on_top = true
 	add_child(jump_area)
 	collision_circle = CircleShape2D.new()
 	collision_circle.radius = jump_radius
