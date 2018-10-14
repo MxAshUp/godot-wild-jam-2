@@ -4,6 +4,7 @@ extends Node2D
 export (float) var move_speed = 100
 export (float) var start_offset = 0
 export (bool) var preview = false
+export (bool) var ping_pong = true
 var preview_offset = 0
 	
 onready var position_follow : Position2D = get_node("PathFollow2D/Position2D") 
@@ -11,8 +12,12 @@ onready var path_follow : PathFollow2D = get_node("PathFollow2D")
 onready var path : Path2D = get_node("Path2D")
 
 signal out_of_range
+signal in_range
 
 func _ready():
+	connect("out_of_range", self, "handle_out_of_range")
+	connect("in_range", self, "handle_in_range")
+	
 	if path != null:
 		self.remove_child(path_follow)
 		path.add_child(path_follow)
@@ -48,6 +53,15 @@ func process_movement(delta):
 func _draw():
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
 		draw_circle(get_position_follow() - position, 20, Color(0,0.5,0,0.5))
+
+
+func handle_out_of_range(follower : PhysicsBody2D):
+	if ping_pong:
+		move_speed = -move_speed
+
+
+func handle_in_range(follow : PhysicsBody2D):
+	pass
 
 
 # Process for just tooling around
