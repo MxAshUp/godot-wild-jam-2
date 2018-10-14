@@ -18,6 +18,7 @@ func _ready():
 	$AnimationPlayer.play("walking")
 	$AnimationPlayer.playback_speed = 0
 	
+
 func _process(delta):
 	if position_follow:
 		var patrol_position = position_follow.global_position
@@ -27,6 +28,8 @@ func _process(delta):
 		
 	if being_controlled:
 		$Sprite.modulate = Color(1,0,0)
+	else:
+		$Sprite.modulate = Color(1,1,1)
 
 	$AnimationPlayer.playback_speed = (velocity.length() / max_speed) * 3
 	if velocity.x > 0:
@@ -54,7 +57,8 @@ func _physics_process(delta):
 			velocity = velocity.normalized() * max_speed
 			
 		var new_velocity = move_and_slide(velocity)
-		if new_velocity.length()/velocity.length() < 0.5:
-			#OOF! Hit something that slowed us down
-			pass
+		if velocity.length() > 0:
+			if new_velocity.length()/velocity.length() < 0.5:
+				#OOF! Hit something that slowed us down
+				pass
 		velocity = new_velocity
