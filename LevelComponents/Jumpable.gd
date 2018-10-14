@@ -3,14 +3,15 @@ extends KinematicBody2D
 export (float) var jump_radius = 100
 export (bool) var being_controlled = false
 
-#onready var body_swap_sound : AudioStreamPlayer2D = get_node("JumpSound")
-
 signal jumped
+signal jumped_from
 
 var jump_area : Area2D
 var collision_circle : CircleShape2D
 var jumpable_bodies : Array = Array()
 var interactables : Array = Array()
+var jump_cooling_off = false
+var body_swap_sound : AudioStreamPlayer2D
 
 
 func _enter_tree():
@@ -21,6 +22,10 @@ func _enter_tree():
 	collision_circle = CircleShape2D.new()
 	collision_circle.radius = jump_radius
 	jump_collision_shape.shape = collision_circle
+	body_swap_sound = AudioStreamPlayer2D.new()
+	add_child(body_swap_sound)
+	body_swap_sound.stream = preload("res://Assets/Sounds/BodySwap.ogg")
+	body_swap_sound.volume_db = -25.0 
 
 
 func _exit_tree():
@@ -43,12 +48,13 @@ func _process(delta):
 
 
 func process_input(delta):
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and !jump_cooling_off:
 		if jumpable_bodies.size() > 0:
 			var to_jump_body : PhysicsBody2D = jumpable_bodies[0]
-			to_jump_body.emit_signal("jumped", self)
 			jumpable_bodies.remove(0)
 			being_controlled = false
+			to_jump_body.emit_signal("jumped", self)
+			self.emit_signal("jumped_from", to_jump_body)
 	
 	if Input.is_action_just_pressed("interact"):
 		for interactable in interactables:
@@ -62,7 +68,26 @@ func process_tool(delta):
 
 func become_controlled(jump_from : Node2D):
 	being_controlled = true
-	#body_swap_sound.play()
+	var timer = Timer.new()
+	add_child(timer)
+	jump_cooling_off = true
+	timer.wait_time = 0.1
+	timer.connect("timeout", self, "reset_jump_cooloff", [timer])
+	timer.start()
+	body_swap_sound.play()
+
+
+func reset_jump_cooloff(timer : Timer):
+	timer.queue_free()
+	jump_cooling_off = false
+
+
+static func is_jumpable(body : PhysicsBody2D):
+	var signals = body.get_signal_list()
+	for sig_obj in signals:
+		if sig_obj.name == "jumped":
+			return true
+	return false
 
 
 func _draw():
@@ -72,18 +97,20 @@ func _draw():
 
 
 func _on_JumpArea_body_entered(body : PhysicsBody2D):
-	var index = jumpable_bodies.find(body)
-	if index == -1:
-		jumpable_bodies.append(body)
+	if body != self and is_jumpable(body):
+		var index = jumpable_bodies.find(body)
+		if index == -1:
+			jumpable_bodies.append(body)
 
 
 func _on_JumpArea_body_exited(body : PhysicsBody2D):
-	var index = jumpable_bodies.find(body)
-	if index != -1:
-		jumpable_bodies.remove(index)
+	if body != self and is_jumpable(body):
+		var index = jumpable_bodies.find(body)
+		if index != -1:
+			jumpable_bodies.remove(index)
 
 
-func _on_jumped(jump_from_node : Node2D):
+func _on_jumped(jump_from_node : PhysicsBody2D):
 	become_controlled(jump_from_node)
 
 
