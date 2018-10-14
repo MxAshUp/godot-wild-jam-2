@@ -25,7 +25,11 @@ func _process(delta):
 		go_to_position = Vector2(patrol_position.x, patrol_position.y)
 	elif patrol:
 		position_follow = (patrol as Patrol).get_position_follow()
-		
+	
+	
+	#Modulate myself to show control state.
+	#I feel red should be all the non controlled guards
+	#though. 
 	if being_controlled:
 		$Sprite.modulate = Color(1,0,0)
 	else:
@@ -58,7 +62,8 @@ func _physics_process(delta):
 			
 		var new_velocity = move_and_slide(velocity)
 		if velocity.length() > 0:
-			if new_velocity.length()/velocity.length() < 0.5:
+#			if new_velocity.length()/velocity.length() < 0.5:
 				#OOF! Hit something that slowed us down
-				pass
+#				pass
+			pass
 		velocity = new_velocity

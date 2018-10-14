@@ -2,10 +2,6 @@
 
 [ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=1]
 
-
-
-
-
 [sub_resource type="Curve2D" id=1]
 
 bake_interval = 5.0
@@ -56,7 +52,6 @@ curve = SubResource( 2 )
 position = Vector2( 656, 480 )
 _sections_unfolded = [ "Transform" ]
 move_speed = 200.0
-jump_radius = 110.0
 preview = true
 
 [node name="Path2D" type="Path2D" parent="Node2D3"]
@@ -66,7 +61,6 @@ curve = SubResource( 3 )
 [node name="Node2D4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 320, 288 )
 preview = true
-being_controlled = true
 
 [node name="Path2D" type="Path2D" parent="Node2D4"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
@@ -106,15 +100,3 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
 
-[connection signal="body_entered" from="Node2D/Path2D/PathFollow2D/JumpArea" to="Node2D" method="_on_JumpArea_body_entered"]
-[connection signal="body_exited" from="Node2D/Path2D/PathFollow2D/JumpArea" to="Node2D" method="_on_JumpArea_body_exited"]
-[connection signal="jumped" from="Node2D/Path2D/PathFollow2D/StaticBody" to="Node2D" method="_on_StaticBody_jumped"]
-[connection signal="body_entered" from="Node2D2/Path2D/PathFollow2D/JumpArea" to="Node2D2" method="_on_JumpArea_body_entered"]
-[connection signal="body_exited" from="Node2D2/Path2D/PathFollow2D/JumpArea" to="Node2D2" method="_on_JumpArea_body_exited"]
-[connection signal="jumped" from="Node2D2/Path2D/PathFollow2D/StaticBody" to="Node2D2" method="_on_StaticBody_jumped"]
-[connection signal="body_entered" from="Node2D3/Path2D/PathFollow2D/JumpArea" to="Node2D3" method="_on_JumpArea_body_entered"]
-[connection signal="body_exited" from="Node2D3/Path2D/PathFollow2D/JumpArea" to="Node2D3" method="_on_JumpArea_body_exited"]
-[connection signal="jumped" from="Node2D3/Path2D/PathFollow2D/StaticBody" to="Node2D3" method="_on_StaticBody_jumped"]
-[connection signal="body_entered" from="Node2D4/Path2D/PathFollow2D/JumpArea" to="Node2D4" method="_on_JumpArea_body_entered"]
-[connection signal="body_exited" from="Node2D4/Path2D/PathFollow2D/JumpArea" to="Node2D4" method="_on_JumpArea_body_exited"]
-[connection signal="jumped" from="Node2D4/Path2D/PathFollow2D/StaticBody" to="Node2D4" method="_on_StaticBody_jumped"]

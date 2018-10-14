@@ -1,8 +1,8 @@
-extends KinematicBody2D
+extends "Jumpable.gd"
 
 
 export var run_speed = 200
-var being_controlled = true
+
 
 func _process( delta ):
 	if being_controlled :

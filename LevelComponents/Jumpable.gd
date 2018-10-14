@@ -26,7 +26,7 @@ func _enter_tree():
 	jump_collision_shape.shape = collision_circle
 	body_swap_sound = AudioStreamPlayer2D.new()
 	add_child(body_swap_sound)
-	body_swap_sound.stream = preload("res://Assets/Sounds/BodySwap.ogg")
+	body_swap_sound.stream = load("res://Assets/Sounds/BodySwap.ogg")
 	body_swap_sound.volume_db = -25.0 
 
 
