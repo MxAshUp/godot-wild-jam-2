@@ -22,10 +22,13 @@ func _ready():
 
 
 func get_position_follow():
-	return position_follow
+	return position_follow.global_position
 
 
 func _process(delta):
+	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
+		update()
+		
 	if Engine.is_editor_hint():
 		process_tool(delta)
 		
@@ -42,8 +45,14 @@ func process_movement(delta):
 	path_follow.offset += delta * move_speed
 
 
+func _draw():
+	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
+		draw_circle(get_position_follow() - position, 20, Color(0,0.5,0,0.5))
+
+
 # Process for just tooling around
 func process_tool(delta):
+	update()
 	if path_follow != null:
 		preview_offset += delta * move_speed
 		if preview:

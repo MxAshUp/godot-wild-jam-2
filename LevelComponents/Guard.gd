@@ -3,8 +3,7 @@ extends "Jumpable.gd"
 const Patrol = preload("Patrol.gd")
 var patrol : Node
 var patrolling : bool = false
-var position_follow : Position2D
-var go_to_position : Vector2
+var position_follow : Vector2
 var velocity : Vector2 = Vector2()
 const max_speed = 250
 const acceleration = 500
@@ -21,6 +20,9 @@ func _ready():
 	
 
 func _process(delta):
+	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
+		update()
+		
 	if patrol == null:
 		patrol = get_parent()
 		if patrol is Patrol:
@@ -28,10 +30,7 @@ func _process(delta):
 		else:
 			patrol = null
 	
-	if position_follow:
-		var patrol_position = position_follow.global_position
-		go_to_position = Vector2(patrol_position.x, patrol_position.y)
-	elif patrol:
+	if patrol:
 		position_follow = (patrol as Patrol).get_position_follow()
 	
 	
@@ -51,16 +50,20 @@ func _process(delta):
 
 func can_see_position(to_position : Vector2) -> bool :
 	var space_state = get_world_2d().direct_space_state
-	var result : Dictionary = space_state.intersect_ray(position, to_position, [self])
+	var result : Dictionary = space_state.intersect_ray(global_position, to_position, [self])
 	return result.size() == 0
 
 
+func _draw():
+	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
+		(self as Node2D).draw_line(Vector2(0,0), position_follow - global_position, Color(1,1,1))
+
 func process_movement(delta):
-	if go_to_position:
+	if position_follow:
 		
-		var follow_vector = go_to_position - self.position
+		var follow_vector = position_follow - self.global_position
 		
-		if can_see_position(go_to_position) and follow_vector.length() > 32:
+		if can_see_position(position_follow) and follow_vector.length() > 32:
 			velocity += follow_vector.normalized() * acceleration * delta
 			
 		else:
