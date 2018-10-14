@@ -25,7 +25,8 @@ extents = Vector2( 40, 30 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Guard" parent="." instance=ExtResource( 1 )]
-position = Vector2( 100, 130 )
+position = Vector2( 450, 220 )
+being_controlled = true
 
 [node name="Patrol" parent="." instance=ExtResource( 2 )]
 position = Vector2( -10, 0 )
