@@ -97,8 +97,8 @@ static func is_jumpable(body : PhysicsBody2D):
 
 func _draw():
 	# Show radius of jump
-	if Engine.is_editor_hint():
-		draw_circle(Vector2(0,0), jump_radius, Color(0.5, 0.5, 0, 0.5))
+	if Engine.is_editor_hint() or ProjectSettings.get_setting("Global/debug_overlay"):
+		draw_circle(Vector2(0,0), jump_radius, Color(0.5, 0.5, 0, 0.25))
 
 
 func _on_JumpArea_body_entered(body : PhysicsBody2D):
