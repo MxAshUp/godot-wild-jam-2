@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://LevelComponents/SceneAsset/Door/DoorSlide.gd" type="Script" id=2]
+
+[node name="DoorSlide" type="Sprite"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 1.385, 0.19186 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+frame_wait = 1
+slide_add = 4
+
