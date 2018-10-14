@@ -43,6 +43,10 @@ jump={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Hostage"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

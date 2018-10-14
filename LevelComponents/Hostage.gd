@@ -4,6 +4,9 @@ extends "Jumpable.gd"
 export var run_speed = 200
 
 
+signal rescued #When the hostage is rescued, this gets emitted.
+
+
 func _process( delta ):
 	if being_controlled :
 	#Get WASD movement
@@ -14,3 +17,12 @@ func _process( delta ):
 		move.y += -int( Input.is_action_pressed( "ui_up" ) )
 		
 		move_and_slide( move * run_speed )
+
+
+func _ready():
+	self.connect( "rescued", self, "rescued" )
+
+
+func rescued():
+	#Begin playing animations and victory sounds etc.
+	pass

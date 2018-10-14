@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=1]
 [ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LevelComponents/Hostage.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -23,6 +24,11 @@ extents = Vector2( 41.612, 30 )
 
 custom_solver_bias = 0.0
 extents = Vector2( 40, 30 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 30, 34 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -119,4 +125,11 @@ _sections_unfolded = [ "BBCode" ]
 
 [node name="Hostage" parent="." instance=ExtResource( 6 )]
 position = Vector2( 422.898, 64.2855 )
+
+[node name="Goal" parent="." instance=ExtResource( 7 )]
+position = Vector2( 599, 394 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 

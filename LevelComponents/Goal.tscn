@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://LevelComponents/Goal.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="Goal" type="Area2D"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="NOTE" type="RichTextLabel" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 356.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = "If  a hostage enters the goal, the level has been won.
+You have to supply your own collision shape for the goal."
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "If  a hostage enters the goal, the level has been won.
+You have to supply your own collision shape for the goal."
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode" ]
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 10.7142, 20.7982 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="Sprite"]
+position = Vector2( 63.6552, 0 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="Sprite"]
+position = Vector2( -63.6552, 0 )
+texture = ExtResource( 2 )
+
