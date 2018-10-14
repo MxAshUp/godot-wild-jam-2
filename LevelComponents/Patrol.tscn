@@ -9,7 +9,8 @@ start_offset = 0
 preview = false
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-offset = 0.0
+position = Vector2( 281.343, 260.921 )
+offset = 16.8
 h_offset = 0.0
 v_offset = 0.0
 rotate = false
@@ -17,4 +18,6 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 _sections_unfolded = [ "Transform" ]
+
+[node name="Position2D" type="Position2D" parent="PathFollow2D"]
 
