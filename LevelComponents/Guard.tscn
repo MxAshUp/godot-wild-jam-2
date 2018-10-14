@@ -17,7 +17,6 @@ motion/sync_to_physics = false
 script = ExtResource( 1 )
 jump_radius = 100
 being_controlled = false
-max_speed = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

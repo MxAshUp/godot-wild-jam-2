@@ -3,14 +3,17 @@ const Patrol = preload("Patrol.gd")
 var patrol : Node
 var patrolling : bool = false
 var position_follow : Position2D
-var go_to_position : Vector2 = self.position
+var go_to_position : Vector2
 var velocity : Vector2 = Vector2()
-export var max_speed = 100
+const max_speed = 250
+const acceleration = 500
 
 func _ready():
 	patrol = get_parent()
 	if patrol is Patrol:
 		patrolling = true
+	else:
+		patrol = null
 	
 func _process(delta):
 	if position_follow:
@@ -19,9 +22,28 @@ func _process(delta):
 	elif patrol:
 		position_follow = (patrol as Patrol).get_position_follow()
 
+
+func can_see_position(to_position : Vector2) -> bool :
+	var space_state = get_world_2d().direct_space_state
+	var result : Dictionary = space_state.intersect_ray(position, to_position, [self])
+	return result.size() == 0
+
 func _physics_process(delta):
 	if go_to_position:
-		var follow_vector = go_to_position - self.position
-		velocity = follow_vector.normalized() * max_speed 
-		velocity = move_and_slide(velocity)
 		
+		var follow_vector = go_to_position - self.position
+		
+		if can_see_position(go_to_position) and follow_vector.length() > 32:
+			velocity += follow_vector.normalized() * acceleration * delta
+			
+		else:
+			velocity = velocity.normalized() * (velocity.length() / 1.2)
+			
+		if velocity.length() > max_speed:
+			velocity = velocity.normalized() * max_speed
+			
+		var new_velocity = move_and_slide(velocity)
+		if new_velocity.length()/velocity.length() < 0.5:
+			#OOF! Hit something that slowed us down
+			pass
+		velocity = new_velocity
