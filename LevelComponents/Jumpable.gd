@@ -60,6 +60,8 @@ func process_input(delta):
 			being_controlled = false
 			selected_instance_to_jump.emit_signal("jumped", self)
 			self.emit_signal("jumped_from", selected_instance_to_jump)
+		else:
+			cycle_select_jump_body(0)
 	
 	if Input.is_action_just_pressed("interact"):
 		for interactable in interactables:
@@ -74,18 +76,22 @@ func process_input(delta):
 			cycle_select_jump_body(-1)
 		
 
-func cycle_select_jump_body(num):
+func cycle_select_jump_body(num = 0):
 	var new_index = -1
-	if selected_instance_to_jump == null:
-		new_index = 0
+	var first_index = 0
+	if num == 0:
+		new_index = first_index
 	else:
-		var index = jumpable_bodies.find(selected_instance_to_jump)
-		if index != -1:
-			new_index = int(fposmod(index + num, jumpable_bodies.size()))
+		if selected_instance_to_jump == null:
+			new_index = first_index
 		else:
-			new_index = 0
-	
-	if new_index == -1:
+			var index = jumpable_bodies.find(selected_instance_to_jump)
+			if index != -1:
+				new_index = int(fposmod(index + num, jumpable_bodies.size()))
+			else:
+				new_index = first_index
+		
+	if new_index == -1 or jumpable_bodies.size() == 0:
 		selected_instance_to_jump = null
 	else:
 		selected_instance_to_jump = jumpable_bodies[new_index]
