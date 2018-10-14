@@ -7,8 +7,8 @@ export (bool) var preview = false
 
 onready var path_follow : PathFollow2D = get_node("PathFollow2D") 
 onready var path : Path2D = get_node("Path2D")
-onready var static_body : StaticBody2D = get_node("PathFollow2D/StaticBody")
-onready var indicator_sprite : Sprite = get_node("PathFollow2D/IndicatorSprite")
+#onready var static_body : StaticBody2D = get_node("PathFollow2D/StaticBody")
+#onready var indicator_sprite : Sprite = get_node("PathFollow2D/IndicatorSprite")
 
 var preview_offset = 0
 
@@ -19,7 +19,6 @@ func _ready():
 		path_follow.offset = start_offset
 	
 	else:
-		print("OOPS")
 		set_process(false)
 
 
@@ -31,7 +30,7 @@ func _process(delta):
 		process_movement(delta)
 	
 	if path:
-		print(path.offs)
+		print(Vector2(path_follow.h_offset, path_follow.v_offset))
 
 
 # Actual game movement
