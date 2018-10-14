@@ -31,7 +31,7 @@ func _enter_tree():
 	body_swap_sound = AudioStreamPlayer2D.new()
 	add_child(body_swap_sound)
 	body_swap_sound.stream = load("res://Assets/Sounds/BodySwap.ogg")
-	body_swap_sound.volume_db = -25.0 
+	body_swap_sound.volume_db = -15.0 
 
 
 func _exit_tree():
