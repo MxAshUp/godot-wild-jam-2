@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=1]
-[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=2]
-[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 180, 150, 0, 0, 0, 0, 710, 150, 0, 0, 0, 0, 710, 310, 0, 0, 0, 0, 180, 310, 0, 0, 0, 0, 180, 150 )
+"points": PoolVector2Array( 0, 0, 0, 0, 180, 140, 0, 0, 0, 0, 710, 140, 0, 0, 0, 0, 710, 320, 0, 0, 0, 0, 180, 320, 0, 0, 0, 0, 180, 140 )
 }
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -24,32 +25,39 @@ extents = Vector2( 40, 30 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Guard" parent="." instance=ExtResource( 1 )]
-preview = true
+position = Vector2( 450, 220 )
+being_controlled = true
 
-[node name="Path2D" type="Path2D" parent="Guard"]
+[node name="Patrol" parent="." instance=ExtResource( 2 )]
+position = Vector2( -10, 0 )
+
+[node name="Guard" parent="Patrol" instance=ExtResource( 1 )]
+position = Vector2( 280, 124 )
+
+[node name="Path2D" type="Path2D" parent="Patrol"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
 
-[node name="Interactable" parent="." instance=ExtResource( 2 )]
+[node name="Interactable" parent="." instance=ExtResource( 3 )]
 position = Vector2( 458.388, 100 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2( -8.388, 50 )
 shape = SubResource( 2 )
 
-[node name="Door" parent="Interactable" instance=ExtResource( 3 )]
+[node name="Door" parent="Interactable" instance=ExtResource( 4 )]
 position = Vector2( 251.612, 120 )
 
-[node name="Interactable2" parent="." instance=ExtResource( 2 )]
+[node name="Interactable2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 470, 360 )
 rotation = 3.14159
 _sections_unfolded = [ "Transform" ]
 
-[node name="Door2" parent="Interactable2" instance=ExtResource( 3 )]
+[node name="Door2" parent="Interactable2" instance=ExtResource( 4 )]
 position = Vector2( 290, 134.217 )
 rotation = -3.14159
 
-[node name="Door3" parent="Interactable2" instance=ExtResource( 3 )]
+[node name="Door3" parent="Interactable2" instance=ExtResource( 4 )]
 position = Vector2( -140.001, 210 )
 rotation = 1.5708
 _sections_unfolded = [ "Collision", "Transform" ]
@@ -100,8 +108,3 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
 
-[connection signal="area_entered" from="Guard/Path2D/PathFollow2D/InteractArea" to="Guard" method="_on_InteractArea_area_entered"]
-[connection signal="area_exited" from="Guard/Path2D/PathFollow2D/InteractArea" to="Guard" method="_on_InteractArea_area_exited"]
-[connection signal="body_entered" from="Guard/Path2D/PathFollow2D/JumpArea" to="Guard" method="_on_JumpArea_body_entered"]
-[connection signal="body_exited" from="Guard/Path2D/PathFollow2D/JumpArea" to="Guard" method="_on_JumpArea_body_exited"]
-[connection signal="jumped" from="Guard/Path2D/PathFollow2D/StaticBody" to="Guard" method="_on_StaticBody_jumped"]
