@@ -62,7 +62,8 @@ func can_see_position(to_position : Vector2) -> bool :
 
 func _draw():
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
-		(self as Node2D).draw_line(Vector2(0,0), position_follow - global_position, Color(1,1,1))
+		if position_follow:
+			(self as Node2D).draw_line(Vector2(0,0), position_follow - global_position, Color(1,1,1))
 
 func process_movement(delta):
 	if position_follow:
