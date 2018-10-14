@@ -30,29 +30,78 @@ preview = true
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
 
-[node name="Influence" parent="." instance=ExtResource( 2 )]
+[node name="Interactable" parent="." instance=ExtResource( 2 )]
 position = Vector2( 458.388, 100 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Influence"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2( -8.388, 50 )
 shape = SubResource( 2 )
 
-[node name="Door" parent="Influence" instance=ExtResource( 3 )]
+[node name="Door" parent="Interactable" instance=ExtResource( 3 )]
 position = Vector2( 251.612, 120 )
 
-[node name="Influence2" parent="." instance=ExtResource( 2 )]
+[node name="Interactable2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 470, 360 )
 rotation = 3.14159
 _sections_unfolded = [ "Transform" ]
 
-[node name="Door2" parent="Influence2" instance=ExtResource( 3 )]
+[node name="Door2" parent="Interactable2" instance=ExtResource( 3 )]
 position = Vector2( 290, 134.217 )
 rotation = -3.14159
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Influence2"]
+[node name="Door3" parent="Interactable2" instance=ExtResource( 3 )]
+position = Vector2( -140.001, 210 )
+rotation = 1.5708
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable2"]
 position = Vector2( 19.9999, 50.0001 )
 shape = SubResource( 3 )
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 670.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 0, 10 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = "------------
+Intergration test
+
+This scene showcases different components working togther.
+In this demo, use \"Interact\" key (Control) to interact with switches.
+When a switch is interacted with, it will emit a \"interact\" signal to all of it's children.
+The \"Door\" scene is listening for the \"Interact\" signal, and toggles the door state when received.
+
+--------------"
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "------------
+Intergration test
+
+This scene showcases different components working togther.
+In this demo, use \"Interact\" key (Control) to interact with switches.
+When a switch is interacted with, it will emit a \"interact\" signal to all of it's children.
+The \"Door\" scene is listening for the \"Interact\" signal, and toggles the door state when received.
+
+--------------"
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "BBCode" ]
+
+[connection signal="area_entered" from="Guard/Path2D/PathFollow2D/InteractArea" to="Guard" method="_on_InteractArea_area_entered"]
+[connection signal="area_exited" from="Guard/Path2D/PathFollow2D/InteractArea" to="Guard" method="_on_InteractArea_area_exited"]
 [connection signal="body_entered" from="Guard/Path2D/PathFollow2D/JumpArea" to="Guard" method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="Guard/Path2D/PathFollow2D/JumpArea" to="Guard" method="_on_JumpArea_body_exited"]
 [connection signal="jumped" from="Guard/Path2D/PathFollow2D/StaticBody" to="Guard" method="_on_StaticBody_jumped"]
