@@ -3,7 +3,7 @@
 # The Team
 * John Gabriel - Composer
 
-* Zach777 - UI/UX Designer and does grunt work programming
+* Zach777 - UI/UX Designer and assistant programming
 
 * Seba - graphics (2D/3D)
 
