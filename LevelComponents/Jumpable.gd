@@ -1,3 +1,4 @@
+tool
 extends KinematicBody2D
 
 export (float) var jump_radius = 100
@@ -95,7 +96,7 @@ static func is_jumpable(body : PhysicsBody2D):
 func _draw():
 	# Show radius of jump
 	if Engine.is_editor_hint():
-		draw_circle(position, jump_radius, Color(0.5, 0.5, 0, 0.5))
+		draw_circle(Vector2(0,0), jump_radius, Color(0.5, 0.5, 0, 0.5))
 
 
 func _on_JumpArea_body_entered(body : PhysicsBody2D):

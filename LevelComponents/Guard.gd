@@ -1,3 +1,4 @@
+tool
 extends "Jumpable.gd"
 const Patrol = preload("Patrol.gd")
 var patrol : Node
