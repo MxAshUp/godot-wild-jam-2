@@ -50,6 +50,7 @@ preview = true
 [node name="Guard" parent="Patrol1" instance=ExtResource( 2 )]
 position = Vector2( 130, 260 )
 _sections_unfolded = [ "Transform" ]
+being_controlled = true
 
 [node name="Path2D" type="Path2D" parent="Patrol1"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
