@@ -14,6 +14,9 @@ func _ready():
 		patrolling = true
 	else:
 		patrol = null
+		
+	$AnimationPlayer.play("walking")
+	$AnimationPlayer.playback_speed = 0
 	
 func _process(delta):
 	if position_follow:
@@ -21,7 +24,15 @@ func _process(delta):
 		go_to_position = Vector2(patrol_position.x, patrol_position.y)
 	elif patrol:
 		position_follow = (patrol as Patrol).get_position_follow()
+		
+	if being_controlled:
+		$Sprite.modulate = Color(1,0,0)
 
+	$AnimationPlayer.playback_speed = (velocity.length() / max_speed) * 3
+	if velocity.x > 0:
+		$Sprite.flip_h = true
+	elif velocity.x < 0:
+		$Sprite.flip_h = false
 
 func can_see_position(to_position : Vector2) -> bool :
 	var space_state = get_world_2d().direct_space_state
