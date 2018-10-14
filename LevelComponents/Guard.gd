@@ -21,6 +21,13 @@ func _ready():
 	
 
 func _process(delta):
+	if patrol == null:
+		patrol = get_parent()
+		if patrol is Patrol:
+			patrolling = true
+		else:
+			patrol = null
+	
 	if position_follow:
 		var patrol_position = position_follow.global_position
 		go_to_position = Vector2(patrol_position.x, patrol_position.y)
@@ -47,7 +54,8 @@ func can_see_position(to_position : Vector2) -> bool :
 	var result : Dictionary = space_state.intersect_ray(position, to_position, [self])
 	return result.size() == 0
 
-func _physics_process(delta):
+
+func process_movement(delta):
 	if go_to_position:
 		
 		var follow_vector = go_to_position - self.position
@@ -56,7 +64,10 @@ func _physics_process(delta):
 			velocity += follow_vector.normalized() * acceleration * delta
 			
 		else:
-			velocity = velocity.normalized() * (velocity.length() / 1.2)
+			var speed = velocity.length()
+			speed -= acceleration * delta * 2
+			speed = max(0, speed)
+			velocity = velocity.normalized() * speed
 			
 		if velocity.length() > max_speed:
 			velocity = velocity.normalized() * max_speed
@@ -67,4 +78,9 @@ func _physics_process(delta):
 				#OOF! Hit something that slowed us down
 #				pass
 			pass
-		velocity = new_velocity
+		velocity = new_velocity	
+
+
+func _physics_process(delta):
+	if !Engine.is_editor_hint():
+		process_movement(delta)
