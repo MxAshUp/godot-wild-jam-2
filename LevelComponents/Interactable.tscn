@@ -2,9 +2,6 @@
 
 [ext_resource path="res://LevelComponents/Interactable.gd" type="Script" id=1]
 
-
-
-
 [node name="Interactable" type="Area2D"]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -15,4 +12,3 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 
-[connection signal="interact" from="." to="." method="_on_Interactable_interact"]

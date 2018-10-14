@@ -5,6 +5,8 @@ export (bool) var being_controlled = false
 
 signal jumped
 signal jumped_from
+signal enter_interaction_region
+signal exit_interaction_region
 
 var jump_area : Area2D
 var collision_circle : CircleShape2D
@@ -36,9 +38,9 @@ func _exit_tree():
 func _ready():
 	jump_area.connect("body_entered", self, "_on_JumpArea_body_entered")
 	jump_area.connect("body_exited", self, "_on_JumpArea_body_exited")
+	self.connect("enter_interaction_region", self, "_on_InteractArea_area_entered")
+	self.connect("exit_interaction_region", self, "_on_InteractArea_area_exited")
 	self.connect("jumped", self, "_on_jumped")
-	self.connect("area_entered", self, "_on_InteractArea_area_entered")
-	self.connect("area_exited", self, "_on_InteractArea_area_exited")
 	
 
 func _process(delta):
@@ -115,7 +117,7 @@ func _on_jumped(jump_from_node : PhysicsBody2D):
 
 
 func _on_InteractArea_area_entered(interactable_area : Area2D):
-	if interactable_area != jump_area:
+	if interactable_area != self.jump_area:
 		var index = interactables.find(interactable_area)
 		if index == -1:
 			interactables.append(interactable_area)
