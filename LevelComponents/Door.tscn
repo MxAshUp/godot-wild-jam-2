@@ -1,7 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://PrototypeScenes/Influence/Door/Door.gd" type="Script" id=1]
+[ext_resource path="res://LevelComponents/Door.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+
+
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -24,6 +28,7 @@ shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="NOTE" type="RichTextLabel" parent="."]
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -83,3 +88,4 @@ scale = Vector2( 1.37062, 0.186952 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Visibility" ]
 
+[connection signal="interact" from="." to="." method="_on_Door_interact"]

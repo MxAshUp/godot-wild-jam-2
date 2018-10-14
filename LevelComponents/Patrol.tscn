@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Tools/Patrol.gd" type="Script" id=1]
+[ext_resource path="res://LevelComponents/Patrol.gd" type="Script" id=1]
 [ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sounds/BodySwap.ogg" type="AudioStream" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 50.0
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -22,7 +27,7 @@ signal jumped"
 custom_solver_bias = 0.0
 radius = 32.0
 
-[node name="Node2D" type="Node2D"]
+[node name="Patrol" type="Node2D"]
 script = ExtResource( 1 )
 move_speed = 100
 start_offset = 0
@@ -53,6 +58,19 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 128, 256, 32, 32 )
 _sections_unfolded = [ "Region", "Transform", "texture" ]
+
+[node name="InteractArea" type="Area2D" parent="PathFollow2D"]
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/InteractArea"]
+shape = SubResource( 4 )
 
 [node name="JumpArea" type="Area2D" parent="PathFollow2D"]
 editor/display_folded = true
@@ -95,6 +113,8 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
+[connection signal="area_entered" from="PathFollow2D/InteractArea" to="." method="_on_InteractArea_area_entered"]
+[connection signal="area_exited" from="PathFollow2D/InteractArea" to="." method="_on_InteractArea_area_exited"]
 [connection signal="body_entered" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_entered"]
 [connection signal="body_exited" from="PathFollow2D/JumpArea" to="." method="_on_JumpArea_body_exited"]
 [connection signal="jumped" from="PathFollow2D/StaticBody" to="." method="_on_StaticBody_jumped"]

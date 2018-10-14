@@ -17,6 +17,7 @@ onready var body_swap_sound : AudioStreamPlayer2D = get_node("PathFollow2D/BodyS
 var collision_circle : CircleShape2D = null
 var preview_offset = 0
 var jumpable_bodies : Array = Array()
+var interactables : Array = Array()
 
 func _ready():
 	
@@ -51,12 +52,16 @@ func process_movement(delta):
 
 
 func process_input(delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("jump"):
 		if jumpable_bodies.size() > 0:
 			var to_jump_body : PhysicsBody2D = jumpable_bodies[0]
 			to_jump_body.emit_signal("jumped", self)
 			jumpable_bodies.remove(0)
 			being_controlled = false
+	
+	if Input.is_action_just_pressed("interact"):
+		for interactable in interactables:
+			(interactable as Node).emit_signal("interact")
 
 
 # Process for just tooling around
@@ -94,7 +99,7 @@ func _on_JumpArea_body_entered(body : PhysicsBody2D):
 			jumpable_bodies.append(body)
 
 
-func _on_JumpArea_body_exited(body):
+func _on_JumpArea_body_exited(body : PhysicsBody2D):
 	if body != self.static_body:
 		var index = jumpable_bodies.find(body)
 		if index != -1:
@@ -103,3 +108,16 @@ func _on_JumpArea_body_exited(body):
 
 func _on_StaticBody_jumped(jump_from_node : Node2D):
 	become_controlled(jump_from_node)
+
+func _on_InteractArea_area_entered(interactable_area : Area2D):
+	if interactable_area != jump_area:
+		var index = interactables.find(interactable_area)
+		if index == -1:
+			interactables.append(interactable_area)
+
+func _on_InteractArea_area_exited(interactable_area : Area2D):
+	if interactable_area != self.jump_area:
+		var index = interactables.find(interactable_area)
+		if index != -1:
+			interactables.remove(index)
+

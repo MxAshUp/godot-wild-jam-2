@@ -1,13 +1,10 @@
 extends StaticBody2D
 
-
 export var door_open : bool = false
 
+signal interact
 
-#The door.
-
-
-func perform_function():
+func _on_Door_interact():
 	if door_open :
 		#Close door
 		self.set_collision_layer_bit( 0, true )
@@ -18,4 +15,3 @@ func perform_function():
 		self.set_collision_layer_bit( 0, false )
 		$Col.hide()
 		door_open = true
- #end
