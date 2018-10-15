@@ -3,6 +3,7 @@
 [ext_resource path="res://Global/Music.gd" type="Script" id=1]
 
 [node name="Music" type="AudioStreamPlayer"]
+pause_mode = 2
 stream = null
 volume_db = 0.0
 pitch_scale = 1.0
@@ -11,4 +12,5 @@ stream_paused = false
 mix_target = 0
 bus = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
