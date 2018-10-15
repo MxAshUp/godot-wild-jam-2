@@ -24,10 +24,11 @@ run_speed = 200
 shape = SubResource( 1 )
 
 [node name="CharacterSprite" type="Sprite" parent="."]
+z_index = 2
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 257, 31, 32 )
-_sections_unfolded = [ "Region", "Transform", "texture" ]
+_sections_unfolded = [ "Region", "Transform", "Z Index", "texture" ]
 
 [node name="IndicatorSprite" type="Sprite" parent="."]
 visible = false

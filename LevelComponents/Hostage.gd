@@ -16,6 +16,7 @@ func _process( delta ):
 		move.x += -int( Input.is_action_pressed( "ui_left" ) )
 		move.y += int( Input.is_action_pressed( "ui_down" ) )
 		move.y += -int( Input.is_action_pressed( "ui_up" ) )
+		move = move.clamped( 1 )
 		
 		move_and_slide( move * run_speed )
 
