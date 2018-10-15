@@ -6,7 +6,7 @@
 [ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=6]
-[ext_resource path="res://LevelComponents/SceneAsset/Door/DoorSwing.tscn" type="PackedScene" id=7]
+[ext_resource path="res://LevelComponents/SceneAsset/Door/Pillar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://icon.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -42,10 +42,11 @@ tile_data = PoolIntArray( 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65
 _sections_unfolded = [ "Cell", "Collision", "Occluder" ]
 
 [node name="Hostage" parent="." index="0" instance=ExtResource( 2 )]
-position = Vector2( 652.599, 304.029 )
+position = Vector2( 675.932, 307.362 )
 being_controlled = true
 
 [node name="Light2D" type="Light2D" parent="Hostage" index="3"]
+visible = false
 position = Vector2( 2.96735, 5.87604 )
 enabled = true
 editor_only = false
@@ -87,9 +88,13 @@ _sections_unfolded = [ "Transform" ]
 [node name="Door" parent="Interactable" index="1" instance=ExtResource( 6 )]
 position = Vector2( -0.394409, -25.3268 )
 
-[node name="DoorSwing" parent="Interactable/Door" index="2" instance=ExtResource( 7 )]
-position = Vector2( 30.722, 0 )
-scale = Vector2( 1.01302, 0.186952 )
+[node name="Pillar" parent="Interactable/Door" index="1" instance=ExtResource( 7 )]
+position = Vector2( 15.9328, 6.19876 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Pillar2" parent="Interactable/Door" index="2" instance=ExtResource( 7 )]
+position = Vector2( -15.3182, 6.19876 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="3"]
 occluder = SubResource( 3 )

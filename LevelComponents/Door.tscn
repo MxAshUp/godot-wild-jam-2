@@ -1,26 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://LevelComponents/Door.gd" type="Script" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 44.2632, 6.14934 )
-
-[node name="Door" type="StaticBody2D"]
-input_pickable = false
-collision_layer = 1
-collision_mask = 0
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-physics_material_override = null
+[node name="Door" type="Node2D"]
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 door_open = null
-
-[node name="Col" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="NOTE" type="RichTextLabel" parent="."]
 visible = false
