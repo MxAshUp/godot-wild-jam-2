@@ -10,6 +10,7 @@ const CHASE_ON_ALERT_LEVEL : float = 1.8
 const MAX_CHASE_ALERT_LEVEL : float = 10.0
 const MAX_VISION_DISTANCE : float = 270.0
 const ALERT_INCREASE_FACTOR : float = 15.0
+var alert_state = "calm"
 var patrolling : bool = false
 var position_follow : Vector2
 var follow_object_speed : Vector2
@@ -27,6 +28,11 @@ const FRICTION = 1500
 signal lost_follow_position
 signal found_follow_position
 
+signal alert_state_chasing
+signal alert_state_confused
+signal alert_state_calm
+signal alert_state_alert
+
 func _ready():
 	$AnimationPlayer.play("walking")
 	$AnimationPlayer.playback_speed = 0
@@ -34,6 +40,9 @@ func _ready():
 	$ChaseTimeout.connect("timeout", self, "_on_chase_timout")
 	$VisionArea.connect("body_entered", self, "_on_enter_vision_area")
 	$VisionArea.connect("body_exited", self, "_on_exit_vision_area")
+	
+	self.connect("alert_state_confused", self, "_on_alert_confused")
+	self.connect("alert_state_alert", self, "_on_alert_alert")
 
 func _process(delta):
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
@@ -47,12 +56,20 @@ func _process(delta):
 			patrol = null
 
 	var see_something = false
+	var new_alert_state = alert_state
 	if chaseable_bodies.size() > 0 and !chasing:
 		for maybe_chase in chaseable_bodies:
 			if can_see_position(maybe_chase.global_position, [maybe_chase]):
 				see_something = true
 				var distance_away = (maybe_chase.global_position - global_position).length()
 				chase_alert_level += delta * max(0 , 1 - (distance_away / MAX_VISION_DISTANCE)) * ALERT_INCREASE_FACTOR
+				
+				if chase_alert_level > STOP_ON_ALERT_LEVEL:
+					new_alert_state = "confused"
+					
+				if chase_alert_level > INVESTIGATE_ON_ALERT_LEVEL:
+					new_alert_state = "alert"
+				
 				if chase_alert_level > MAX_CHASE_ALERT_LEVEL:
 					chase_alert_level = MAX_CHASE_ALERT_LEVEL
 				
@@ -62,10 +79,13 @@ func _process(delta):
 		
 	if !see_something and chase_alert_level > 0:
 		chase_alert_level -= delta
+		if chase_alert_level <= 0:
+			new_alert_state = "calm"
 		
 	if chasing:
 		chase_alert_level = MAX_CHASE_ALERT_LEVEL
 
+	set_alert_state(new_alert_state)
 
 	#Modulate myself to show control state.
 	#I feel red should be all the non controlled guards
@@ -80,6 +100,11 @@ func _process(delta):
 		$Sprite.flip_h = true
 	elif velocity.x < 0:
 		$Sprite.flip_h = false
+
+func set_alert_state(new_state):
+	if new_state != alert_state:
+		alert_state = new_state
+		(self as Object).emit_signal("alert_state_" + alert_state)
 
 
 func can_see_position(to_position : Vector2, exclude : Array = []) -> bool :
@@ -116,6 +141,14 @@ func _on_exit_vision_area(body : PhysicsBody2D):
 			chaseable_bodies.remove(index)
 
 
+func _on_alert_alert():
+	print("ALERT")
+	$ExclamationAnimation.play("alert")
+
+
+func _on_alert_confused():
+	$ExclamationAnimation.play("confused")
+
 
 func _draw():
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
@@ -127,6 +160,7 @@ func process_movement(delta):
 	
 	if chasing:
 		if can_see_position(chasing.global_position, [chasing]):
+			set_alert_state("alert")
 			follow_object_speed = chasing.global_position - position_follow
 			follow_object_speed = follow_object_speed.normalized() * follow_object_speed.length() / delta
 			position_follow = chasing.global_position
@@ -138,6 +172,9 @@ func process_movement(delta):
 			var distance_to_point = (position_follow - self.global_position).length()
 			if distance_to_point < FOLLOW_THRESHOLD and chase_alert_level > 5.0:
 				position_follow = position_follow + follow_object_speed * delta
+
+			if velocity.length() < 0.1:
+				set_alert_state("confused")
 
 	elif patrol:
 		if chase_alert_level < STOP_ON_ALERT_LEVEL or (chase_alert_level > INVESTIGATE_ON_ALERT_LEVEL and chase_alert_level < CHASE_ON_ALERT_LEVEL):
