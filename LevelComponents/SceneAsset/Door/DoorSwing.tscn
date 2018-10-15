@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://LevelComponents/SceneAsset/Door/DoorSwing.gd" type="Script" id=2]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( 1.32561, 29.0033, 1.28927, -34.5865, -62.7771, -34.3335, -62.7163, 28.4707 )
 
 [node name="DoorSwing" type="Sprite"]
 modulate = Color( 0, 0, 0, 1 )
@@ -11,4 +17,8 @@ texture = ExtResource( 1 )
 offset = Vector2( -30.753, -2.36473 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
+light_mask = 1
 
