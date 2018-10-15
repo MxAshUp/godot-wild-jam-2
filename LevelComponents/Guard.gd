@@ -17,6 +17,7 @@ var follow_object_speed : Vector2
 var velocity : Vector2 = Vector2()
 var can_see_follow_position = false
 var chaseable_bodies : Array = Array()
+const PATROL_MAX_SPEED = 150
 const MAX_SPEED = 250
 const INVESTIGATE_MAX_SPEED = 60
 const PATROL_ACCELERATION = 500
@@ -198,20 +199,28 @@ func process_movement(delta):
 					if patrol:
 						patrol.emit_signal("out_of_range", self)
 
+		var max_speed_to_use = MAX_SPEED
 		
 		if chase_alert_level > INVESTIGATE_ON_ALERT_LEVEL and chase_alert_level < CHASE_ON_ALERT_LEVEL:
-			if velocity.length() > INVESTIGATE_MAX_SPEED:
-				velocity = velocity.normalized() * INVESTIGATE_MAX_SPEED
+			max_speed_to_use = INVESTIGATE_MAX_SPEED
+				
+		elif patrol and !chasing:
+			max_speed_to_use =  PATROL_MAX_SPEED
+			
 		else:
-			if velocity.length() > MAX_SPEED:
-				velocity = velocity.normalized() * MAX_SPEED
-							
+			max_speed_to_use =  MAX_SPEED
+
+		if velocity.length() > max_speed_to_use:
+			velocity = velocity.normalized() * max_speed_to_use
+		
 		var new_velocity = move_and_slide(velocity)
+			
 		if velocity.length() > 0:
 #			if new_velocity.length()/velocity.length() < 0.5:
 				#OOF! Hit something that slowed us down
 #				pass
 			pass
+			
 		velocity = new_velocity
 
 
