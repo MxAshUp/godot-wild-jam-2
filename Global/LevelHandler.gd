@@ -13,6 +13,12 @@ func next_level():
 	
 	current_level += 1
 	if current_level >= level_array.size() :
+		current_level -= 1 #Remove this later.
 		pass #You beat the game.
 	
 	SceneBrowser.change_scene( level_array[ 0 ] )
+
+
+
+func restart():
+	SceneBrowser.change_scene( level_array[ current_level ] )
