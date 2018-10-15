@@ -6,14 +6,16 @@ var chasing : Node2D
 var can_leap = true
 var patrolling : bool = false
 var position_follow : Vector2
+var follow_object_speed : Vector2
 var velocity : Vector2 = Vector2()
 var can_see_follow_position = false
-const MAX_SPEED = 250
-const ACCELERATION = 500
+const MAX_SPEED = 150
+const PATROL_ACCELERATION = 500
+const CHASE_ACCELERATION = 1000
 const FOLLOW_THRESHOLD = 32
 #const LEAP_THRESHOLD = 200
 #const LEAP_DISTANCE = 500
-const FRICTION = 1000
+const FRICTION = 1500
 
 signal lost_follow_position
 signal found_follow_position
@@ -70,8 +72,8 @@ func _on_chase_timout():
 	chasing = null
 
 
-func _on_leap_timeout():
-	can_leap = true
+#func _on_leap_timeout():
+#	can_leap = true
 
 
 #func leap_to(to_position : Vector2):
@@ -90,29 +92,44 @@ func _draw():
 			(self as Node2D).draw_line(Vector2(0,0), position_follow - global_position, Color(1,1,1))
 
 
-func process_movement(delta):
+func process_movement(delta):	
+	
 	if chasing:
 		if can_see_position(chasing.global_position, [chasing]):
+			follow_object_speed = chasing.global_position - position_follow
+			follow_object_speed = follow_object_speed.normalized() * follow_object_speed.length() / delta
 			position_follow = chasing.global_position
 			$ChaseTimeout.stop()
+			
 		elif $ChaseTimeout.time_left == 0:
 			$ChaseTimeout.start()
+		else:
+			var distance_to_point = (position_follow - self.global_position).length()
+			if distance_to_point < FOLLOW_THRESHOLD:
+				position_follow = position_follow + follow_object_speed * delta
 
 	elif patrol:
 		position_follow = (patrol as Patrol).get_position_follow()
 
+	
 	if position_follow:
 
 		var follow_vector = position_follow - self.global_position
 
 		if can_see_position(position_follow, [chasing]) and follow_vector.length() > FOLLOW_THRESHOLD:
+			
+			#Do some events
 			if can_see_follow_position == false:
 				can_see_follow_position = true
 				emit_signal("found_follow_position")
 				if patrol:
 					patrol.emit_signal("in_range", self)
 
-			velocity += follow_vector.normalized() * ACCELERATION * delta
+			# adjust velocity
+			if chasing:
+				velocity += follow_vector.normalized() * CHASE_ACCELERATION * delta
+			elif patrol:
+				velocity += follow_vector.normalized() * PATROL_ACCELERATION * delta
 
 #			if chasing and follow_vector.length() < LEAP_THRESHOLD:
 #				leap_to(position_follow)
