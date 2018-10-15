@@ -3,13 +3,22 @@ extends "Jumpable.gd"
 const Patrol = preload("Patrol.gd")
 var patrol : Node2D
 var chasing : Node2D
+var chase_alert_level : float = 0
+const STOP_ON_ALERT_LEVEL : float = 0.1
+const INVESTIGATE_ON_ALERT_LEVEL : float = 1.0
+const CHASE_ON_ALERT_LEVEL : float = 1.8
+const MAX_CHASE_ALERT_LEVEL : float = 10.0
+const MAX_VISION_DISTANCE : float = 270.0
+const ALERT_INCREASE_FACTOR : float = 15.0
 var can_leap = true
 var patrolling : bool = false
 var position_follow : Vector2
 var follow_object_speed : Vector2
 var velocity : Vector2 = Vector2()
 var can_see_follow_position = false
-const MAX_SPEED = 150
+var chaseable_bodies : Array = Array()
+const MAX_SPEED = 250
+const INVESTIGATE_MAX_SPEED = 60
 const PATROL_ACCELERATION = 500
 const CHASE_ACCELERATION = 1000
 const FOLLOW_THRESHOLD = 32
@@ -21,20 +30,13 @@ signal lost_follow_position
 signal found_follow_position
 
 func _ready():
-	patrol = get_parent()
-	if patrol is Patrol:
-		patrolling = true
-	else:
-		patrol = null
-
 	$AnimationPlayer.play("walking")
 	$AnimationPlayer.playback_speed = 0
 
 	$ChaseTimeout.connect("timeout", self, "_on_chase_timout")
 	#$LeapTimeout.connect("timeout", self, "_on_leap_timeout")
-
-	chasing = get_node('../../Hostage')
-
+	$VisionArea.connect("body_entered", self, "_on_enter_vision_area")
+	$VisionArea.connect("body_exited", self, "_on_exit_vision_area")
 
 func _process(delta):
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
@@ -46,6 +48,27 @@ func _process(delta):
 			patrolling = true
 		else:
 			patrol = null
+
+	var see_something = false
+	if chaseable_bodies.size() > 0 and !chasing:
+		for maybe_chase in chaseable_bodies:
+			if can_see_position(maybe_chase.global_position, [maybe_chase]):
+				see_something = true
+				var distance_away = (maybe_chase.global_position - global_position).length()
+				chase_alert_level += delta * max(0 , 1 - (distance_away / MAX_VISION_DISTANCE)) * ALERT_INCREASE_FACTOR
+				if chase_alert_level > MAX_CHASE_ALERT_LEVEL:
+					chase_alert_level = MAX_CHASE_ALERT_LEVEL
+				
+				if chase_alert_level >= CHASE_ON_ALERT_LEVEL:
+					chasing = maybe_chase
+					break
+		
+	if !see_something and chase_alert_level > 0:
+		chase_alert_level -= delta
+		
+	if chasing:
+		chase_alert_level = MAX_CHASE_ALERT_LEVEL
+
 
 	#Modulate myself to show control state.
 	#I feel red should be all the non controlled guards
@@ -70,6 +93,30 @@ func can_see_position(to_position : Vector2, exclude : Array = []) -> bool :
 
 func _on_chase_timout():
 	chasing = null
+
+
+static func is_chasable(body : Node2D):
+	var signals = body.get_signal_list()
+	for sig_obj in signals:
+		if sig_obj.name == "rescued":
+			return true
+	return false
+
+
+func _on_enter_vision_area(body : PhysicsBody2D):
+	if body != self and is_chasable(body):
+		var index = chaseable_bodies.find(body)
+		if index == -1:
+			chaseable_bodies.append(body)
+
+
+func _on_exit_vision_area(body : PhysicsBody2D):
+	if body != self and is_chasable(body):
+		var index = chaseable_bodies.find(body)
+		if index != -1:
+			# if chasing == body, maybe act confused
+			# Maybe act confused
+			chaseable_bodies.remove(index)
 
 
 #func _on_leap_timeout():
@@ -105,11 +152,12 @@ func process_movement(delta):
 			$ChaseTimeout.start()
 		else:
 			var distance_to_point = (position_follow - self.global_position).length()
-			if distance_to_point < FOLLOW_THRESHOLD:
+			if distance_to_point < FOLLOW_THRESHOLD and chase_alert_level > 5.0:
 				position_follow = position_follow + follow_object_speed * delta
 
 	elif patrol:
-		position_follow = (patrol as Patrol).get_position_follow()
+		if chase_alert_level < STOP_ON_ALERT_LEVEL or (chase_alert_level > INVESTIGATE_ON_ALERT_LEVEL and chase_alert_level < CHASE_ON_ALERT_LEVEL):
+			position_follow = (patrol as Patrol).get_position_follow()
 
 	
 	if position_follow:
@@ -150,9 +198,14 @@ func process_movement(delta):
 					if patrol:
 						patrol.emit_signal("out_of_range", self)
 
-		if velocity.length() > MAX_SPEED:
-			velocity = velocity.normalized() * MAX_SPEED
-
+		
+		if chase_alert_level > INVESTIGATE_ON_ALERT_LEVEL and chase_alert_level < CHASE_ON_ALERT_LEVEL:
+			if velocity.length() > INVESTIGATE_MAX_SPEED:
+				velocity = velocity.normalized() * INVESTIGATE_MAX_SPEED
+		else:
+			if velocity.length() > MAX_SPEED:
+				velocity = velocity.normalized() * MAX_SPEED
+							
 		var new_velocity = move_and_slide(velocity)
 		if velocity.length() > 0:
 #			if new_velocity.length()/velocity.length() < 0.5:

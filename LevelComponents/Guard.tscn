@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://LevelComponents/Guard.gd" type="Script" id=1]
 [ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
@@ -26,6 +26,11 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Rect2( 64, 288, 32, 32 ), Rect2( 96, 288, 32, 32 ) ]
 }
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 270.185
 
 [node name="Guard" type="KinematicBody2D"]
 input_pickable = false
@@ -62,4 +67,18 @@ process_mode = 1
 wait_time = 3.0
 one_shot = false
 autostart = false
+
+[node name="VisionArea" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
+visible = false
+shape = SubResource( 3 )
+_sections_unfolded = [ "shape" ]
 
