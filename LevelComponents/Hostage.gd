@@ -8,6 +8,11 @@ export var run_speed = 200
 signal rescued #When the hostage is rescued, this gets emitted.
 
 
+
+func end_chase( instance ):
+	Music.revert()
+
+
 func _process( delta ):
 	if being_controlled :
 	#Get WASD movement
@@ -22,9 +27,20 @@ func _process( delta ):
 
 
 func _ready():
+	if being_controlled :
+		Music.at_chase()
+	
 	self.connect( "rescued", self, "rescued" )
+	self.connect( "jumped", self, "start_chase" )
+	self.connect( "jumped_from", self, "end_chase" )
 
 
 func rescued():
 	#Begin playing animations and victory sounds etc.
 	pass
+
+
+func start_chase( instance ):
+	Music.at_chase()
+
+
