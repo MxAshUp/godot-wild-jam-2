@@ -17,6 +17,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 
 [node name="NOTE" type="RichTextLabel" parent="."]
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

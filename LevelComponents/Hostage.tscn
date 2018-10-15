@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 19.3682, 17.5121 )
+extents = Vector2( 14.4755, 15.8913 )
 
 [node name="Hostage" type="KinematicBody2D"]
 input_pickable = false
@@ -21,7 +21,6 @@ being_controlled = false
 run_speed = 200
 
 [node name="Col" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 
 [node name="CharacterSprite" type="Sprite" parent="."]
