@@ -10,7 +10,6 @@ const CHASE_ON_ALERT_LEVEL : float = 1.8
 const MAX_CHASE_ALERT_LEVEL : float = 10.0
 const MAX_VISION_DISTANCE : float = 270.0
 const ALERT_INCREASE_FACTOR : float = 15.0
-var can_leap = true
 var patrolling : bool = false
 var position_follow : Vector2
 var follow_object_speed : Vector2
@@ -23,8 +22,6 @@ const INVESTIGATE_MAX_SPEED = 60
 const PATROL_ACCELERATION = 500
 const CHASE_ACCELERATION = 1000
 const FOLLOW_THRESHOLD = 32
-#const LEAP_THRESHOLD = 200
-#const LEAP_DISTANCE = 500
 const FRICTION = 1500
 
 signal lost_follow_position
@@ -35,7 +32,6 @@ func _ready():
 	$AnimationPlayer.playback_speed = 0
 
 	$ChaseTimeout.connect("timeout", self, "_on_chase_timout")
-	#$LeapTimeout.connect("timeout", self, "_on_leap_timeout")
 	$VisionArea.connect("body_entered", self, "_on_enter_vision_area")
 	$VisionArea.connect("body_exited", self, "_on_exit_vision_area")
 
@@ -120,19 +116,6 @@ func _on_exit_vision_area(body : PhysicsBody2D):
 			chaseable_bodies.remove(index)
 
 
-#func _on_leap_timeout():
-#	can_leap = true
-
-
-#func leap_to(to_position : Vector2):
-#	if !can_leap:
-#		return
-#	print("leaping")
-#	var follow_vector = to_position - self.global_position
-#	velocity = move_and_slide(follow_vector.normalized() * LEAP_DISTANCE)
-#	can_leap = false
-#	$LeapTimeout.start()
-
 
 func _draw():
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
@@ -180,8 +163,6 @@ func process_movement(delta):
 			elif patrol:
 				velocity += follow_vector.normalized() * PATROL_ACCELERATION * delta
 
-#			if chasing and follow_vector.length() < LEAP_THRESHOLD:
-#				leap_to(position_follow)
 
 		else:
 			# Slow down
