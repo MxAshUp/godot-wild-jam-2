@@ -48,6 +48,8 @@ func _process(delta):
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
 		update()
 
+	$SpiritParticles.emitting = being_controlled
+
 	if patrol == null:
 		patrol = get_parent()
 		if patrol is Patrol:
@@ -86,14 +88,6 @@ func _process(delta):
 		chase_alert_level = MAX_CHASE_ALERT_LEVEL
 
 	set_alert_state(new_alert_state)
-
-	#Modulate myself to show control state.
-	#I feel red should be all the non controlled guards
-	#though.
-	if being_controlled:
-		$Sprite.modulate = Color(1,0,0)
-	else:
-		$Sprite.modulate = Color(1,1,1)
 
 	$AnimationPlayer.playback_speed = (velocity.length() / MAX_SPEED) * 3
 	if velocity.x > 0:

@@ -17,6 +17,11 @@ var jump_cooling_off = false
 var body_swap_sound : AudioStreamPlayer2D
 var selected_instance_to_jump : PhysicsBody2D
 
+var trying_to_jump = false
+var jump_charge : float = 0
+const JUMP_CHARGE_REACH = 0.7 # seconds to hold jump to jump
+var BecomingControlledParticles = preload("res://LevelComponents/BecomingControlled.tscn")
+var jump_to_particle_emitter = BecomingControlledParticles.instance()
 
 func _enter_tree():
 	jump_area = Area2D.new()
@@ -33,11 +38,14 @@ func _enter_tree():
 	add_child(body_swap_sound)
 	body_swap_sound.stream = load("res://Assets/Sounds/BodySwap.ogg")
 	body_swap_sound.volume_db = -15.0 
+	jump_to_particle_emitter.emitting = false
+	add_child(jump_to_particle_emitter)
 
 
 func _exit_tree():
 	if jump_area:
 		remove_child(jump_area)
+	remove_child(jump_to_particle_emitter)
 
 
 func _ready():
@@ -55,47 +63,51 @@ func _process(delta):
 
 
 func process_input(delta):
-	if Input.is_action_just_pressed("jump") and !jump_cooling_off:
+	jump_to_particle_emitter.emitting = false
+	
+	if Input.is_action_just_pressed("jump") and being_controlled:
+		trying_to_jump = true
+		
+	if Input.is_action_just_released("jump"):
+		trying_to_jump = false
+	
+	
+	if trying_to_jump and !jump_cooling_off and jumpable_bodies.size() > 0:
+		if !selected_instance_to_jump:
+			jump_charge = 0
+			selected_instance_to_jump = get_closest_jumpable_index()
+			
 		if selected_instance_to_jump:
-			being_controlled = false
-			selected_instance_to_jump.emit_signal("jumped", self)
-			self.emit_signal("jumped_from", selected_instance_to_jump)
-		else:
-			cycle_select_jump_body(0)
+			jump_charge += delta
+			jump_to_particle_emitter.emitting = true
+			jump_to_particle_emitter.position = selected_instance_to_jump.global_position - global_position
+			if jump_charge > JUMP_CHARGE_REACH:
+				jump_charge = 0
+				jump_to_particle_emitter.emitting = false
+				trying_to_jump = false
+				being_controlled = false
+				selected_instance_to_jump.emit_signal("jumped", self)
+				self.emit_signal("jumped_from", selected_instance_to_jump)
+				
+	else:
+		jump_charge = 0
 	
 	if Input.is_action_just_pressed("interact"):
 		for interactable in interactables:
 			(interactable as Node).emit_signal("interact")
 
 
-	if jumpable_bodies.size() > 0:
-		if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_right"):
-			cycle_select_jump_body(1)
-		
-		if Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left"):
-			cycle_select_jump_body(-1)
-		
-
-func cycle_select_jump_body(num = 0):
-	var new_index = -1
-	var first_index = 0
-	if num == 0:
-		new_index = first_index
-	else:
-		if selected_instance_to_jump == null:
-			new_index = first_index
-		else:
-			var index = jumpable_bodies.find(selected_instance_to_jump)
-			if index != -1:
-				new_index = int(fposmod(index + num, jumpable_bodies.size()))
-			else:
-				new_index = first_index
-		
-	if new_index == -1 or jumpable_bodies.size() == 0:
-		selected_instance_to_jump = null
-	else:
-		selected_instance_to_jump = jumpable_bodies[new_index]
-
+func get_closest_jumpable_index():
+	
+	var closest_distance = jump_radius * 2
+	var closest_body = null
+	for body in jumpable_bodies:
+		var dis = ((body as Node2D).global_position - global_position).length()
+		if dis < closest_distance:
+			closest_distance = dis
+			closest_body = body
+	
+	return closest_body
 
 # Process for just tooling around
 func process_tool(delta):
@@ -131,12 +143,12 @@ func _draw():
 	if Engine.is_editor_hint() or ProjectSettings.get_setting("Global/debug_overlay"):
 		draw_circle(Vector2(0,0), jump_radius, Color(0.5, 0.5, 0, 0.25))
 	
-	if being_controlled:
-		for jumpable in jumpable_bodies:
-			var jump_position = (jumpable as Node2D).global_position - global_position
-			draw_circle(jump_position, 64, Color(1, 1, 1, 0.25))
-			if selected_instance_to_jump == jumpable:
-				draw_circle(jump_position, 64, Color(1, 1, 1, 0.25))
+#	if being_controlled:
+#		for jumpable in jumpable_bodies:
+#			var jump_position = (jumpable as Node2D).global_position - global_position
+#			draw_circle(jump_position, 64, Color(1, 1, 1, 0.25))
+#			if selected_instance_to_jump == jumpable:
+#				draw_circle(jump_position, 64, Color(1, 1, 1, 0.25))
 
 
 func _on_JumpArea_body_entered(body : PhysicsBody2D):

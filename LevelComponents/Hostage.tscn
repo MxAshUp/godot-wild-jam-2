@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://LevelComponents/Hostage.gd" type="Script" id=1]
-[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=2]
+[ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -20,21 +21,18 @@ jump_radius = 100
 being_controlled = false
 run_speed = 200
 
+[node name="SpiritParticles" parent="." instance=ExtResource( 2 )]
+emitting = false
+
 [node name="Col" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
 
 [node name="CharacterSprite" type="Sprite" parent="."]
 z_index = 2
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 0, 257, 31, 32 )
+region_rect = Rect2( 0, 256, 31, 32 )
 _sections_unfolded = [ "Region", "Transform", "Z Index", "texture" ]
-
-[node name="IndicatorSprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 0, -32 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 128, 256, 32, 32 )
-_sections_unfolded = [ "Region", "Transform", "texture" ]
 

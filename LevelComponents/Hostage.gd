@@ -14,6 +14,9 @@ func end_chase( instance ):
 
 
 func _process( delta ):
+	
+	$SpiritParticles.emitting = being_controlled
+	
 	if being_controlled :
 	#Get WASD movement
 		var move : Vector2 = Vector2( 0,0 )
