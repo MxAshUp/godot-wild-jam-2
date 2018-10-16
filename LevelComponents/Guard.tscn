@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 20.0
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 
 length = 0.4
 loop = true
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "values": [ Rect2( 64, 288, 32, 32 ), Rect2( 96, 288, 32, 32 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 
 resource_name = "alert"
 length = 1.0
@@ -69,7 +69,7 @@ tracks/2/keys = {
 "values": [ Rect2( 128, 256, 32, 32 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 
 resource_name = "confused"
 length = 1.0
@@ -131,7 +131,7 @@ being_controlled = false
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 96, 288, 32, 32 )
-_sections_unfolded = [ "Material", "Region", "Visibility" ]
+_sections_unfolded = [ "Material", "Region", "Visibility", "texture" ]
 
 [node name="Sprite" type="Sprite" parent="Sprite"]
 modulate = Color( 1, 1, 1, 0 )
@@ -152,7 +152,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/walking = SubResource( 4 )
+anims/walking = SubResource( 2 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
@@ -162,8 +162,8 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/alert = SubResource( 6 )
-anims/confused = SubResource( 7 )
+anims/alert = SubResource( 3 )
+anims/confused = SubResource( 4 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options", "Script" ]
 
