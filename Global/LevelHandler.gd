@@ -2,7 +2,7 @@ extends Node
 
 var current_level : int = 0
 
-var level_array : Array = [ "Integration Test" ]
+var level_array : Array = [ "A Full Map" ]
 
 
 

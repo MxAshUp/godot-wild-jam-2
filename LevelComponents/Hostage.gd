@@ -32,6 +32,7 @@ func _process( delta ):
 func _ready():
 	if being_controlled :
 		Music.at_chase()
+		GameCamera.set_target( self )
 	
 	self.connect( "rescued", self, "rescued" )
 	self.connect( "jumped", self, "start_chase" )
@@ -45,5 +46,6 @@ func rescued():
 
 func start_chase( instance ):
 	Music.at_chase()
+	GameCamera.set_target( self )
 
 
