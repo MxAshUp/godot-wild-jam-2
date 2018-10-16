@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [Global]
 
-debug_overlay=true
+debug_overlay=false
 
 [application]
 
