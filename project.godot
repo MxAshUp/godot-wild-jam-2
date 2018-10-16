@@ -30,6 +30,7 @@ Pause="*res://Global/Pause.tscn"
 SceneBrowser="*res://Global/SceneBrowser.tscn"
 LevelHandler="*res://Global/LevelHandler.tscn"
 Music="*res://Global/Music.tscn"
+GameCamera="*res://Global/Camera.tscn"
 
 [input]
 
