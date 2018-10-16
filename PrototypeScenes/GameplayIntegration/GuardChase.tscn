@@ -46,6 +46,6 @@ curve = SubResource( 1 )
 position = Vector2( 192, 240 )
 
 [node name="Hostage" parent="." instance=ExtResource( 4 )]
-position = Vector2( 157.445, 234 )
+position = Vector2( 512, 272 )
 being_controlled = true
 
