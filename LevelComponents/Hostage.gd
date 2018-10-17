@@ -59,3 +59,5 @@ func start_chase( instance ):
 
 func _on_DieDetections_body_entered(body : PhysicsBody2D):
 	emit_signal("hostage_caught", body)
+	# TODO - have root node handle this
+	LevelHandler.restart()
