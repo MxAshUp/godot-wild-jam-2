@@ -12,4 +12,4 @@ dest_files=[ "res://.import/Finale.ogg-0d1aa5ef0f988aa0a5834f893a0cd23a.oggstr" 
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=2.0
