@@ -7,7 +7,7 @@
 [ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://LevelComponents/SceneAsset/Door/Pillar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://LevelComponents/SceneAsset/Door/Switch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=9]
 [ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=10]
 
@@ -19,7 +19,7 @@ extents = Vector2( 32, 64 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 45.2586 )
+extents = Vector2( 74.1529, 82.4067 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
 
@@ -76,7 +76,8 @@ shadow_item_cull_mask = 2
 _sections_unfolded = [ "Range", "Shadow" ]
 
 [node name="Hostage" parent="." index="1" instance=ExtResource( 3 )]
-position = Vector2( 682.599, 287.362 )
+editor/display_folded = true
+position = Vector2( 680.883, 285.35 )
 being_controlled = true
 
 [node name="Light2D" type="Light2D" parent="Hostage" index="3"]
@@ -112,9 +113,11 @@ shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Interactable" parent="." index="3" instance=ExtResource( 5 )]
+editor/display_folded = true
 position = Vector2( 672, 434.585 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" index="0"]
+position = Vector2( 0, 26.4076 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
@@ -129,31 +132,26 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( -15.3182, 6.19876 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="Switch" parent="Interactable" index="2" instance=ExtResource( 8 )]
+position = Vector2( 62.7181, 0 )
+
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
 occluder = SubResource( 3 )
 light_mask = 1
 
-[node name="Background" type="Sprite" parent="." index="5"]
-modulate = Color( 0, 0, 0, 1 )
-show_behind_parent = true
-light_mask = 0
-position = Vector2( 607.408, 339.414 )
-scale = Vector2( 19.9815, 11.6067 )
-z_index = -1
-texture = ExtResource( 8 )
-_sections_unfolded = [ "Visibility", "Z Index" ]
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="." index="6"]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="." index="5"]
 occluder = SubResource( 4 )
 light_mask = 1
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="." index="7"]
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="." index="6"]
 occluder = SubResource( 5 )
 light_mask = 1
 
-[node name="Guards" type="Node" parent="." index="8"]
+[node name="Guards" type="Node" parent="." index="7"]
+editor/display_folded = true
 
 [node name="Patrol" parent="Guards" index="0" instance=ExtResource( 9 )]
+editor/display_folded = true
 position = Vector2( 172.371, 200.947 )
 _sections_unfolded = [ "Transform" ]
 

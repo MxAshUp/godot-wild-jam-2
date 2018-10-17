@@ -23,6 +23,7 @@ func _ready():
 
 func change_open_state():
 	#Slide up or down based on open state.
+	is_open = get_parent().door_open
 	if is_open :
 		$Wall.set_collision_layer_bit( 0, false )
 		is_open = false
