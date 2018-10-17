@@ -139,22 +139,15 @@ position = Vector2( 62.7181, 0 )
 occluder = SubResource( 3 )
 light_mask = 1
 
-[node name="Background" parent="." index="5"]
-show_behind_parent = true
-light_mask = 0
-position = Vector2( 607.408, 339.414 )
-scale = Vector2( 19.9815, 11.6067 )
-z_index = -1
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="." index="6"]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="." index="5"]
 occluder = SubResource( 4 )
 light_mask = 1
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="." index="7"]
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="." index="6"]
 occluder = SubResource( 5 )
 light_mask = 1
 
-[node name="Guards" type="Node" parent="." index="8"]
+[node name="Guards" type="Node" parent="." index="7"]
 editor/display_folded = true
 
 [node name="Patrol" parent="Guards" index="0" instance=ExtResource( 9 )]

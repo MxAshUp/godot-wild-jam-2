@@ -49,6 +49,11 @@ func _exit_tree():
 
 
 func _ready():
+	#Have the game camera focus on me,
+	#if level starts controlling with controlling me.
+	if being_controlled :
+		GameCamera.set_target( self )
+	
 	jump_area.connect("body_entered", self, "_on_JumpArea_body_entered")
 	jump_area.connect("body_exited", self, "_on_JumpArea_body_exited")
 	self.connect("enter_interaction_region", self, "_on_InteractArea_area_entered")
@@ -123,6 +128,9 @@ func become_controlled(jump_from : Node2D):
 	timer.connect("timeout", self, "reset_jump_cooloff", [timer])
 	timer.start()
 	body_swap_sound.play()
+	
+	#Add a camera here and see if everything goes smoothly.
+	GameCamera.set_target( self )
 
 
 func reset_jump_cooloff(timer : Timer):
