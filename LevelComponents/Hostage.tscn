@@ -19,7 +19,6 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 jump_radius = 100
 being_controlled = false
-run_speed = 200
 
 [node name="SpiritParticles" parent="." instance=ExtResource( 2 )]
 emitting = false
