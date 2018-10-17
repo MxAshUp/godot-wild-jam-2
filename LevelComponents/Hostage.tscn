@@ -25,7 +25,6 @@ run_speed = 200
 emitting = false
 
 [node name="Col" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
@@ -36,3 +35,20 @@ region_enabled = true
 region_rect = Rect2( 0, 256, 31, 32 )
 _sections_unfolded = [ "Region", "Transform", "Z Index", "texture" ]
 
+[node name="DieDetections" type="Area2D" parent="."]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 1024
+collision_mask = 1024
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="Col2" type="CollisionShape2D" parent="DieDetections"]
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
+
+[connection signal="body_entered" from="DieDetections" to="." method="_on_DieDetections_body_entered"]

@@ -1,12 +1,10 @@
 tool
 extends "Jumpable.gd"
 
-
 export var run_speed = 200
 
-
 signal rescued #When the hostage is rescued, this gets emitted.
-
+signal hostage_caught
 
 
 func _process( delta ):
@@ -40,6 +38,8 @@ func rescued():
 
 func start_chase( instance ):
 	Music.at_chase()
-	GameCamera.set_target( self )
+	GameCamera.set_target( self )	
 
 
+func _on_DieDetections_body_entered(body : PhysicsBody2D):
+	emit_signal("hostage_caught", body)
