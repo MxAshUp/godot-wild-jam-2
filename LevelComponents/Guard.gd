@@ -43,7 +43,6 @@ func _ready():
 	
 	self.connect("alert_state_confused", self, "_on_alert_confused")
 	self.connect("alert_state_alert", self, "_on_alert_alert")
-
 	
 	
 func process_animation(delta):
@@ -56,6 +55,7 @@ func process_animation(delta):
 			$AnimationPlayer.play("walking")
 		
 		$AnimationPlayer.playback_speed = (velocity.length() / MAX_SPEED) * 3
+
 
 func _process(delta):
 	
@@ -151,7 +151,6 @@ func _on_exit_vision_area(body : PhysicsBody2D):
 
 
 func _on_alert_alert():
-	print("ALERT")
 	$ExclamationAnimation.play("alert")
 
 

@@ -39,10 +39,6 @@ func _process(delta):
 		
 	else:
 		process_movement(delta)
-	
-	if path:
-		pass
-		#print(Vector2(path_follow.h_offset, path_follow.v_offset))
 
 
 # Actual game movement
