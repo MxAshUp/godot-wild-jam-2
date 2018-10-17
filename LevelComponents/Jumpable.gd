@@ -8,6 +8,8 @@ signal jumped
 signal jumped_from
 signal enter_interaction_region
 signal exit_interaction_region
+signal becoming_jumped
+signal cancelled_jump
 
 var jump_area : Area2D
 var collision_circle : CircleShape2D
@@ -17,6 +19,7 @@ var jump_cooling_off = false
 var body_swap_sound : AudioStreamPlayer2D
 var selected_instance_to_jump : PhysicsBody2D
 
+var being_jumped = false
 var trying_to_jump = false
 var jump_charge : float = 0
 const JUMP_CHARGE_REACH = 0.7 # seconds to hold jump to jump
@@ -59,6 +62,8 @@ func _ready():
 	self.connect("enter_interaction_region", self, "_on_InteractArea_area_entered")
 	self.connect("exit_interaction_region", self, "_on_InteractArea_area_exited")
 	self.connect("jumped", self, "_on_jumped")
+	self.connect("becoming_jumped", self, "_on_becoming_jumped")
+	self.connect("cancelled_jump", self, "_on_cancelled_jump")
 	
 
 func _process(delta):
@@ -73,8 +78,10 @@ func process_input(delta):
 	if Input.is_action_just_pressed("jump") and being_controlled:
 		trying_to_jump = true
 		
-	if Input.is_action_just_released("jump"):
+	if Input.is_action_just_released("jump") and being_controlled:
 		trying_to_jump = false
+		if selected_instance_to_jump:
+			selected_instance_to_jump.emit_signal("cancelled_jump", self)
 	
 	
 	if trying_to_jump and !jump_cooling_off and jumpable_bodies.size() > 0:
@@ -86,6 +93,7 @@ func process_input(delta):
 			jump_charge += delta
 			jump_to_particle_emitter.emitting = true
 			jump_to_particle_emitter.position = selected_instance_to_jump.global_position - global_position
+			selected_instance_to_jump.emit_signal("becoming_jumped", self)
 			if jump_charge > JUMP_CHARGE_REACH:
 				jump_charge = 0
 				jump_to_particle_emitter.emitting = false
@@ -121,6 +129,7 @@ func process_tool(delta):
 
 func become_controlled(jump_from : Node2D):
 	being_controlled = true
+	being_jumped = false
 	var timer = Timer.new()
 	add_child(timer)
 	jump_cooling_off = true
@@ -178,6 +187,14 @@ func _on_JumpArea_body_exited(body : PhysicsBody2D):
 
 func _on_jumped(jump_from_node : PhysicsBody2D):
 	become_controlled(jump_from_node)
+
+
+func _on_becoming_jumped(jump_from_node : PhysicsBody2D):
+	being_jumped = true
+	
+	
+func _on_cancelled_jump(jump_from_node : PhysicsBody2D):
+	being_jumped = false
 
 
 func _on_InteractArea_area_entered(interactable_area : Area2D):

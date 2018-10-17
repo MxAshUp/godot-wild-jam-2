@@ -44,7 +44,23 @@ func _ready():
 	self.connect("alert_state_confused", self, "_on_alert_confused")
 	self.connect("alert_state_alert", self, "_on_alert_alert")
 
+	
+	
+func process_animation(delta):
+	if being_jumped:
+		if $AnimationPlayer.current_animation != "shaking":
+			$AnimationPlayer.play("shaking")
+			$AnimationPlayer.playback_speed = 2
+	else:
+		if $AnimationPlayer.current_animation != "walking":
+			$AnimationPlayer.play("walking")
+		
+		$AnimationPlayer.playback_speed = (velocity.length() / MAX_SPEED) * 3
+
 func _process(delta):
+	
+	process_animation(delta)
+	
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
 		update()
 
@@ -89,7 +105,6 @@ func _process(delta):
 
 	set_alert_state(new_alert_state)
 
-	$AnimationPlayer.playback_speed = (velocity.length() / MAX_SPEED) * 3
 	if velocity.x > 0:
 		$Sprite.flip_h = true
 	elif velocity.x < 0:
