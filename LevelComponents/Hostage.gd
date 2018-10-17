@@ -9,10 +9,6 @@ signal rescued #When the hostage is rescued, this gets emitted.
 
 
 
-func end_chase( instance ):
-	Music.revert()
-
-
 func _process( delta ):
 	
 	$SpiritParticles.emitting = being_controlled
@@ -35,7 +31,6 @@ func _ready():
 	
 	self.connect( "rescued", self, "rescued" )
 	self.connect( "jumped", self, "start_chase" )
-	self.connect( "jumped_from", self, "end_chase" )
 
 
 func rescued():
