@@ -45,6 +45,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Rect2( 64, 288, 32, 32 ), Rect2( 96, 288, 32, 32 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 
@@ -152,9 +164,8 @@ emitting = false
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 2
 texture = ExtResource( 3 )
-offset = Vector2( 0, -4 )
 region_enabled = true
-region_rect = Rect2( 64, 288, 32, 32 )
+region_rect = Rect2( 96, 288, 32, 32 )
 _sections_unfolded = [ "Material", "Offset", "Visibility", "texture" ]
 
 [node name="Sprite" type="Sprite" parent="Sprite"]
@@ -170,6 +181,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("..")
@@ -208,6 +220,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Audio Bus", "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
 visible = false
