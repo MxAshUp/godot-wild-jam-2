@@ -23,10 +23,13 @@ func _process( delta ):
 		if self.visible == false :
 			$Panel/Quit.grab_focus()
 			self.show()
+			GameCamera.set_target(self)
+			SceneBrowser.get_current_scene().hide()
 	
 		else:
 			get_tree().paused = false
 			self.hide()
+			SceneBrowser.get_current_scene().show()
 
 
 func restart_pressed():

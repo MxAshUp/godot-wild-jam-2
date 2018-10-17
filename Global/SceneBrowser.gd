@@ -23,6 +23,10 @@ func change_scene( scene_name ):
  #end
 
 
+func get_current_scene() -> Node:
+	return get_tree().current_scene
+
+
 func change_scene_with_load( scene_name, loader_name = "Hi" ):
 	#I figured we might want different loader's each time or
 	#something. Hence the loader argument.
