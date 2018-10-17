@@ -103,7 +103,7 @@ func set_alert_state(new_state):
 
 func can_see_position(to_position : Vector2, exclude : Array = []) -> bool :
 	var space_state = get_world_2d().direct_space_state
-	var result : Dictionary = space_state.intersect_ray(global_position, to_position, [self] + exclude)
+	var result : Dictionary = space_state.intersect_ray(global_position, to_position, [self] + exclude, (self as KinematicBody2D).collision_mask)
 	return result.size() == 0
 
 

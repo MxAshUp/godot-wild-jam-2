@@ -11,7 +11,7 @@ extents = Vector2( 14.4755, 15.8913 )
 
 [node name="Hostage" type="KinematicBody2D"]
 input_pickable = false
-collision_layer = 3
+collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false

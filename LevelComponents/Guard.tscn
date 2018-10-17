@@ -118,11 +118,12 @@ radius = 270.185
 
 [node name="Guard" type="KinematicBody2D"]
 input_pickable = false
-collision_layer = 1
+collision_layer = 2
 collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 jump_radius = 100
 being_controlled = false
 
