@@ -130,7 +130,6 @@ being_controlled = false
 emitting = false
 
 [node name="Sprite" type="Sprite" parent="."]
-light_mask = 2
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 64, 288, 32, 32 )
@@ -144,7 +143,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 0, -10 )
 region_enabled = true
 region_rect = Rect2( 160, 256, 32, 32 )
-_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility", "texture" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
