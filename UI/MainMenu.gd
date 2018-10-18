@@ -19,6 +19,7 @@ func _ready():
 	var center_offset : Vector2 = $VBox.rect_size
 	center_offset.x /= 2
 	center_offset.y /= 2
+	center_offset.y -= 100
 	
 	
 	#Place VBox in the center of the screen.
@@ -50,6 +51,11 @@ func play_pressed():
 
 
 func quit_pressed():
+	#Tell ghost to move up to return
+	ghost_point = $VBox/Play/Spot.global_position
+	current_focus = 0
+	
+	
 	#Bring up the popup menu.
 	$VBox/Play.hide()
 	$VBox/Quit.hide()
