@@ -2,14 +2,14 @@
 
 [ext_resource path="res://LevelComponents/Hostage.gd" type="Script" id=1]
 [ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=3]
+[ext_resource path="res://Assets/dummyHostage.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 16.0
+radius = 13.4075
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 20.0
@@ -30,13 +30,12 @@ emitting = false
 
 [node name="Col" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
 [node name="CharacterSprite" type="Sprite" parent="."]
 z_index = 2
 texture = ExtResource( 3 )
-region_enabled = true
 region_rect = Rect2( 0, 256, 31, 32 )
 _sections_unfolded = [ "Region", "Transform", "Z Index", "texture" ]
 
@@ -54,7 +53,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Col2" type="CollisionShape2D" parent="DieDetections"]
 visible = false
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "shape" ]
 
 [connection signal="body_entered" from="DieDetections" to="." method="_on_DieDetections_body_entered"]
