@@ -8,6 +8,8 @@ move_speed = 100
 start_offset = 0
 preview = false
 ping_pong = true
+moving = true
+loop = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2( 281.343, 260.921 )
