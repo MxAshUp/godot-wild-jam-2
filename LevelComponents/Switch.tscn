@@ -7,14 +7,14 @@
 script = ExtResource( 1 )
 is_on = false
 
-[node name="SwitchOff" type="Sprite" parent="."]
+[node name="SwitchOn" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 96, 224, 32, 32 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="SwitchOn" type="Sprite" parent="."]
-visible = false
+[node name="SwitchOff" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 96, 256, 32, 32 )
