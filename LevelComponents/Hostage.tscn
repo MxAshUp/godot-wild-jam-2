@@ -16,7 +16,7 @@ radius = 20.0
 
 [node name="Hostage" type="KinematicBody2D"]
 input_pickable = false
-collision_layer = 2
+collision_layer = 6
 collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
