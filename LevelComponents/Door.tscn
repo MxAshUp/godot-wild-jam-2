@@ -78,7 +78,7 @@ visible = false
 z_index = 6
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 254, 0, 32, 64 )
+region_rect = Rect2( 256, 64, 32, 48 )
 _sections_unfolded = [ "Region", "Z Index" ]
 
 [node name="Col" type="StaticBody2D" parent="."]
