@@ -1,8 +1,9 @@
+tool
 extends Node2D
 
 
 #Script node
-export var is_on = false
+export var is_on = false setget update_is_on
 
 signal interact
 
@@ -10,22 +11,25 @@ signal interact
 func _ready():
 	self.connect( "interact", self, "interact" )
 	
-	#Display myself as having been pressed.
+	update_state()
+
+func update_state():
+	if !$SwitchOn or !$SwitchOff:
+		return
+		
 	if is_on :
 		$SwitchOn.show()
 		$SwitchOff.hide()
-
+	else:
+		$SwitchOn.hide()
+		$SwitchOff.show()	
 
 func interact():
 	#Change my sprite if I am called to.
-	if is_on :
-		#Turn off
-		$SwitchOn.hide()
-		$SwitchOff.show()
-		is_on = false
+	is_on = !is_on
 	
-	else:
-		#Turn on
-		$SwitchOn.show()
-		$SwitchOff.hide()
-		is_on = true
+	update_state()
+	
+func update_is_on(new_state):
+	is_on = new_state
+	update_state()
