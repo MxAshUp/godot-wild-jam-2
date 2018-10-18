@@ -7,12 +7,13 @@ extends Node2D
 func continue_pressed():
 	get_tree().paused = false
 	self.hide()
+	SceneBrowser.get_current_scene().show()
 
 
 func _ready():
-	$Panel/Quit.connect( "pressed", self, "quit_pressed" )
-	$Panel/Restart.connect( "pressed", self, "restart_pressed" )
-	$Panel/Continue.connect( "pressed", self, "continue_pressed" )
+	$N/Panel/Quit.connect( "pressed", self, "quit_pressed" )
+	$N/Panel/Restart.connect( "pressed", self, "restart_pressed" )
+	$N/Panel/Continue.connect( "pressed", self, "continue_pressed" )
 
 
 func _process( delta ):
@@ -21,7 +22,7 @@ func _process( delta ):
 		get_tree().paused = true
 		
 		if self.visible == false :
-			$Panel/Quit.grab_focus()
+			$N/Panel/Continue.grab_focus()
 			self.show()
 			GameCamera.set_target(self)
 			SceneBrowser.get_current_scene().hide()
