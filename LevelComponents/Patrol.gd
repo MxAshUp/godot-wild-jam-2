@@ -5,6 +5,8 @@ export (float) var move_speed = 100
 export (float) var start_offset = 0
 export (bool) var preview = false
 export (bool) var ping_pong = true
+export (bool) var moving = true
+export (bool) var loop = true
 var preview_offset = 0
 	
 onready var position_follow : Position2D = get_node("PathFollow2D/Position2D") 
@@ -17,7 +19,7 @@ signal in_range
 func _ready():
 	connect("out_of_range", self, "handle_out_of_range")
 	connect("in_range", self, "handle_in_range")
-	
+	path_follow.loop = loop
 	if path != null:
 		self.remove_child(path_follow)
 		path.add_child(path_follow)
@@ -43,7 +45,8 @@ func _process(delta):
 
 # Actual game movement
 func process_movement(delta):
-	path_follow.offset += delta * move_speed
+	if moving:
+		path_follow.offset += delta * move_speed
 
 
 func _draw():
@@ -52,8 +55,18 @@ func _draw():
 
 
 func handle_out_of_range(follower : PhysicsBody2D):
-	if ping_pong:
+	if ping_pong and moving:
 		move_speed = -move_speed
+	else:
+		moving = false
+
+
+func start_moving():
+	moving = true
+
+
+func stop_moving():
+	moving = false
 
 
 func handle_in_range(follow : PhysicsBody2D):
