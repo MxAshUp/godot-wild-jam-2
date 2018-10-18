@@ -15,6 +15,8 @@ var current_focus = 0 #0 = Play. 1 = Quit
 
 
 func _ready():
+	Pause.can_pause( false )
+	
 	#Get offset for centering VBox.
 	var center_offset : Vector2 = $VBox.rect_size
 	center_offset.x /= 2
@@ -46,6 +48,7 @@ func _ready():
 
 func play_pressed():
 	#Begin the game.
+	Pause.can_pause( true )
 	LevelHandler.start_game()
 
 

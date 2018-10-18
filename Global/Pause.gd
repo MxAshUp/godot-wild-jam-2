@@ -4,6 +4,14 @@ extends Node2D
 #if ESC is pressed.
 
 
+
+func can_pause( allow_pause : bool ):
+	if allow_pause :
+		set_process( true )
+	else:
+		set_process( false )
+
+
 func continue_pressed():
 	get_tree().paused = false
 	self.hide()
