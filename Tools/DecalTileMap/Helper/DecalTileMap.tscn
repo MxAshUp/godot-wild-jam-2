@@ -134,25 +134,11 @@ build_mode = 0
 polygon = PoolVector2Array( 16.1484, 7.79749, 16.0999, 15.9446, -16.0035, 16.0416, -15.955, -15.9648, -7.80789, -15.9648, -7.51693, 8.03996 )
 
 [node name="Grey Corner Top2" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( -32, 64 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 96, 96, 32, 32 )
 _sections_unfolded = [ "Region" ]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Grey Corner Top2"]
-visible = false
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-physics_material_override = null
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Grey Corner Top2/StaticBody2D"]
-build_mode = 0
-polygon = PoolVector2Array( 16.1484, 7.79749, 16.0999, 15.9446, -16.0035, 16.0416, -15.955, -15.9648, -7.80789, -15.9648, -7.51693, 8.03996 )
 
 [node name="Grey Low" type="Sprite" parent="."]
 editor/display_folded = true
