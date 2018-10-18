@@ -5,6 +5,13 @@ extends Node2D
 
 
 onready var ghost = $VBox/Ghost
+ 
+var ghost_point : Vector2
+
+var ghost_speed : float = 400
+
+var current_focus = 0 #0 = Play. 1 = Quit
+
 
 
 func _ready():
@@ -21,6 +28,10 @@ func _ready():
 	ghost.position.x = $VBox.rect_position.x + 85 
 	ghost.position.y = $VBox.rect_position.y + 30
 	
+	
+	#Put ghost at the right position.
+	ghost_point = $VBox/Play/Spot.global_position
+	ghost.global_position = $VBox/Play/Spot.global_position
 	
 	#Connect the buttons
 	$VBox/Play.connect( "pressed", self, "play_pressed" )
@@ -52,11 +63,23 @@ func quit_pressed():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed( "ui_down" ) :
-		ghost.position = $VBox.rect_position 
-		ghost.position.y = ghost.position.y + 70
-		ghost.position.x = ghost.position.x + 85
+	if( current_focus == 0 &&
+			Input.is_action_just_pressed( "ui_down" ) ):
+		ghost_point = $VBox/Quit/Spot.global_position
+		current_focus = 1
 	
+	if( current_focus == 1 &&
+			Input.is_action_just_pressed( "ui_up" ) ):
+		ghost_point = $VBox/Play/Spot.global_position
+		current_focus = 0
+	
+	
+	#Make the ghost particle go to ghost point
+	var move : Vector2
+	move = ghost_point - ghost.global_position
+	move *= 3
+	move = move.clamped( ghost_speed )
+	ghost.global_position += move * delta
 
 
 func return_pressed():

@@ -28,9 +28,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 40.0
+margin_top = 20.0
 margin_right = 180.0
-margin_bottom = 60.0
+margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_neighbour_bottom = NodePath("../Quit")
@@ -47,6 +47,10 @@ text = "PLAY"
 flat = false
 align = 1
 _sections_unfolded = [ "Focus" ]
+
+[node name="Spot" type="Node2D" parent="VBox/Play"]
+position = Vector2( 90, 10 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Return" type="Button" parent="VBox"]
 visible = false
@@ -74,6 +78,11 @@ flat = false
 align = 1
 _sections_unfolded = [ "Focus" ]
 
+[node name="Spot" type="Node2D" parent="VBox/Return"]
+visible = false
+position = Vector2( 90, 10 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="TrueQuit" type="Button" parent="VBox"]
 visible = false
 anchor_left = 0.0
@@ -100,14 +109,18 @@ flat = false
 align = 1
 _sections_unfolded = [ "Focus" ]
 
+[node name="Spot" type="Node2D" parent="VBox/TrueQuit"]
+position = Vector2( 90, 10 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="Quit" type="Button" parent="VBox"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 80.0
+margin_top = 60.0
 margin_right = 180.0
-margin_bottom = 100.0
+margin_bottom = 80.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_neighbour_top = NodePath("../Play")
@@ -125,8 +138,12 @@ flat = false
 align = 1
 _sections_unfolded = [ "Focus" ]
 
+[node name="Spot" type="Node2D" parent="VBox/Quit"]
+position = Vector2( 90, 15 )
+_sections_unfolded = [ "Transform" ]
+
 [node name="Ghost" parent="VBox" instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 90, 50 )
-_sections_unfolded = [ "Transform", "process_material" ]
+position = Vector2( 0, 0 )
+z_index = -20
+_sections_unfolded = [ "Transform", "Z Index", "process_material" ]
 
