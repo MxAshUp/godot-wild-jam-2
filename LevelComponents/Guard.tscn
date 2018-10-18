@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://LevelComponents/Guard.gd" type="Script" id=1]
 [ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=3]
+[ext_resource path="res://Assets/dummyOrc.png" type="Texture" id=3]
+[ext_resource path="res://Assets/placeholder-tiles.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -153,22 +154,20 @@ emitting = false
 light_mask = 2
 texture = ExtResource( 3 )
 offset = Vector2( 0, -4 )
-region_enabled = true
 region_rect = Rect2( 64, 288, 32, 32 )
-_sections_unfolded = [ "Material", "Offset", "Visibility", "texture" ]
+_sections_unfolded = [ "Material", "Offset", "Region", "Visibility", "texture" ]
 
 [node name="Sprite" type="Sprite" parent="Sprite"]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 position = Vector2( 0, -30 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 offset = Vector2( 0, -10 )
 region_enabled = true
 region_rect = Rect2( 160, 256, 32, 32 )
 _sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
