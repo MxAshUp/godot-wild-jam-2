@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://LevelComponents/Spear.tscn" type="PackedScene" id=1]
+[ext_resource path="res://LevelComponents/Hostage.tscn" type="PackedScene" id=2]
+[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Spear" parent="." instance=ExtResource( 1 )]
+position = Vector2( 285.373, 135.272 )
+
+[node name="Hostage" parent="." instance=ExtResource( 2 )]
+position = Vector2( 227.349, 157.497 )
+being_controlled = true
+
+[node name="Guard" parent="." instance=ExtResource( 3 )]
+position = Vector2( 913.308, 493.077 )
+
