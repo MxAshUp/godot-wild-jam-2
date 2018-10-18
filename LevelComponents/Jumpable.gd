@@ -5,7 +5,9 @@ export (float) var jump_radius = 100
 export (bool) var being_controlled = false
 
 signal jumped
+signal jumped_noargs
 signal jumped_from
+signal jumped_from_noargs
 signal enter_interaction_region
 signal exit_interaction_region
 signal becoming_jumped
@@ -100,7 +102,9 @@ func process_input(delta):
 				trying_to_jump = false
 				being_controlled = false
 				selected_instance_to_jump.emit_signal("jumped", self)
+				selected_instance_to_jump.emit_signal("jumped_noargs")
 				self.emit_signal("jumped_from", selected_instance_to_jump)
+				self.emit_signal("jumped_from_noargs")
 				
 	else:
 		jump_charge = 0
