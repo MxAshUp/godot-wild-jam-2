@@ -67,18 +67,19 @@ override_selected_font_color = false
 _sections_unfolded = [ "BBCode" ]
 
 [node name="SpriteClosed" type="Sprite" parent="."]
-visible = false
+z_index = 6
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 225, 0, 31, 64 )
-_sections_unfolded = [ "Region" ]
+_sections_unfolded = [ "Region", "Z Index" ]
 
 [node name="SpriteOpen" type="Sprite" parent="."]
 visible = false
+z_index = 6
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 254, 0, 32, 64 )
-_sections_unfolded = [ "Region" ]
+_sections_unfolded = [ "Region", "Z Index" ]
 
 [node name="Col" type="StaticBody2D" parent="."]
 position = Vector2( 0, 15.4969 )
