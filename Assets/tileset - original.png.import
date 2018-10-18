@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-06023f60f54ec986b75003a8d422612f.stex"
+path="res://.import/tileset - original.png-0ae2455d787c07f2a85333652e524f75.stex"
 
 [deps]
 
-source_file="res://Assets/tileset.png"
-dest_files=[ "res://.import/tileset.png-06023f60f54ec986b75003a8d422612f.stex" ]
+source_file="res://Assets/tileset - original.png"
+dest_files=[ "res://.import/tileset - original.png-0ae2455d787c07f2a85333652e524f75.stex" ]
 
 [params]
 
@@ -17,7 +17,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
