@@ -1,0 +1,189 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/UI/Pause.png" type="Texture" id=2]
+[ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/logo.png" type="Texture" id=4]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_right = 180.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( 83.3302, 47.9353 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 20
+alignment = 1
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="Sprite" type="Sprite" parent="VBox"]
+position = Vector2( 90.8818, 54.0146 )
+scale = Vector2( 1.17807, 0.571312 )
+texture = ExtResource( 2 )
+
+[node name="Ghost" parent="VBox" instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )
+z_index = 0
+
+[node name="Play" type="Button" parent="VBox"]
+modulate = Color( 1, 0.623529, 0.294118, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 20.0
+margin_right = 180.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_bottom = NodePath("../Quit")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "PLAY"
+flat = false
+align = 1
+_sections_unfolded = [ "Focus", "Visibility" ]
+
+[node name="Spot" type="Node2D" parent="VBox/Play"]
+position = Vector2( 90, 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Return" type="Button" parent="VBox"]
+visible = false
+modulate = Color( 1, 0.623529, 0.294118, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 40.0
+margin_right = 180.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_bottom = NodePath("../TrueQuit")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "RETURN"
+flat = false
+align = 1
+_sections_unfolded = [ "Focus", "Visibility" ]
+
+[node name="Spot" type="Node2D" parent="VBox/Return"]
+visible = false
+position = Vector2( 90, 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="TrueQuit" type="Button" parent="VBox"]
+visible = false
+modulate = Color( 1, 0.623529, 0.294118, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 180.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_top = NodePath("../Return")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "QUIT GAME"
+flat = false
+align = 1
+_sections_unfolded = [ "Focus", "Visibility" ]
+
+[node name="Spot" type="Node2D" parent="VBox/TrueQuit"]
+position = Vector2( 90, 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Quit" type="Button" parent="VBox"]
+modulate = Color( 1, 0.623529, 0.294118, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 180.0
+margin_bottom = 80.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_top = NodePath("../Play")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "QUIT"
+flat = false
+align = 1
+_sections_unfolded = [ "Focus", "Visibility" ]
+
+[node name="Spot" type="Node2D" parent="VBox/Quit"]
+position = Vector2( 90, 15 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 515, 200 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 510, 300 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
