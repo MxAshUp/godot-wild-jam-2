@@ -69,6 +69,13 @@ region_enabled = true
 region_rect = Rect2( 480, 0, 32, 30 )
 _sections_unfolded = [ "Region" ]
 
+[node name="Brick No Collide" type="Sprite" parent="."]
+position = Vector2( 160, 96 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 64, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
 [node name="Grey Column Top" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 128, 64 )
