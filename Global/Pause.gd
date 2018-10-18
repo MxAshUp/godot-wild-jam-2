@@ -32,12 +32,13 @@ func _process( delta ):
 		if self.visible == false :
 			$N/Panel/Continue.grab_focus()
 			self.show()
-			GameCamera.set_target(self)
+			GameCamera.set_target( self, Vector2(0, 30 ) )
 			SceneBrowser.get_current_scene().hide()
 	
 		else:
 			get_tree().paused = false
 			self.hide()
+			GameCamera.revert_target()
 			SceneBrowser.get_current_scene().show()
 
 
