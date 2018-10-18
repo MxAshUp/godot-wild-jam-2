@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://LevelComponents/SceneAsset/Door/Switch.gd" type="Script" id=1]
+[ext_resource path="res://LevelComponents/Switch.gd" type="Script" id=1]
 [ext_resource path="res://Assets/tileset.png" type="Texture" id=2]
+
+
 
 [node name="Switch" type="Node2D"]
 script = ExtResource( 1 )
