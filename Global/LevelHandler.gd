@@ -22,3 +22,15 @@ func next_level():
 
 func restart():
 	SceneBrowser.change_scene( level_array[ current_level ] )
+
+
+func start_game():
+	#Begin the game from the beginning.
+	current_level = 0
+	SceneBrowser.change_scene( level_array[ current_level ] )
+
+
+
+
+
+
