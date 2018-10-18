@@ -7,9 +7,10 @@
 [ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://LevelComponents/SceneAsset/Door/Pillar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://LevelComponents/SceneAsset/Door/Switch.tscn" type="PackedScene" id=8]
+[ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=9]
 [ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=10]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 
