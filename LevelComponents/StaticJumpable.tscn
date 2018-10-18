@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://LevelComponents/StaticJumpable.gd" type="Script" id=1]
 [ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=2]
 
+[sub_resource type="CircleShape2D" id=1]
 
-[node name="SkullPuddle" type="KinematicBody2D"]
+custom_solver_bias = 0.0
+radius = 8.0
+
+[node name="StaticJumpable" type="KinematicBody2D"]
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -15,4 +19,9 @@ jump_radius = 100
 being_controlled = false
 
 [node name="SpiritParticles" parent="." instance=ExtResource( 2 )]
+emitting = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+_sections_unfolded = [ "shape" ]
 

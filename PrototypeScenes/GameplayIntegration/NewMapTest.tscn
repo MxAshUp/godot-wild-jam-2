@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://LevelComponents/Hostage.tscn" type="PackedScene" id=2]
@@ -6,8 +6,7 @@
 [ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=4]
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=5]
 [ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=6]
-[ext_resource path="res://LevelComponents/SkullPuddle.tscn" type="PackedScene" id=7]
-[ext_resource path="res://LevelComponents/SkullSpear.tscn" type="PackedScene" id=8]
+[ext_resource path="res://LevelComponents/StaticJumpable.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -55,7 +54,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 5, 11, 0, 6, 11, 0, 7, 11, 0, 8, 11, 0, 9, 8, 0, 10, 11, 0, 11, 11, 0, 12, 11, 0, 13, 11, 0, 65539, 11, 0, 65540, 12, 0, 65550, 10, 0, 65551, 11, 0, 65556, 11, 0, 131088, 10, 0, 196625, 10, 0, 262146, 12, 0, 262162, 10, 0, 262163, 12, 0, 262165, 10, 0, 327698, 1, 0, 327699, 3, 0, 393234, 16, 0, 393235, 17, 0, 917522, 19, 0, 917523, 19, 0, 917524, 19, 0, 917525, 19, 0, 983059, 20, 0, 983060, 6, 0, 983061, 20, 0, 1048594, 20, 0, 1048596, 20, 0, 1048597, 7, 0 )
+tile_data = PoolIntArray( 5, 11, 0, 6, 11, 0, 7, 11, 0, 8, 11, 0, 9, 8, 0, 10, 11, 0, 11, 11, 0, 12, 11, 0, 13, 11, 0, 65539, 11, 0, 65540, 12, 0, 65550, 10, 0, 65551, 11, 0, 65556, 11, 0, 131088, 10, 0, 196625, 10, 0, 262146, 12, 0, 262162, 10, 0, 262163, 12, 0, 262165, 10, 0, 327698, 1, 0, 327699, 3, 0, 393234, 16, 0, 393235, 17, 0, 524298, 2, 0, 786451, 2, 0, 917522, 19, 0, 917523, 19, 0, 917524, 19, 0, 917525, 19, 0, 983059, 20, 0, 983060, 6, 0, 983061, 20, 0, 1048594, 20, 0, 1048596, 20, 0, 1048597, 7, 0 )
 _sections_unfolded = [ "Cell" ]
 
 [node name="Interactable" parent="." instance=ExtResource( 4 )]
@@ -70,9 +69,9 @@ shape = SubResource( 1 )
 [node name="Switch" parent="Interactable" instance=ExtResource( 6 )]
 position = Vector2( 629.798, 199.467 )
 
-[node name="Skull" parent="." instance=ExtResource( 7 )]
-position = Vector2( 342.906, 276.932 )
+[node name="StaticJumpable" parent="." instance=ExtResource( 7 )]
+position = Vector2( 339.218, 261.064 )
 
-[node name="SkullSpear" parent="." instance=ExtResource( 8 )]
-position = Vector2( 613.698, 390.449 )
+[node name="StaticJumpable2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 624.995, 391.273 )
 
