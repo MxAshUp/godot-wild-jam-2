@@ -7,8 +7,8 @@ signal hostage_caught
 
 var velocity : Vector2 = Vector2()
 const MAX_SPEED = 200
-const ACCELERATION = 1400
-const FRICTION = 1500
+const ACCELERATION = 1900
+const FRICTION = 2600
 
 func _process( delta ):
 	

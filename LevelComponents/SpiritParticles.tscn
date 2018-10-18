@@ -72,6 +72,7 @@ _sections_unfolded = [ "Angular Velocity", "Emission Shape", "Flags", "Gravity",
 [node name="SpiritParticles" type="Particles2D"]
 position = Vector2( 0, -5 )
 rotation = -1.5708
+z_index = 1
 emitting = true
 amount = 32
 lifetime = 0.3
@@ -90,5 +91,5 @@ texture = ExtResource( 1 )
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "process_material" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Z Index", "process_material" ]
 
