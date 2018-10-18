@@ -34,8 +34,6 @@ GameCamera="*res://Global/Camera.tscn"
 
 [display]
 
-window/size/width=740
-window/size/height=420
 window/size/resizable=false
 
 [input]
