@@ -5,6 +5,6 @@
 
 * Zach777 - UI/UX Designer and assistant programming
 
-* Seba - graphics (2D/3D)
+* mago - pixel art
 
 * Dustin Woods - Code
