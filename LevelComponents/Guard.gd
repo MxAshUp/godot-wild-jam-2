@@ -32,6 +32,7 @@ signal alert_state_chasing
 signal alert_state_confused
 signal alert_state_calm
 signal alert_state_alert
+signal die #For when a spear kills the orc.
 
 func _ready():
 	$AnimationPlayer.play("walking")
@@ -43,6 +44,7 @@ func _ready():
 	
 	self.connect("alert_state_confused", self, "_on_alert_confused")
 	self.connect("alert_state_alert", self, "_on_alert_alert")
+	self.connect( "die", self, "kill_myself" )
 	
 	
 func process_animation(delta):
@@ -120,6 +122,11 @@ func can_see_position(to_position : Vector2, exclude : Array = []) -> bool :
 	var space_state = get_world_2d().direct_space_state
 	var result : Dictionary = space_state.intersect_ray(global_position, to_position, [self] + exclude, (self as KinematicBody2D).collision_mask)
 	return result.size() == 0
+
+
+
+func kill_myself():
+	self.queue_free()
 
 
 func _on_chase_timout():

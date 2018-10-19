@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://LevelComponents/StaticJumpable.gd" type="Script" id=1]
+[ext_resource path="res://Assets/tileset.png" type="Texture" id=2]
+[ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5.82046, 13.0887 )
+
+[node name="SkullSpear" type="KinematicBody2D"]
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+motion/sync_to_physics = false
+script = ExtResource( 1 )
+jump_radius = 100
+being_controlled = false
+
+[node name="SkullSpear" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 384, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.45024, -1.79489 )
+shape = SubResource( 1 )
+
+[node name="SpiritParticles" parent="." instance=ExtResource( 3 )]
+emitting = false
+
