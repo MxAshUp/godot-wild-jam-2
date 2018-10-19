@@ -5,6 +5,18 @@ extends Node2D
 
 
 
+onready var ghost_point : Vector2 = $N/Panel/Continue/Point.global_position
+
+
+var ghost_speed : float = 400
+
+onready var ghost = $N/Panel/Ghost
+
+var current_focus = 0
+
+
+
+
 func can_pause( allow_pause : bool ):
 	if allow_pause :
 		set_process( true )
@@ -40,7 +52,48 @@ func _process( delta ):
 			self.hide()
 			GameCamera.revert_target()
 			SceneBrowser.get_current_scene().show()
+			#Reset ghost.
+			var newGhostPos = $N/Panel/Continue/Point.global_position 
+			ghost_point = newGhostPos
+			current_focus = 0
+			
+	
+	if visible == true :
+		process_ghost( delta )
+	
+	
+	
+	
+func process_ghost( delta ):
+	if current_focus == 0 :
+		if Input.is_action_just_pressed( "ui_down" ) :
+			ghost_point = $N/Panel/Restart/Point.global_position
+			current_focus += 1
+	
+	elif current_focus == 1 : #On Restart.
+		var move : int = int( Input.is_action_just_pressed("ui_down") ) - int( Input.is_action_just_pressed("ui_up") )
+		if move == 1 : #Go down
+			current_focus = 2
+			ghost_point = $N/Panel/Quit/Point.global_position
+		elif move == -1 :
+			current_focus = 0
+			ghost_point = $N/Panel/Continue/Point.global_position
 
+
+	#Heading from quit
+	elif current_focus == 2:
+		if Input.is_action_just_pressed( "ui_up" ) :
+			current_focus = 1
+			ghost_point = $N/Panel/Restart/Point.global_position
+	
+	#Calculate ghost movement.
+	#Make the ghost particle go to ghost point
+	var ghostMove : Vector2
+	ghostMove = ghost_point - ghost.global_position
+	ghostMove *= 3
+	ghostMove = ghostMove.clamped( ghost_speed )
+	ghost.global_position += ghostMove * delta
+	
 
 func restart_pressed():
 	self.hide()
