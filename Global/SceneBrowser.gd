@@ -14,7 +14,8 @@ export var scene_map : Dictionary = {
 	"Path Test": "res://PrototypeScenes/Patrol/PathTest.tscn",
 	"Integration Test": "res://PrototypeScenes/GameplayIntegration/Test-1.tscn",
 	"A Full Map": "res://PrototypeScenes/GameplayIntegration/AFullStage.tscn",
-	"Chase Test": "res://PrototypeScenes/GameplayIntegration/GuardChase.tscn"
+	"Chase Test": "res://PrototypeScenes/GameplayIntegration/GuardChase.tscn",
+	"Level 1": "res://Levels/Level1.tscn",
 }
 
 func change_scene( scene_name ):
