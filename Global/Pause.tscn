@@ -8,6 +8,7 @@
 
 [node name="Pause" type="Node2D"]
 pause_mode = 2
+visible = false
 position = Vector2( -5630.14, -4427.58 )
 z_index = 4
 script = ExtResource( 1 )
