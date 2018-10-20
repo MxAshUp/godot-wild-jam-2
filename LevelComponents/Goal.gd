@@ -1,18 +1,19 @@
 extends Area2D
 
+export (String, "hostage", "guard", "jumpable") var type_needed= "jumpable"
 
-signal hostage_rescued
+const Hostage = preload("res://LevelComponents/Hostage.gd")
+const Guard = preload("res://LevelComponents/Guard.gd")
+const Jumpable = preload("res://LevelComponents/Jumpable.gd")
 
+signal complete
 
 func _ready():
-	self.connect( "body_entered", self, "hostage_entered" )
-	self.connect( "hostage_rescued", LevelHandler, "next_level" )
+	self.connect( "body_entered", self, "_on_body_enter" )
+	self.connect( "complete", LevelHandler, "next_level" )
 	
 
-
-
-func hostage_entered( body : KinematicBody2D ):
-	#Hi Hostage.
-	$Sprite.show() #Godot rejoices in victory.
-	emit_signal( "hostage_rescued" )
-	body.emit_signal( "rescued" )
+func _on_body_enter( body : KinematicBody2D ):
+	if  (type_needed == "jumpable" and body is Jumpable) or (type_needed == "guard" and body is Guard) or (type_needed == "hostage" and body is Hostage):
+		emit_signal( "complete" )
+		body.emit_signal( "goal" )
