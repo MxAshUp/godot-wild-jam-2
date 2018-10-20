@@ -15,7 +15,7 @@ var patrolling : bool = false
 var position_follow : Vector2
 var follow_object_speed : Vector2
 var velocity : Vector2 = Vector2()
-var can_see_follow_position = false
+var can_see_follow_position = true
 var chaseable_bodies : Array = Array()
 var last_move_dir = 0.0
 const PATROL_MAX_SPEED = 150
