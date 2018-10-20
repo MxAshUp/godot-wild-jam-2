@@ -189,7 +189,6 @@ shape = SubResource( 3 )
 position = Vector2( -64, -168 )
 
 [node name="StaticJumpable" parent="." instance=ExtResource( 8 )]
-visible = false
 position = Vector2( 848, 560 )
 being_controlled = true
 
