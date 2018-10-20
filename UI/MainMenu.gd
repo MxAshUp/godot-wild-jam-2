@@ -22,6 +22,7 @@ var current_focus = 0 #0 = Play. 1 = Quit
 
 func _ready():
 	Pause.can_pause( false )
+	Music.at_title()
 	
 	
 	#Put ghost at the right position.

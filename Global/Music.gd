@@ -12,7 +12,7 @@ var talking_files = {
 
 
 func at_chase():
-	if already_playing( "chase" ) :
+	if not_playing( "chase" ) :
 		last_song = self.stream
 		self.stream = load( "res://Assets/Music/Chase.ogg" )
 		current_song = "chase"
@@ -20,7 +20,7 @@ func at_chase():
 
 
 func at_heroic():
-	if already_playing( "heroic" ) :
+	if not_playing( "heroic" ) :
 		last_song = self.stream
 		self.stream = load( "res://Assets/Music/Heroic.ogg" )
 		current_song = "heroic"
@@ -28,7 +28,7 @@ func at_heroic():
 
 
 func at_title():
-	if already_playing( "title" ) :
+	if not_playing( "title" ) :
 		last_song = self.stream
 		self.stream = load( "res://Assets/Music/Title.ogg" )
 		current_song = "title"
@@ -36,14 +36,14 @@ func at_title():
 
 
 func at_stealth():
-	if already_playing( "stealth" ) :
+	if not_playing( "stealth" ) :
 		last_song = self.stream
 		self.stream = load( "res://Assets/Music/Stealth.ogg" )
 		current_song = "stealth"
 		self.play()
 
 
-func already_playing( check_song ):
+func not_playing( check_song ):
 	if current_song == null  :
 		return true
 	
