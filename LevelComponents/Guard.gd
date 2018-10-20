@@ -86,8 +86,7 @@ func process_animation(delta):
 	if !being_jumped and $EffectAnimations.current_animation != "normal":
 		$EffectAnimations.play("normal")
 		
-	if !being_jumped:
-		$AnimationPlayer.playback_speed = (velocity.length() / MAX_SPEED) * 3
+	$AnimationPlayer.playback_speed = (velocity.length() / MAX_SPEED) * 3
 		
 	if animation_to_play != $AnimationPlayer.current_animation:
 		$AnimationPlayer.play(animation_to_play)

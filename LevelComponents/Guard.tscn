@@ -268,7 +268,6 @@ emitting = false
 light_mask = 2
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
-offset = Vector2( 2, 0 )
 hframes = 9
 region_rect = Rect2( 64, 288, 32, 32 )
 _sections_unfolded = [ "Material", "Offset", "Region", "Transform", "Visibility", "texture" ]
