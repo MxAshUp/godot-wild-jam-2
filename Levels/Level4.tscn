@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -115,6 +116,7 @@ _sections_unfolded = [ "Cell", "Z Index" ]
 position = Vector2( 755, 326 )
 
 [node name="Patrol" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
 preview = true
 persistent = true
 ping_pong = false
@@ -128,6 +130,7 @@ self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
 
 [node name="Patrol2" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
 position = Vector2( 0, -192 )
 preview = true
 persistent = true
@@ -166,6 +169,7 @@ curve = SubResource( 4 )
 position = Vector2( 1008, -16 )
 
 [node name="Interactable" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
 position = Vector2( 816, -112 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
@@ -182,10 +186,16 @@ position = Vector2( 128, 217 )
 position = Vector2( 208, 288 )
 
 [node name="Goal" parent="." instance=ExtResource( 9 )]
+editor/display_folded = true
 position = Vector2( 1056, -80 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 position = Vector2( 16, 32 )
 shape = SubResource( 6 )
+
+[node name="BeginRot" type="Node2D" parent="."]
+
+[node name="Candle" parent="BeginRot" instance=ExtResource( 10 )]
+position = Vector2( 1030.49, 153.769 )
 
 [connection signal="jumped_noargs" from="Patrol4/Guard" to="Patrol4" method="start_moving"]
