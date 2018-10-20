@@ -350,7 +350,7 @@ custom_colors/font_color = Color( 1, 0.623529, 0.294118, 1 )
 custom_colors/font_color_shadow = Color( 0.294118, 0.184314, 0.0901961, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
-text = "Code by Altru & Zach777
+text = "Code by Dustin Woods & Zach777
 UI by Zach777 & JohnGabrielUK
 Graphics by Mago
 Music & sound by JohnGabrielUK
