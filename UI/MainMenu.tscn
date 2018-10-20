@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://UI/Background.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/UI/Pause.png" type="Texture" id=5]
 [ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Fonts/SmallText.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Assets/Blackout.png" type="Texture" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -337,4 +338,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts", "custom_fonts/font" ]
+
+[node name="Reveal" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 565, 308.5 )
+scale = Vector2( 9.82812, 5.82031 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Visibility" ]
 

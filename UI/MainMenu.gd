@@ -19,7 +19,7 @@ var current_focus = 0 #0 = Play. 1 = Quit
 
 
 var fade_reveal_inc = 0.007
-var fade_reveal_wait = 50
+var fade_reveal_wait = 40
 
 
 
@@ -89,12 +89,12 @@ func _process(delta):
 	ghost.global_position += move * delta
 	
 	
-#	#Make reveal fade away
-#	if fade_reveal_wait == 0 :
-#		if $Reveal.modulate.a > 0 :
-#			$Reveal.modulate.a -= fade_reveal_inc
-#	else:
-#		fade_reveal_wait -= 1
+	#Make reveal fade away
+	if fade_reveal_wait == 0 :
+		if $Reveal.modulate.a > 0 :
+			$Reveal.modulate.a -= fade_reveal_inc
+	else:
+		fade_reveal_wait -= 1
 
 
 func return_pressed():
