@@ -4,6 +4,7 @@ extends Node2D
 export (float) var move_speed = 100
 export (float) var start_offset = 0
 export (bool) var preview = false
+export (bool) var persistent = false
 export (bool) var ping_pong = true
 export (bool) var moving = true
 export (bool) var loop = true
@@ -57,7 +58,7 @@ func _draw():
 func handle_out_of_range(follower : PhysicsBody2D):
 	if ping_pong and moving:
 		move_speed = -move_speed
-	else:
+	elif persistent == false:
 		moving = false
 
 
