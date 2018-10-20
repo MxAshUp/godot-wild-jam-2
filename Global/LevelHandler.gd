@@ -8,17 +8,19 @@ var level_array : Array = [ "Level 1" , "Level 2" ]
 
 func next_level():
 	#Move onto the next level in the array of levels.
-	#Right now, just keep playing the test scene again and
-	#again.
 	
 	current_level += 1
 	print(current_level)
-	if current_level > level_array.size() :
+	if current_level >= level_array.size() :
+		#Play ending.
 		current_level = level_array.size()
 		SceneBrowser.change_scene( "Main Menu" )
 		
 	else:
 		SceneBrowser.change_scene( level_array[ current_level ] )
+		
+		#Play stealth again if it is not already.
+		Music.at_stealth()
 
 
 
