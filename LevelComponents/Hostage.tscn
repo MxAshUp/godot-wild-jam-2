@@ -152,7 +152,6 @@ scale = Vector2( 2, 2 )
 z_index = 2
 texture = ExtResource( 3 )
 hframes = 9
-frame = 8
 region_rect = Rect2( 0, 256, 31, 32 )
 _sections_unfolded = [ "Animation", "Region", "Transform", "Z Index", "texture" ]
 
