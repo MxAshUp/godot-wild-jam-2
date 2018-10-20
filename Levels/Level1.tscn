@@ -23,7 +23,7 @@ _data = {
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 640, -240, 0, 0, 0, 0, 672, -288, 0, 0, 0, 0, 304, -288, 0, 0, 0, 0, 336, -240, 0, 0, 0, 0, 304, -288, 0, 0, 0, 0, 672, -288, 0, 0, 0, 0, 640, -240 )
+"points": PoolVector2Array( 0, 0, 0, 0, 640, -240, 0, 0, 0, 0, 672, -288, 0, 0, 0, 0, 304, -288, 0, 0, 0, 0, 335.844, -219.537, 0, 0, 0, 0, 304, -288, 0, 0, 0, 0, 672, -288, 0, 0, 0, 0, 640, -240 )
 }
 
 [sub_resource type="CircleShape2D" id=3]
@@ -193,7 +193,7 @@ being_controlled = true
 
 [node name="bg" type="Sprite" parent="StaticJumpable"]
 position = Vector2( -70.3235, -24.6132 )
-scale = Vector2( 40, 20 )
+scale = Vector2( 60, 40 )
 z_index = 998
 texture = ExtResource( 9 )
 region_enabled = true
@@ -201,13 +201,13 @@ region_rect = Rect2( 96, 0, 32, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility", "Z Index" ]
 
 [node name="logo" type="Sprite" parent="StaticJumpable"]
-position = Vector2( 0, -14 )
-scale = Vector2( 1.53333, 1.53333 )
+position = Vector2( -68.5654, -24.0826 )
 z_index = 999
 texture = ExtResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Goal" parent="." instance=ExtResource( 11 )]
+editor/display_folded = true
 position = Vector2( 592, 336 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
