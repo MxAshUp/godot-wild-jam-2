@@ -2,7 +2,7 @@ extends Node
 
 var current_level : int = 0
 
-var level_array : Array = [ "Level 1" , "Level 2" ]
+var level_array : Array = [ "Level 1" , "Level 2", "Level 3" ]
 
 
 
