@@ -115,7 +115,6 @@ _sections_unfolded = [ "Cell", "Z Index" ]
 position = Vector2( 755, 326 )
 
 [node name="Patrol" parent="." instance=ExtResource( 4 )]
-editor/display_folded = true
 preview = true
 persistent = true
 ping_pong = false
@@ -129,7 +128,6 @@ self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
 
 [node name="Patrol2" parent="." instance=ExtResource( 4 )]
-editor/display_folded = true
 position = Vector2( 0, -192 )
 preview = true
 persistent = true
@@ -145,8 +143,6 @@ curve = SubResource( 2 )
 [node name="Patrol3" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
 position = Vector2( 0, -384 )
-persistent = true
-ping_pong = false
 
 [node name="Guard" parent="Patrol3" instance=ExtResource( 5 )]
 position = Vector2( 720, 352 )
@@ -156,6 +152,7 @@ self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 3 )
 
 [node name="Patrol4" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
 persistent = true
 ping_pong = false
 moving = false
@@ -191,4 +188,4 @@ position = Vector2( 1056, -80 )
 position = Vector2( 16, 32 )
 shape = SubResource( 6 )
 
-[connection signal="jumped" from="Patrol4/Guard" to="Patrol4" method="start_moving"]
+[connection signal="jumped_noargs" from="Patrol4/Guard" to="Patrol4" method="start_moving"]
