@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=7]
 [ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=8]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -178,4 +180,42 @@ door_open = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable4"]
 position = Vector2( 16, 8 )
 shape = SubResource( 3 )
+
+[node name="EntranceSecion" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Candle" parent="EntranceSecion" instance=ExtResource( 9 )]
+position = Vector2( 687.318, 87.7755 )
+
+[node name="Torch" parent="EntranceSecion" instance=ExtResource( 10 )]
+position = Vector2( 560, 48 )
+
+[node name="Torch2" parent="EntranceSecion" instance=ExtResource( 10 )]
+position = Vector2( 336, 48 )
+
+[node name="Torch3" parent="EntranceSecion" instance=ExtResource( 10 )]
+position = Vector2( 112, 48 )
+
+[node name="Torch4" parent="EntranceSecion" instance=ExtResource( 10 )]
+position = Vector2( 224, 464 )
+
+[node name="Torch5" parent="EntranceSecion" instance=ExtResource( 10 )]
+position = Vector2( 448, 464 )
+
+[node name="Torch6" parent="EntranceSecion" instance=ExtResource( 10 )]
+position = Vector2( 640, 464 )
+
+[node name="Jail" type="Node2D" parent="."]
+position = Vector2( 688, 272 )
+
+[node name="Torch" parent="Jail" instance=ExtResource( 10 )]
+
+[node name="Torch2" parent="Jail" instance=ExtResource( 10 )]
+position = Vector2( 48, 0 )
+
+[node name="Torch3" parent="Jail" instance=ExtResource( 10 )]
+position = Vector2( 528, 0 )
+
+[node name="Torch4" parent="Jail" instance=ExtResource( 10 )]
+position = Vector2( 624, 0 )
 
