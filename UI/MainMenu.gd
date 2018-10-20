@@ -49,14 +49,17 @@ func play_pressed():
 
 
 func quit_pressed():
+	#DIE PROGRAM!!!!!!!
+	get_tree().quit()
+	
 	#Tell ghost to move up to return
-	ghost_point = play_spot.global_position
-	current_focus = 0
-	
-	
-	#Bring up the popup menu.
-	button_play.hide()
-	button_quit.hide()
+#	ghost_point = play_spot.global_position
+#	current_focus = 0
+#
+#
+#	#Bring up the popup menu.
+#	button_play.hide()
+#	button_quit.hide()
 	
 	
 	#Remove these eventually
