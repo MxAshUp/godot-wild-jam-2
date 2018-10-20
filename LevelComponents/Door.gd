@@ -1,56 +1,25 @@
 tool
 extends Node2D
 
-export var door_open : bool = false
+export var door_open : bool = false setget set_open
 
 signal interact
 
-
-
 func _ready():
-	#Determine whether the door should be open or not.
-	if door_open :
-		$SpriteClosed.hide()
-		$SpriteOpen.show()
-		$Col.set_collision_layer_bit( 0, false )
-	
-	else:
-		#Door is closed.
-		$SpriteClosed.show()
-		$SpriteOpen.hide()
-		$Col.set_collision_layer_bit( 0, true )
-	
+	set_open(door_open)
 
-
-func _process(delta):
-
+func set_open(new_open):
+	door_open = new_open
+	if $AnimationPlayer and $Col:
 		if door_open :
-			$SpriteClosed.hide()
-			$SpriteOpen.show()
+			$AnimationPlayer.play("open_door")
 			$Col.set_collision_layer_bit( 0, false )
-	
+		
 		else:
 			#Door is closed.
-			$SpriteClosed.show()
-			$SpriteOpen.hide()
+			$AnimationPlayer.play("close_door")
 			$Col.set_collision_layer_bit( 0, true )
 
-
-
 func _on_Door_interact():
-	if door_open :
-		#Close door
-		door_open = false
-		$SpriteClosed.show()
-		$SpriteOpen.hide()
-		$Col.set_collision_layer_bit( 0, true )
-	else:
-		#open door
-		door_open = true
-		$SpriteClosed.hide()
-		$SpriteOpen.show()
-		$Col.set_collision_layer_bit( 0, false )
-
-
-
-
+	door_open = !door_open
+	set_open(door_open)
