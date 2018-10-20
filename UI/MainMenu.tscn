@@ -67,6 +67,7 @@ stretch_mode = 0
 _sections_unfolded = [ "Material", "Visibility", "material" ]
 
 [node name="Center" type="CenterContainer" parent="CanvasLayer"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -339,10 +340,10 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts", "custom_fonts/font" ]
 
-[node name="Reveal" type="Sprite" parent="."]
+[node name="Reveal" type="Sprite" parent="CanvasLayer"]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 565, 308.5 )
 scale = Vector2( 9.82812, 5.82031 )
 texture = ExtResource( 8 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Visibility", "Z Index" ]
 

@@ -20,7 +20,7 @@ debug_overlay=false
 [application]
 
 config/name="Mind Crosser"
-run/main_scene="res://TemporaryMain.tscn"
+run/main_scene="res://UI/MainMenu.tscn"
 boot_splash/image="res://BootSplash.png"
 config/icon="res://icon.png"
 
