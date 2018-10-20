@@ -18,3 +18,4 @@ func _on_body_enter( body : KinematicBody2D ):
 		if (body as Jumpable).being_controlled:
 			emit_signal( "complete" )
 			body.emit_signal( "goal" )
+			GameCamera.stop_target()

@@ -68,6 +68,7 @@ func start_timer():
 
 
 func _process( delta ):
+	
 	var goto : Vector2 = current_target.global_position
 	goto -= camera.global_position
 	goto = goto.clamped( 20 )
@@ -78,6 +79,11 @@ func _process( delta ):
 	text.get_node( "Text" ).text = str( round( text.get_node( "Timer" ).time_left ) )
 	
 	
+
+func stop_target():
+	set_process( false )
+	current_target = null
+
 
 func timer_done():
 	text.get_node( "Timer" ).stop()
