@@ -72,7 +72,7 @@ _sections_unfolded = [ "Angular Velocity", "Emission Shape", "Flags", "Gravity",
 [node name="SpiritParticles" type="Particles2D"]
 position = Vector2( 0, -5 )
 rotation = -1.5708
-z_index = 1
+z_index = 100
 emitting = true
 amount = 32
 lifetime = 0.3
