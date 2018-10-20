@@ -184,6 +184,8 @@ func _on_JumpArea_body_exited(body : PhysicsBody2D):
 		var index = jumpable_bodies.find(body)
 		if index != -1:
 			if selected_instance_to_jump == body:
+				if trying_to_jump:
+					selected_instance_to_jump.emit_signal("cancelled_jump", self)
 				selected_instance_to_jump = null
 				
 			jumpable_bodies.remove(index)
