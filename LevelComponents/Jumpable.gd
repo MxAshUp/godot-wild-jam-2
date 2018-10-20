@@ -18,6 +18,7 @@ var collision_circle : CircleShape2D
 var jumpable_bodies : Array = Array()
 var interactables : Array = Array()
 var jump_cooling_off = false
+var sound_swap_charge : AudioStreamPlayer2D
 var body_swap_sound : AudioStreamPlayer2D
 var selected_instance_to_jump : PhysicsBody2D
 
@@ -39,6 +40,14 @@ func _enter_tree():
 	collision_circle = CircleShape2D.new()
 	collision_circle.radius = jump_radius
 	jump_collision_shape.shape = collision_circle
+	# Sound for jump charging
+	sound_swap_charge = AudioStreamPlayer2D.new()
+	add_child(sound_swap_charge)
+	sound_swap_charge.stream = load("res://Assets/Sounds/Swapping.ogg")
+	sound_swap_charge.volume_db = linear2db(0)
+	sound_swap_charge.play()
+	add_child(jump_to_particle_emitter)
+	# Sound for jump complete
 	body_swap_sound = AudioStreamPlayer2D.new()
 	add_child(body_swap_sound)
 	body_swap_sound.stream = load("res://Assets/Sounds/BodySwap.ogg")
@@ -71,6 +80,7 @@ func _process(delta):
 	if being_controlled:
 		process_input(delta)
 	process_tool(delta)
+	sound_swap_charge.volume_db = linear2db(jump_charge)
 
 
 func process_input(delta):
