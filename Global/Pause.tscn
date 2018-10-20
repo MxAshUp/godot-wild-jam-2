@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Global/Pause.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Blackout.png" type="Texture" id=2]
 [ext_resource path="res://Assets/UI/Pause.png" type="Texture" id=3]
 [ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Fonts/SmallText.tres" type="DynamicFont" id=5]
 
 [node name="Pause" type="Node2D"]
 pause_mode = 2
-visible = false
 position = Vector2( -5630.14, -4427.58 )
 z_index = 4
 script = ExtResource( 1 )
@@ -56,6 +56,7 @@ __meta__ = {
 }
 
 [node name="Ghost" parent="N/Panel" instance=ExtResource( 4 )]
+editor/display_folded = true
 position = Vector2( 130, 80 )
 scale = Vector2( 3, 3 )
 z_index = 0
@@ -111,6 +112,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -118,7 +120,7 @@ group = null
 text = "QUIT"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect", "Visibility" ]
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -144,6 +146,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -151,7 +154,7 @@ group = null
 text = "RESTART"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect", "Visibility" ]
+_sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [node name="Point" type="Node2D" parent="N/Panel/Restart"]
 position = Vector2( 85, 42 )
@@ -174,6 +177,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
 custom_constants/hseparation = 0
 toggle_mode = false
 enabled_focus_mode = 2
@@ -182,7 +186,7 @@ group = null
 text = "CONTINUE"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect", "Visibility", "custom_styles" ]
+_sections_unfolded = [ "Visibility", "custom_colors", "custom_fonts" ]
 
 [node name="Point" type="Node2D" parent="N/Panel/Continue"]
 position = Vector2( 85, 42 )
