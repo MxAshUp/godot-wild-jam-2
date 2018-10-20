@@ -18,6 +18,10 @@ var ghost_speed : float = 400
 
 var current_focus = 0 #0 = Play. 1 = Quit
 
+#Juice the menu.
+#Helps display engulfing flames
+var juice_button = 0
+
 
 
 func _ready():
@@ -32,11 +36,17 @@ func _ready():
 	#Connect the buttons
 	button_play.connect( "pressed", self, "play_pressed" )
 	button_quit.connect( "pressed", self, "quit_pressed" )
+	button_play.connect( "button_down", self, "juice" )
+	button_quit.connect( "button_down", self, "juice" )
 	#$VBox/Return.connect( "pressed", self, "return_pressed" )
 	#$VBox/TrueQuit.connect( "pressed", self, "true_quit_pressed" )
 	
 	#Start menu on Play
 	button_play.grab_focus()
+
+
+func juice():
+	juice_button = 1
 
 
 func play_pressed():
@@ -72,11 +82,13 @@ func _process(delta):
 			Input.is_action_just_pressed( "ui_down" ) ):
 		ghost_point = quit_spot.global_position
 		current_focus = 1
+		juice_button = 0
 	
 	if( current_focus == 1 &&
 			Input.is_action_just_pressed( "ui_up" ) ):
 		ghost_point = play_spot.global_position
 		current_focus = 0
+		juice_button = 0
 	
 	
 	#Make the ghost particle go to ghost point
@@ -90,7 +102,17 @@ func _process(delta):
 	#Make reveal fade away
 	if reveal.modulate.a > 0 :
 		reveal.modulate.a -= delta / 5
-
+	
+	
+	#Display da buttons.
+	if juice_button != 0 :
+		for child in ghost.get_children() :
+			child.emitting = true
+		
+	else:
+		for child in ghost.get_children() :
+			child.emitting = false
+		
 
 func return_pressed():
 	#Go back to the previous menu.

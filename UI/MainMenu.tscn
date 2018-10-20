@@ -67,7 +67,6 @@ stretch_mode = 0
 _sections_unfolded = [ "Material", "Visibility", "material" ]
 
 [node name="Center" type="CenterContainer" parent="CanvasLayer"]
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -157,6 +156,34 @@ _sections_unfolded = [ "Anchor", "Axis Stretch", "Grow Direction", "Margin", "Ma
 [node name="Ghost" parent="CanvasLayer/Center/VBox/Center" instance=ExtResource( 6 )]
 position = Vector2( -185.219, -350.731 )
 z_index = 0
+_sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
+
+[node name="Ghost2" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
+position = Vector2( -4.57764e-05, 12.5436 )
+rotation = 0.0
+z_index = 0
+emitting = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
+
+[node name="Ghost3" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
+position = Vector2( 4.57764e-05, -12.5436 )
+rotation = 0.0
+z_index = 0
+emitting = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
+
+[node name="Ghost4" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
+position = Vector2( -9.91821e-05, 26.7597 )
+rotation = 0.0
+z_index = 0
+emitting = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
+
+[node name="Ghost5" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
+position = Vector2( 9.15527e-05, -26.3416 )
+rotation = 0.0
+z_index = 0
+emitting = false
 _sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
 
 [node name="VBox_Menu" type="VBoxContainer" parent="CanvasLayer/Center/VBox/Center"]
