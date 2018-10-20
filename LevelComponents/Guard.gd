@@ -47,6 +47,9 @@ func _ready():
 	self.connect("alert_state_alert", self, "_on_alert_alert")
 	self.connect( "die", self, "kill_myself" )
 	
+	#Stop sound if it reaches the end.
+	$Sounds.connect( "finished", self, "sound_finished" )
+	
 
 func process_animation(delta):
 
@@ -155,6 +158,10 @@ func set_alert_state(new_state):
 		(self as Object).emit_signal("alert_state_" + alert_state)
 
 
+func sound_finished():
+	$Sounds.stop()
+
+
 func can_see_position(to_position : Vector2, exclude : Array = []) -> bool :
 	var space_state = get_world_2d().direct_space_state
 	var result : Dictionary = space_state.intersect_ray(global_position, to_position, [self] + exclude, (self as KinematicBody2D).collision_mask)
@@ -196,11 +203,27 @@ func _on_exit_vision_area(body : PhysicsBody2D):
 
 func _on_alert_alert():
 	$ExclamationAnimation.play("alert")
+	var rand = randi() % 5
+	var choose_array = [ "res://Assets/Sounds/Orc/Alert1.ogg",
+	"res://Assets/Sounds/Orc/Alert2.ogg", "res://Assets/Sounds/Orc/Alert3.ogg",
+	"res://Assets/Sounds/Orc/Alert4.ogg", "res://Assets/Sounds/Orc/Alert5.ogg"
+	 ]
+	$Sounds.stream = load( choose_array[ rand ] )
+	$Sounds.play()
 
 
 func _on_alert_confused():
 	$ExclamationAnimation.play("confused")
-
+	var rand = randi() % 10
+	var choose_array = [ "res://Assets/Sounds/Orc/Huh1.ogg", "res://Assets/Sounds/Orc/Huh2.ogg",
+			"res://Assets/Sounds/Orc/Huh3.ogg", "res://Assets/Sounds/Orc/Huh4.ogg",
+			"res://Assets/Sounds/Orc/Sniff1.ogg",
+			"res://Assets/Sounds/Orc/Sniff2.ogg", "res://Assets/Sounds/Orc/Sniff3.ogg",
+			"res://Assets/Sounds/Orc/Groan1.ogg", "res://Assets/Sounds/Orc/Groan2.ogg",
+			"res://Assets/Sounds/Orc/Groan3.ogg"  ]
+	$Sounds.stream = load( choose_array[ rand ] )
+	$Sounds.play()
+	print( "confused" )
 
 func _draw():
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():
