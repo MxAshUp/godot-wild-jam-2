@@ -24,24 +24,23 @@ func revert_target():
 
 
 
-func set_target( target, offset : Vector2 = Vector2( 0,0 ) ):
+func set_target( target, instant_jump : bool = false, offset : Vector2 = Vector2( 0,0 ) ):
 	#Follow this target.
-	
-	#Old
 	previous_target = current_target
 	current_target = target
-#	camera.get_parent().remove_child( camera )
-#	camera.position = Vector2( 0,0 )
 
-#	target.call_deferred( "add_child", camera )
 	camera.make_current()
+	
+	#Jump instantly to the new target if needed.
+	if instant_jump :
+		camera.global_position = target.global_position
+	
 	camera.position += offset
 	
 	set_process( true )
 
 
-	pass
-	
+
 func _process( delta ):
 	var goto : Vector2 = current_target.global_position
 	goto -= camera.global_position

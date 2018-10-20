@@ -57,7 +57,7 @@ func _ready():
 	#Have the game camera focus on me,
 	#if level starts controlling with controlling me.
 	if being_controlled :
-		GameCamera.set_target( self )
+		GameCamera.set_target( self, true )
 	
 	jump_area.connect("body_entered", self, "_on_JumpArea_body_entered")
 	jump_area.connect("body_exited", self, "_on_JumpArea_body_exited")
