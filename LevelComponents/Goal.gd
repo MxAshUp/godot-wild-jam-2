@@ -15,5 +15,6 @@ func _ready():
 
 func _on_body_enter( body : KinematicBody2D ):
 	if  (type_needed == "jumpable" and body is Jumpable) or (type_needed == "guard" and body is Guard) or (type_needed == "hostage" and body is Hostage):
-		emit_signal( "complete" )
-		body.emit_signal( "goal" )
+		if (body as Jumpable).being_controlled:
+			emit_signal( "complete" )
+			body.emit_signal( "goal" )
