@@ -26,6 +26,9 @@ func next_level():
 
 func restart():
 	SceneBrowser.change_scene( level_array[ current_level ] )
+	
+	#Play stealth again if it is not already.
+	Music.at_stealth()
 
 
 func start_game():

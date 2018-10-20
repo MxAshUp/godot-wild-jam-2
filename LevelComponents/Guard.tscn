@@ -345,3 +345,14 @@ anims/shake = SubResource( 12 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
+[node name="Sounds" type="AudioStreamPlayer2D" parent="."]
+stream = null
+volume_db = 14.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+max_distance = 2000.0
+attenuation = 1.31951
+bus = "Master"
+area_mask = 1
+
