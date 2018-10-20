@@ -20,6 +20,9 @@ scale = Vector2( 11.2003, 7.73328 )
 z_index = 400
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="N" type="Node2D" parent="."]
 z_index = 900
@@ -41,15 +44,53 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Mouse", "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="N/Panel"]
 position = Vector2( 129.057, 169.67 )
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Ghost" parent="N/Panel" instance=ExtResource( 4 )]
 position = Vector2( 130, 80 )
 scale = Vector2( 3, 3 )
 z_index = 0
+amount = 50
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index", "process_material" ]
+
+[node name="OneOne" parent="N/Panel/Ghost" instance=ExtResource( 4 )]
+position = Vector2( -0.00012207, 11.2166 )
+rotation = 0.0
+z_index = 0
+emitting = false
+amount = 50
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index", "process_material" ]
+
+[node name="OneTwo" parent="N/Panel/Ghost" instance=ExtResource( 4 )]
+position = Vector2( 0, -6.177 )
+rotation = 0.0
+z_index = 0
+emitting = false
+amount = 50
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index", "process_material" ]
+
+[node name="TwoOne" parent="N/Panel/Ghost" instance=ExtResource( 4 )]
+position = Vector2( -0.00012207, 20.1575 )
+rotation = 0.0
+z_index = 0
+emitting = false
+amount = 50
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index", "process_material" ]
+
+[node name="TwoTwo" parent="N/Panel/Ghost" instance=ExtResource( 4 )]
+position = Vector2( 0, -20.6449 )
+rotation = 0.0
+z_index = 0
+emitting = false
 amount = 50
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index", "process_material" ]
 

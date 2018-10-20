@@ -15,6 +15,10 @@ onready var ghost = $N/Panel/Ghost
 var current_focus = 0
 
 
+#Engulfes buttons in spirit.
+var juice_button = 0
+
+
 
 func can_pause( allow_pause : bool ):
 	if allow_pause :
@@ -31,11 +35,20 @@ func continue_pressed():
 	reset_ghost()
 
 
+func juice():
+	juice_button = 1
+
+
 func _ready():
 	$N/Panel/Quit.connect( "pressed", self, "quit_pressed" )
 	$N/Panel/Restart.connect( "pressed", self, "restart_pressed" )
 	$N/Panel/Continue.connect( "pressed", self, "continue_pressed" )
 
+	$N/Panel/Continue.connect( "button_down", self, "juice" )
+	$N/Panel/Quit.connect( "button_down", self, "juice" )
+	$N/Panel/Restart.connect( "button_down", self, "juice" )
+	
+	
 
 func _process( delta ):
 	if Input.is_action_just_pressed( "pause" ):
@@ -56,6 +69,7 @@ func _process( delta ):
 	
 	if visible == true :
 		process_ghost( delta )
+		
 	
 	
 	
@@ -65,20 +79,24 @@ func process_ghost( delta ):
 		if Input.is_action_just_pressed( "ui_down" ) :
 			ghost_point = $N/Panel/Restart/Point.global_position
 			current_focus += 1
+			juice_button = 0
 	
 	elif current_focus == 1 : #On Restart.
 		var move : int = int( Input.is_action_just_pressed("ui_down") ) - int( Input.is_action_just_pressed("ui_up") )
 		if move == 1 : #Go down
+			juice_button = 0
 			current_focus = 2
 			ghost_point = $N/Panel/Quit/Point.global_position
 		elif move == -1 :
 			current_focus = 0
 			ghost_point = $N/Panel/Continue/Point.global_position
-
+			juice_button = 0
 
 	#Heading from quit
+	
 	elif current_focus == 2:
 		if Input.is_action_just_pressed( "ui_up" ) :
+			juice_button = 0
 			current_focus = 1
 			ghost_point = $N/Panel/Restart/Point.global_position
 	
@@ -90,6 +108,22 @@ func process_ghost( delta ):
 	ghostMove = ghostMove.clamped( ghost_speed )
 	ghost.global_position += ghostMove * delta
 	
+	
+	#Juice buttons.
+	if juice_button != 0 :
+		if juice_button == 3 :
+			ghost.get_node( "OneOne" ).emitting = true
+			ghost.get_node( "OneTwo" ).emitting = true
+			juice_button += 1
+		elif juice_button >= 7 :
+			ghost.get_node( "TwoOne" ).emitting = true
+			ghost.get_node( "TwoTwo" ).emitting = true
+		else:
+			juice_button += 1
+		
+	else:
+		for child in ghost.get_children() :
+			child.emitting = false
 
 
 func reset_ghost():
@@ -118,3 +152,4 @@ func unpause():
 	$Camera2D.clear_current()
 	GameCamera.make_current()
 	SceneBrowser.get_current_scene().show()
+	juice_button = 0
