@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -144,4 +146,101 @@ position = Vector2( 1218, 912 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 position = Vector2( 14, 28 )
 shape = SubResource( 4 )
+
+[node name="Candle" parent="." instance=ExtResource( 10 )]
+position = Vector2( 879.285, 1132.49 )
+
+[node name="InnerRoomCandles" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1232, 1084 )
+
+[node name="Torch" parent="InnerRoomCandles" instance=ExtResource( 11 )]
+position = Vector2( 144, -52 )
+
+[node name="Torch2" parent="InnerRoomCandles" instance=ExtResource( 11 )]
+position = Vector2( 80, -52 )
+
+[node name="Torch3" parent="InnerRoomCandles" instance=ExtResource( 11 )]
+position = Vector2( -80, -52 )
+
+[node name="Torch4" parent="InnerRoomCandles" instance=ExtResource( 11 )]
+position = Vector2( -144, -52 )
+
+[node name="Far Left" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 448, 1116.49 )
+
+[node name="Torch" parent="Far Left" instance=ExtResource( 11 )]
+position = Vector2( 320, 10.4036 )
+
+[node name="Torch2" parent="Far Left" instance=ExtResource( 11 )]
+position = Vector2( 256, 10.4036 )
+
+[node name="Torch3" parent="Far Left" instance=ExtResource( 11 )]
+position = Vector2( 192, 10.4036 )
+
+[node name="Torch4" parent="Far Left" instance=ExtResource( 11 )]
+position = Vector2( 128, 10.4036 )
+
+[node name="Torch5" parent="Far Left" instance=ExtResource( 11 )]
+position = Vector2( 64, 12.0035 )
+
+[node name="Torch6" parent="Far Left" instance=ExtResource( 11 )]
+position = Vector2( 0, 13.1005 )
+
+[node name="Torch7" parent="Far Left" instance=ExtResource( 11 )]
+position = Vector2( -64, 13.1005 )
+
+[node name="Inside" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 897.285, 1032 )
+
+[node name="Torch" parent="Inside" instance=ExtResource( 11 )]
+position = Vector2( 62.7152, 0 )
+
+[node name="Torch2" parent="Inside" instance=ExtResource( 11 )]
+position = Vector2( -2, 0 )
+
+[node name="Torch3" parent="Inside" instance=ExtResource( 11 )]
+position = Vector2( -65.2848, 0 )
+
+[node name="OutsideRoom" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1248, 1128.5 )
+
+[node name="Torch" parent="OutsideRoom" instance=ExtResource( 11 )]
+position = Vector2( 126, 14.4 )
+
+[node name="Torch2" parent="OutsideRoom" instance=ExtResource( 11 )]
+position = Vector2( 62, 14.4 )
+
+[node name="Torch3" parent="OutsideRoom" instance=ExtResource( 11 )]
+position = Vector2( -2, 15.4969 )
+
+[node name="Torch4" parent="OutsideRoom" instance=ExtResource( 11 )]
+position = Vector2( -66, 15.4969 )
+
+[node name="Torch5" parent="OutsideRoom" instance=ExtResource( 11 )]
+position = Vector2( -194, 14.4 )
+
+[node name="OB" type="Node2D" parent="."]
+position = Vector2( 1408, 1132.49 )
+
+[node name="Torch" parent="OB" instance=ExtResource( 11 )]
+position = Vector2( 32, 0 )
+
+[node name="Torch2" parent="OB" instance=ExtResource( 11 )]
+position = Vector2( 96, -92.4934 )
+
+[node name="Torch3" parent="OB" instance=ExtResource( 11 )]
+position = Vector2( 160, -92.4934 )
+
+[node name="Torch4" parent="OB" instance=ExtResource( 11 )]
+position = Vector2( 224, -92.4934 )
+
+[node name="Torch5" parent="OB" instance=ExtResource( 11 )]
+position = Vector2( 288, -92.4934 )
+
+[node name="Torch6" parent="OB" instance=ExtResource( 11 )]
+position = Vector2( 352, -92.4934 )
 
