@@ -73,7 +73,7 @@ _sections_unfolded = [ "Region" ]
 position = Vector2( 160, 96 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 288, 64, 32, 32 )
+region_rect = Rect2( 64, 128, 32, 32 )
 _sections_unfolded = [ "Region" ]
 
 [node name="Grey Column Top" type="Sprite" parent="."]
@@ -120,7 +120,6 @@ _sections_unfolded = [ "Transform" ]
 shape = SubResource( 2 )
 
 [node name="Grey Corner Left" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 0, 64 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -139,13 +138,6 @@ physics_material_override = null
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Grey Corner Left/StaticBody2D"]
 build_mode = 0
 polygon = PoolVector2Array( 16.1484, 7.79749, 16.0999, 15.9446, -16.0035, 16.0416, -15.955, -15.9648, -7.80789, -15.9648, -7.51693, 8.03996 )
-
-[node name="Grey Corner Top2" type="Sprite" parent="."]
-position = Vector2( -32, 64 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 96, 96, 32, 32 )
-_sections_unfolded = [ "Region" ]
 
 [node name="Grey Low" type="Sprite" parent="."]
 editor/display_folded = true
@@ -167,6 +159,13 @@ physics_material_override = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grey Low/StaticBody2D"]
 shape = SubResource( 1 )
+
+[node name="Column Top 2" type="Sprite" parent="."]
+position = Vector2( -32, 64 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 96, 32, 32 )
+_sections_unfolded = [ "Region" ]
 
 [node name="Grey Corner Right" type="Sprite" parent="."]
 editor/display_folded = true
