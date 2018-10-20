@@ -54,7 +54,7 @@ func rescued():
 
 func start_chase( instance ):
 	Music.at_chase()
-	GameCamera.set_target( self )	
+#	GameCamera.set_target( self )	
 
 
 func _on_DieDetections_body_entered(body : PhysicsBody2D):

@@ -16,7 +16,6 @@ var current_focus = 0
 
 
 
-
 func can_pause( allow_pause : bool ):
 	if allow_pause :
 		set_process( true )
@@ -25,9 +24,10 @@ func can_pause( allow_pause : bool ):
 
 
 func continue_pressed():
-	get_tree().paused = false
-	self.hide()
-	SceneBrowser.get_current_scene().show()
+#	get_tree().paused = false
+#	self.hide()
+#	SceneBrowser.get_current_scene().show()
+	unpause()
 
 
 func _ready():
@@ -44,19 +44,16 @@ func _process( delta ):
 		if self.visible == false :
 			$N/Panel/Continue.grab_focus()
 			self.show()
-			GameCamera.set_target( self, Vector2(0, 30 ) )
+#			GameCamera.set_target( self, Vector2(0, 30 ) )
+			$Camera2D.make_current()
 			SceneBrowser.get_current_scene().hide()
 	
 		else:
-			get_tree().paused = false
-			self.hide()
-			GameCamera.revert_target()
-			SceneBrowser.get_current_scene().show()
+			unpause()
 			#Reset ghost.
 			var newGhostPos = $N/Panel/Continue/Point.global_position 
 			ghost_point = newGhostPos
 			current_focus = 0
-			
 	
 	if visible == true :
 		process_ghost( delta )
@@ -103,3 +100,13 @@ func restart_pressed():
 
 func quit_pressed():
 	get_tree().quit()
+	
+	
+	
+func unpause():
+	get_tree().paused = false
+	self.hide()
+
+	$Camera2D.clear_current()
+	GameCamera.make_current()
+	SceneBrowser.get_current_scene().show()
