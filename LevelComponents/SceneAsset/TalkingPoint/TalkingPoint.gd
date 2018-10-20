@@ -9,12 +9,20 @@ extends Area2D
 export var talk_scripts : PoolStringArray = PoolStringArray( [] )
 
 
+export var auto_talk : PoolStringArray = PoolStringArray( [] )
+
+
 #First talker to collide turns the other's can_play_talk off.
 var can_play_talk = true
 
 
 func _ready():
 	self.connect( "area_entered", self, "attempt_talk" )
+	$Talker.connect( "finished", self, "stop_talker" )
+	
+	for string in auto_talk:
+		$Talker.stream = Music.get_talk( string )
+		$Talker.play() 
 
 
 func attempt_talk( area ):
@@ -31,3 +39,5 @@ func attempt_talk( area ):
 				$Talker.play()
 
 
+func stop_talker():
+	$Talker.stop()

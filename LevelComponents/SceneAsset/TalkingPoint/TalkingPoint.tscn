@@ -20,13 +20,14 @@ audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "talk_scripts" ]
 talk_scripts = PoolStringArray(  )
+auto_talk = null
 
 [node name="Col" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Talker" type="AudioStreamPlayer2D" parent="."]
 stream = null
-volume_db = 6.0
+volume_db = 14.0
 pitch_scale = 1.0
 autoplay = false
 stream_paused = false
