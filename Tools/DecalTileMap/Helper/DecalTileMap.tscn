@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/tileset.png" type="Texture" id=1]
 
@@ -11,6 +11,21 @@ extents = Vector2( 16.1913, 4.12198 )
 
 custom_solver_bias = 0.0
 extents = Vector2( 16.1063, 16.0356 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4.01595, 3.76633 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.50941, 7.56952 )
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 11.3378 )
 
 [node name="DecalTileMap" type="Node2D"]
 
@@ -355,4 +370,62 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 128, 256, 32, 32 )
 _sections_unfolded = [ "Region" ]
+
+[node name="Tree" type="Sprite" parent="."]
+position = Vector2( 96, 240 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 288, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tree"]
+position = Vector2( -0.692505, 8.07922 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/StaticBody2D"]
+shape = SubResource( 3 )
+
+[node name="Grave" type="Sprite" parent="."]
+position = Vector2( 96, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Grave"]
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grave/StaticBody2D2"]
+shape = SubResource( 4 )
+
+[node name="Grass Fence" type="Sprite" parent="."]
+position = Vector2( 64, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 351, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Grass Fence"]
+position = Vector2( 0, 1.88412 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grass Fence/StaticBody2D2"]
+shape = SubResource( 5 )
 
