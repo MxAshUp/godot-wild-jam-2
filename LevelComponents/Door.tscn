@@ -70,7 +70,7 @@ _sections_unfolded = [ "BBCode" ]
 z_index = 6
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 225, 0, 31, 64 )
+region_rect = Rect2( 352, 112, 32, 48 )
 _sections_unfolded = [ "Region", "Z Index" ]
 
 [node name="SpriteOpen" type="Sprite" parent="."]
@@ -78,7 +78,7 @@ visible = false
 z_index = 6
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 256, 64, 32, 48 )
+region_rect = Rect2( 384, 112, 32, 48 )
 _sections_unfolded = [ "Region", "Z Index" ]
 
 [node name="Col" type="StaticBody2D" parent="."]
