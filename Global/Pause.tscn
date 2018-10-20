@@ -14,7 +14,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="BackGround" type="Sprite" parent="."]
-modulate = Color( 0, 0, 0, 1 )
+modulate = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 position = Vector2( 483.282, 334.93 )
 scale = Vector2( 11.2003, 7.73328 )
 z_index = 400
