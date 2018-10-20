@@ -589,4 +589,14 @@ extents = Vector2( 16, 16 )
 42/navigation_offset = Vector2( 16, 16 )
 42/shapes = [  ]
 42/z_index = 0
+43/name = "Floor Crack"
+43/texture = ExtResource( 1 )
+43/tex_offset = Vector2( 0, 0 )
+43/modulate = Color( 1, 1, 1, 1 )
+43/region = Rect2( 160, 224, 32, 32 )
+43/tile_mode = 0
+43/occluder_offset = Vector2( 16, 16 )
+43/navigation_offset = Vector2( 16, 16 )
+43/shapes = [  ]
+43/z_index = 0
 
