@@ -1,15 +1,16 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Tools/TileMap/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Light.png" type="Texture" id=2]
 [ext_resource path="res://LevelComponents/Hostage.tscn" type="PackedScene" id=3]
-[ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=5]
-[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=6]
-[ext_resource path="res://LevelComponents/SceneAsset/Door/Pillar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=8]
-[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=9]
-[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LevelComponents/SceneAsset/TalkingPoint/TalkingPoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://LevelComponents/SceneAsset/Door/Pillar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -76,8 +77,7 @@ shadow_item_cull_mask = 2
 _sections_unfolded = [ "Range", "Shadow" ]
 
 [node name="Hostage" parent="." index="1" instance=ExtResource( 3 )]
-editor/display_folded = true
-position = Vector2( 691.92, 330.434 )
+position = Vector2( 671.123, 350.845 )
 being_controlled = true
 
 [node name="Light2D" type="Light2D" parent="Hostage" index="3"]
@@ -105,14 +105,18 @@ shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 3
 _sections_unfolded = [ "Shadow" ]
 
-[node name="Goal" parent="." index="2" instance=ExtResource( 4 )]
+[node name="TalkingPoint2" parent="Hostage" index="6" instance=ExtResource( 4 )]
+_sections_unfolded = [ "Collision", "Transform", "talk_scripts" ]
+talk_scripts = PoolStringArray( "Hello" )
+
+[node name="Goal" parent="." index="2" instance=ExtResource( 5 )]
 position = Vector2( 832, 160 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal" index="2"]
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Interactable" parent="." index="3" instance=ExtResource( 5 )]
+[node name="Interactable" parent="." index="3" instance=ExtResource( 6 )]
 editor/display_folded = true
 position = Vector2( 672, 434.585 )
 
@@ -121,18 +125,18 @@ position = Vector2( 0, 26.4076 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Door" parent="Interactable" index="1" instance=ExtResource( 6 )]
+[node name="Door" parent="Interactable" index="1" instance=ExtResource( 7 )]
 position = Vector2( -0.394409, -25.3268 )
 
-[node name="Pillar" parent="Interactable/Door" index="1" instance=ExtResource( 7 )]
+[node name="Pillar" parent="Interactable/Door" index="1" instance=ExtResource( 8 )]
 position = Vector2( 15.9328, 6.19876 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Pillar2" parent="Interactable/Door" index="2" instance=ExtResource( 7 )]
+[node name="Pillar2" parent="Interactable/Door" index="2" instance=ExtResource( 8 )]
 position = Vector2( -15.3182, 6.19876 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Switch" parent="Interactable" index="2" instance=ExtResource( 8 )]
+[node name="Switch" parent="Interactable" index="2" instance=ExtResource( 9 )]
 position = Vector2( 62.7181, 0 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
@@ -148,15 +152,16 @@ occluder = SubResource( 5 )
 light_mask = 1
 
 [node name="Guards" type="Node" parent="." index="7"]
-editor/display_folded = true
 
-[node name="Patrol" parent="Guards" index="0" instance=ExtResource( 9 )]
-editor/display_folded = true
+[node name="Patrol" parent="Guards" index="0" instance=ExtResource( 10 )]
 position = Vector2( 172.371, 200.947 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Guard" parent="Guards/Patrol" index="0" instance=ExtResource( 10 )]
+[node name="Guard" parent="Guards/Patrol" index="0" instance=ExtResource( 11 )]
 _sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="TalkingPoint" parent="Guards/Patrol/Guard" index="8" instance=ExtResource( 4 )]
+talk_scripts = PoolStringArray( "Hello" )
 
 [node name="Path2D" type="Path2D" parent="Guards/Patrol" index="1"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
