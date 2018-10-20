@@ -42,7 +42,6 @@ func _enter_tree():
 	body_swap_sound = AudioStreamPlayer2D.new()
 	add_child(body_swap_sound)
 	body_swap_sound.stream = load("res://Assets/Sounds/BodySwap.ogg")
-	body_swap_sound.volume_db = -15.0 
 	jump_to_particle_emitter.emitting = false
 	add_child(jump_to_particle_emitter)
 
@@ -105,6 +104,7 @@ func process_input(delta):
 				selected_instance_to_jump.emit_signal("jumped_noargs")
 				self.emit_signal("jumped_from", selected_instance_to_jump)
 				self.emit_signal("jumped_from_noargs")
+				body_swap_sound.play()
 				
 	else:
 		jump_charge = 0

@@ -27,7 +27,7 @@ func update_state():
 func interact():
 	#Change my sprite if I am called to.
 	is_on = !is_on
-	
+	$Audio_Pulled.play()
 	update_state()
 	
 func update_is_on(new_state):

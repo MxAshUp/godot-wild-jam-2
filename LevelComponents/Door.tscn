@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://LevelComponents/Door.gd" type="Script" id=1]
 [ext_resource path="res://Assets/tileset.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sounds/DoorOpen.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Sounds/DoorClose.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -137,5 +139,27 @@ playback_speed = 1.0
 anims/close_door = SubResource( 2 )
 anims/open_door = SubResource( 3 )
 blend_times = [  ]
+
+[node name="Audio_Open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Audio_Close" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+max_distance = 2000.0
+attenuation = 0.0089742
+bus = "Master"
+area_mask = 1
 
 [connection signal="interact" from="." to="." method="_on_Door_interact"]
