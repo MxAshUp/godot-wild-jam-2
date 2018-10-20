@@ -478,6 +478,49 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jail Full/StaticBody2D2"]
 shape = SubResource( 6 )
 
+[node name="Jail Door" type="Sprite" parent="."]
+position = Vector2( 112, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 96, 32, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Jail Door"]
+position = Vector2( 0, 32 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jail Door/StaticBody2D2"]
+visible = false
+position = Vector2( 0, -3 )
+shape = SubResource( 6 )
+
+[node name="Wood Door2" type="Sprite" parent="."]
+position = Vector2( 160, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 224, 0, 32, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Wood Door2"]
+position = Vector2( 0, 12.7438 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wood Door2/StaticBody2D2"]
+position = Vector2( 0, 16 )
+shape = SubResource( 6 )
+
 [node name="Floor On Both" type="Sprite" parent="."]
 position = Vector2( -98.7841, 0 )
 texture = ExtResource( 1 )
