@@ -12,4 +12,4 @@ dest_files=[ "res://.import/Heroic.ogg-deb6f1f248c429424d6c6ad6001b61eb.oggstr" 
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=2.59
