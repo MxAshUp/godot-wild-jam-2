@@ -13,6 +13,10 @@ var ghost_speed : float = 400
 var current_focus = 0 #0 = Play. 1 = Quit
 
 
+var fade_reveal_inc = 0.007
+var fade_reveal_wait = 50
+
+
 
 func _ready():
 	Pause.can_pause( false )
@@ -89,6 +93,14 @@ func _process(delta):
 	move *= 3
 	move = move.clamped( ghost_speed )
 	ghost.global_position += move * delta
+	
+	
+	#Make reveal fade away
+	if fade_reveal_wait == 0 :
+		if $Reveal.modulate.a > 0 :
+			$Reveal.modulate.a -= fade_reveal_inc
+	else:
+		fade_reveal_wait -= 1
 
 
 func return_pressed():
