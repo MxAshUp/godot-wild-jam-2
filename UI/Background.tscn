@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://UI/Background.gd" type="Script" id=1]
+[ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=2]
+[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=2]
+
+bake_interval = 1.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 144, 96, 0, 0, 0, 0, 144, 320, 0, 0, 0, 0, 192, 320, 0, 0, 0, 0, 192, 384, 0, 0, 0, 0, 80, 384, 0, 0, 0, 0, 80, 352, 0, 0, 0, 0, 144, 352, 0, 0, 0, 0, 144, 96, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, -288, 192, 0, 0, 0, 0, -288, 0, 0, 0, 0, 0, -144, 0, 0, 0, 0, 0, -288, 0, 0, 0, 0, 0, -288, 192, 0, 0, 0, 0, -144, 192, 0, 0, 0, 0, -144, 352, 0, 0, 0, 0, 144, 352, 0, 0, 0, 0, 144, 96, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, -288, 192, 0, 0, 0, 0, -288, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve2D" id=3]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 288, 160, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 144, 0, 0, 0, 0, 0, 144, -96, 0, 0, 0, 0, 288, -96, 0, 0, 0, 0, 288, 160, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 720, 560, 0, 0, 0, 0, 720, 304, 0, 0, 0, 0, 576, 304, 0, 0, 0, 0, 576, 208, 0, 0, 0, 0, 288, 208, 0, 0, 0, 0, 288, 400, 0, 0, 0, 0, 432, 400, 0, 0, 0, 0, 432, 560, 0, 0, 0, 0, 720, 560 )
+}
+
+[node name="Background" type="Node2D"]
+script = ExtResource( 1 )
+_sections_unfolded = [ "Script" ]
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 262151, 2, 0, 262152, 1073741850, 0, 262153, 1073741850, 0, 262154, 1073741850, 0, 262155, 1073741850, 0, 262156, 1073741850, 0, 262157, 1073741850, 0, 262158, 1073741850, 0, 262159, 1073741850, 0, 262160, 1073741850, 0, 262161, 1073741850, 0, 262162, 1073741850, 0, 262163, 0, 0, 327687, 8, 0, 327688, 20, 0, 327689, 17, 0, 327690, 20, 0, 327691, 19, 0, 327692, 20, 0, 327693, 21, 0, 327694, 20, 0, 327695, 19, 0, 327696, 20, 0, 327697, 17, 0, 327698, 20, 0, 327699, 6, 0, 393223, 8, 0, 393224, 18, 0, 393225, 18, 0, 393226, 18, 0, 393227, 18, 0, 393228, 18, 0, 393229, 18, 0, 393230, 18, 0, 393231, 18, 0, 393232, 18, 0, 393233, 18, 0, 393234, 18, 0, 393235, 6, 0, 458759, 8, 0, 458760, 18, 0, 458761, 18, 0, 458762, 10, 0, 458763, 30, 0, 458764, 30, 0, 458765, 30, 0, 458766, 30, 0, 458767, 30, 0, 458768, 4, 0, 458769, 18, 0, 458770, 18, 0, 458771, 1073741831, 0, 458772, 1073741850, 0, 458773, 1073741850, 0, 458774, 1073741850, 0, 458775, 0, 0, 524295, 8, 0, 524296, 18, 0, 524297, 18, 0, 524298, 9, 0, 524304, 11, 0, 524305, 18, 0, 524306, 18, 0, 524307, 20, 0, 524308, 20, 0, 524309, 20, 0, 524310, 20, 0, 524311, 6, 0, 589831, 8, 0, 589832, 18, 0, 589833, 18, 0, 589834, 9, 0, 589840, 11, 0, 589841, 18, 0, 589842, 18, 0, 589843, 18, 0, 589844, 18, 0, 589845, 18, 0, 589846, 18, 0, 589847, 6, 0, 655367, 8, 0, 655368, 18, 0, 655369, 18, 0, 655370, 1073741834, 0, 655371, 1073741854, 0, 655372, 1073741854, 0, 655373, 1073741854, 0, 655374, 1073741854, 0, 655375, 1073741854, 0, 655376, 1073741828, 0, 655377, 18, 0, 655378, 18, 0, 655379, 7, 0, 655380, 26, 0, 655381, 1, 0, 655382, 18, 0, 655383, 6, 0, 720903, 8, 0, 720904, 18, 0, 720905, 18, 0, 720906, 16, 0, 720907, 12, 0, 720908, 16, 0, 720909, 16, 0, 720910, 16, 0, 720911, 12, 0, 720912, 16, 0, 720913, 18, 0, 720914, 18, 0, 720915, 6, 0, 720917, 8, 0, 720918, 18, 0, 720919, 6, 0, 786439, 8, 0, 786440, 18, 0, 786441, 18, 0, 786442, 18, 0, 786443, 18, 0, 786444, 18, 0, 786445, 18, 0, 786446, 18, 0, 786447, 18, 0, 786448, 18, 0, 786449, 18, 0, 786450, 18, 0, 786451, 6, 0, 786453, 8, 0, 786454, 18, 0, 786455, 6, 0, 851975, 27, 0, 851976, 26, 0, 851977, 26, 0, 851978, 26, 0, 851979, 26, 0, 851980, 1, 0, 851981, 18, 0, 851982, 7, 0, 851983, 26, 0, 851984, 26, 0, 851985, 26, 0, 851986, 26, 0, 851987, 25, 0, 851989, 8, 0, 851990, 18, 0, 851991, 6, 0, 917516, 8, 0, 917517, 18, 0, 917518, 6, 0, 917523, 2, 0, 917524, 1073741850, 0, 917525, 1073741825, 0, 917526, 18, 0, 917527, 1073741831, 0, 917528, 1073741850, 0, 917529, 0, 0, 983052, 8, 0, 983053, 18, 0, 983054, 1073741831, 0, 983055, 1073741850, 0, 983056, 1073741850, 0, 983057, 1073741850, 0, 983058, 1073741850, 0, 983059, 1073741825, 0, 983060, 20, 0, 983061, 17, 0, 983062, 18, 0, 983063, 17, 0, 983064, 20, 0, 983065, 6, 0, 1048588, 8, 0, 1048589, 18, 0, 1048590, 20, 0, 1048591, 20, 0, 1048592, 20, 0, 1048593, 20, 0, 1048594, 20, 0, 1048595, 20, 0, 1048596, 18, 0, 1048597, 18, 0, 1048598, 18, 0, 1048599, 18, 0, 1048600, 18, 0, 1048601, 6, 0, 1114124, 8, 0, 1114125, 18, 0, 1114126, 18, 0, 1114127, 18, 0, 1114128, 18, 0, 1114129, 18, 0, 1114130, 18, 0, 1114131, 18, 0, 1114132, 18, 0, 1114133, 18, 0, 1114134, 18, 0, 1114135, 18, 0, 1114136, 18, 0, 1114137, 6, 0, 1179660, 27, 0, 1179661, 26, 0, 1179662, 26, 0, 1179663, 26, 0, 1179664, 26, 0, 1179665, 26, 0, 1179666, 26, 0, 1179667, 1, 0, 1179668, 18, 0, 1179669, 18, 0, 1179670, 18, 0, 1179671, 18, 0, 1179672, 18, 0, 1179673, 6, 0, 1245203, 27, 0, 1245204, 26, 0, 1245205, 26, 0, 1245206, 26, 0, 1245207, 26, 0, 1245208, 26, 0, 1245209, 25, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Patrol1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 576, 208 )
+_sections_unfolded = [ "Transform" ]
+preview = true
+
+[node name="Guard" parent="Patrol1" instance=ExtResource( 4 )]
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Path2D" type="Path2D" parent="Patrol1"]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 2 )
+_sections_unfolded = [ "curve" ]
+
+[node name="Patrol2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 432, 400 )
+_sections_unfolded = [ "Transform" ]
+preview = true
+
+[node name="Guard" parent="Patrol2" instance=ExtResource( 4 )]
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Path2D" type="Path2D" parent="Patrol2"]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 3 )
+_sections_unfolded = [ "curve" ]
+
+[node name="Path2D" type="Path2D" parent="."]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 720, 560 )
+rotation = -1.5708
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera" type="Camera2D" parent="Path2D/PathFollow2D"]
+rotation = 1.5708
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.2, 0.2 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 1.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Drag Margin", "Smoothing" ]
+

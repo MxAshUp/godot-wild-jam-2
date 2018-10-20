@@ -4,7 +4,12 @@ extends Node2D
 #The main menu.
 
 
-onready var ghost = $VBox/Ghost
+onready var ghost = $CanvasLayer/Center/VBox/Center/Ghost
+onready var vbox = $CanvasLayer/Center/VBox
+onready var button_play = $CanvasLayer/Center/VBox/Center/VBox_Menu/Play
+onready var button_quit = $CanvasLayer/Center/VBox/Center/VBox_Menu/Quit
+onready var play_spot = $CanvasLayer/Center/VBox/Center/VBox_Menu/Play/Spot
+onready var quit_spot = $CanvasLayer/Center/VBox/Center/VBox_Menu/Quit/Spot
  
 var ghost_point : Vector2
 
@@ -21,33 +26,19 @@ var fade_reveal_wait = 50
 func _ready():
 	Pause.can_pause( false )
 	
-	#Get offset for centering VBox.
-	var center_offset : Vector2 = $VBox.rect_size
-	center_offset.x /= 2
-	center_offset.y /= 2
-	center_offset.y -= 100
-	
-	
-	#Place VBox in the center of the screen.
-	$VBox.rect_position.y = ProjectSettings.get_setting( "display/window/size/height" ) / 2
-	$VBox.rect_position.x = ProjectSettings.get_setting( "display/window/size/width" ) / 2
-	$VBox.rect_position -= center_offset
-	ghost.position.x = $VBox.rect_position.x + 85 
-	ghost.position.y = $VBox.rect_position.y + 30
-	
 	
 	#Put ghost at the right position.
-	ghost_point = $VBox/Play/Spot.global_position
-	ghost.global_position = $VBox/Play/Spot.global_position
+	ghost_point = play_spot.global_position
+	ghost.global_position = ghost_point
 	
 	#Connect the buttons
-	$VBox/Play.connect( "pressed", self, "play_pressed" )
-	$VBox/Quit.connect( "pressed", self, "quit_pressed" )
-	$VBox/Return.connect( "pressed", self, "return_pressed" )
-	$VBox/TrueQuit.connect( "pressed", self, "true_quit_pressed" )
+	button_play.connect( "pressed", self, "play_pressed" )
+	button_quit.connect( "pressed", self, "quit_pressed" )
+	#$VBox/Return.connect( "pressed", self, "return_pressed" )
+	#$VBox/TrueQuit.connect( "pressed", self, "true_quit_pressed" )
 	
 	#Start menu on Play
-	$VBox/Play.grab_focus()
+	button_play.grab_focus()
 
 
 func play_pressed():
@@ -59,31 +50,31 @@ func play_pressed():
 
 func quit_pressed():
 	#Tell ghost to move up to return
-	ghost_point = $VBox/Play/Spot.global_position
+	ghost_point = play_spot.global_position
 	current_focus = 0
 	
 	
 	#Bring up the popup menu.
-	$VBox/Play.hide()
-	$VBox/Quit.hide()
+	button_play.hide()
+	button_quit.hide()
 	
 	
 	#Remove these eventually
-	$VBox/Return.show()
-	$VBox/Return.grab_focus()
-	$VBox/TrueQuit.show()
+	#$VBox/Return.show()
+	#$VBox/Return.grab_focus()
+	#$VBox/TrueQuit.show()
 
 
 
 func _process(delta):
 	if( current_focus == 0 &&
 			Input.is_action_just_pressed( "ui_down" ) ):
-		ghost_point = $VBox/Quit/Spot.global_position
+		ghost_point = quit_spot.global_position
 		current_focus = 1
 	
 	if( current_focus == 1 &&
 			Input.is_action_just_pressed( "ui_up" ) ):
-		ghost_point = $VBox/Play/Spot.global_position
+		ghost_point = play_spot.global_position
 		current_focus = 0
 	
 	
@@ -95,23 +86,23 @@ func _process(delta):
 	ghost.global_position += move * delta
 	
 	
-	#Make reveal fade away
-	if fade_reveal_wait == 0 :
-		if $Reveal.modulate.a > 0 :
-			$Reveal.modulate.a -= fade_reveal_inc
-	else:
-		fade_reveal_wait -= 1
+#	#Make reveal fade away
+#	if fade_reveal_wait == 0 :
+#		if $Reveal.modulate.a > 0 :
+#			$Reveal.modulate.a -= fade_reveal_inc
+#	else:
+#		fade_reveal_wait -= 1
 
 
 func return_pressed():
 	#Go back to the previous menu.
-	$VBox/Return.hide()
-	$VBox/TrueQuit.hide()
+#	$VBox/Return.hide()
+#	$VBox/TrueQuit.hide()
 	
 	#Remove this eventually.
-	$VBox/Play.show()
-	$VBox/Play.grab_focus()
-	$VBox/Quit.show()
+	button_play.show()
+	button_play.grab_focus()
+	button_quit.show()
 
 
 
