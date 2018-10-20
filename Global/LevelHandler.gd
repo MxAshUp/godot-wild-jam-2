@@ -2,7 +2,7 @@ extends Node
 
 var current_level : int = 0
 
-var level_array : Array = [ "A Full Map" ]
+var level_array : Array = [ "Level 1" , "Level 2" ]
 
 
 
@@ -12,11 +12,14 @@ func next_level():
 	#again.
 	
 	current_level += 1
-	if current_level >= level_array.size() :
-		current_level -= 1 #Remove this later.
-		pass #You beat the game.
-	
-	SceneBrowser.change_scene( level_array[ 0 ] )
+	print(current_level)
+	if current_level > level_array.size() :
+		current_level = level_array.size()
+		
+		SceneBrowser.change_scene( "Main Menu" )
+		
+	else:
+		SceneBrowser.change_scene( level_array[ current_level ] )
 
 
 
