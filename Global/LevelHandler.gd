@@ -15,7 +15,6 @@ func next_level():
 	print(current_level)
 	if current_level > level_array.size() :
 		current_level = level_array.size()
-		
 		SceneBrowser.change_scene( "Main Menu" )
 		
 	else:
@@ -30,6 +29,7 @@ func restart():
 func start_game():
 	#Begin the game from the beginning.
 	current_level = 0
+	Music.at_stealth()
 	SceneBrowser.change_scene( level_array[ current_level ] )
 
 
