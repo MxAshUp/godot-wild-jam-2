@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Alert5.ogg-20c0e324216db34a9c1599171b1d1608.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Orc/Alert5.ogg"
+dest_files=[ "res://.import/Alert5.ogg-20c0e324216db34a9c1599171b1d1608.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

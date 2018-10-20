@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MotherAlwaysSaid.ogg-d50d1311166887b1b6c14bee210f2956.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Orc/MotherAlwaysSaid.ogg"
+dest_files=[ "res://.import/MotherAlwaysSaid.ogg-d50d1311166887b1b6c14bee210f2956.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

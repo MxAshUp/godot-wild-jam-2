@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Die3.ogg-8da1719006033ac3520f66b42ded5b5f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Orc/Die3.ogg"
+dest_files=[ "res://.import/Die3.ogg-8da1719006033ac3520f66b42ded5b5f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

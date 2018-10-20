@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Grunt3.ogg-9a823225d715230fcb2abe6ec5e0c03e.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Orc/Grunt3.ogg"
+dest_files=[ "res://.import/Grunt3.ogg-9a823225d715230fcb2abe6ec5e0c03e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

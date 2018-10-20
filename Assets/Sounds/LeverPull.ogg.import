@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LeverPull.ogg-17cb1a6b7531660e3da29033a5804443.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/LeverPull.ogg"
+dest_files=[ "res://.import/LeverPull.ogg-17cb1a6b7531660e3da29033a5804443.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

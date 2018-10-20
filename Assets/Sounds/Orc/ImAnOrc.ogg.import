@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ImAnOrc.ogg-4db8c97877ae08d6a60b084f57050900.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Orc/ImAnOrc.ogg"
+dest_files=[ "res://.import/ImAnOrc.ogg-4db8c97877ae08d6a60b084f57050900.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

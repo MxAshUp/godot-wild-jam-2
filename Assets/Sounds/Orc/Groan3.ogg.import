@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Groan3.ogg-d22c75a2fbe018b2a299b476d2b5c630.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Orc/Groan3.ogg"
+dest_files=[ "res://.import/Groan3.ogg-d22c75a2fbe018b2a299b476d2b5c630.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

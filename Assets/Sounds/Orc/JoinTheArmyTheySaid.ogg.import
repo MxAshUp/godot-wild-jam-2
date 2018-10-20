@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/JoinTheArmyTheySaid.ogg-9179b3f0761f94d0dd6a6dd0da076b17.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Orc/JoinTheArmyTheySaid.ogg"
+dest_files=[ "res://.import/JoinTheArmyTheySaid.ogg-9179b3f0761f94d0dd6a6dd0da076b17.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
