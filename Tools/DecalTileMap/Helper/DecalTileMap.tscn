@@ -500,6 +500,13 @@ visible = false
 position = Vector2( 0, -3 )
 shape = SubResource( 6 )
 
+[node name="Jail Door Open" type="Sprite" parent="."]
+position = Vector2( 208, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 96, 4, 64 )
+_sections_unfolded = [ "Region" ]
+
 [node name="Wood Door2" type="Sprite" parent="."]
 position = Vector2( 160, 0 )
 texture = ExtResource( 1 )

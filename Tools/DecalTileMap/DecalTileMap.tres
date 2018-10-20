@@ -609,4 +609,14 @@ extents = Vector2( 16.1063, 16.0356 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 60.7438 )
 } ]
 41/z_index = 0
+42/name = "Jail Door Open"
+42/texture = ExtResource( 1 )
+42/tex_offset = Vector2( 0, 0 )
+42/modulate = Color( 1, 1, 1, 1 )
+42/region = Rect2( 384, 96, 4, 64 )
+42/tile_mode = 0
+42/occluder_offset = Vector2( 2, 32 )
+42/navigation_offset = Vector2( 2, 32 )
+42/shapes = [  ]
+42/z_index = 0
 
