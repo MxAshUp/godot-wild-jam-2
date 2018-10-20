@@ -7,7 +7,7 @@ var last_song : AudioStream
 
 
 var talking_files = {
-	"Hello" : "res://Assets/Sounds/Orc/JoinTheArmyTheySaid.ogg"
+	"JoinTheArmy" : "res://Assets/Sounds/Orc/JoinTheArmyTheySaid.ogg"
 	}
 
 
