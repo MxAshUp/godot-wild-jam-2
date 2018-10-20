@@ -17,6 +17,7 @@ var follow_object_speed : Vector2
 var velocity : Vector2 = Vector2()
 var can_see_follow_position = false
 var chaseable_bodies : Array = Array()
+var last_move_dir = 0.0
 const PATROL_MAX_SPEED = 150
 const MAX_SPEED = 250
 const INVESTIGATE_MAX_SPEED = 60
@@ -46,17 +47,58 @@ func _ready():
 	self.connect("alert_state_alert", self, "_on_alert_alert")
 	self.connect( "die", self, "kill_myself" )
 	
-	
+
 func process_animation(delta):
-	if being_jumped:
-		if $AnimationPlayer.current_animation != "shaking":
-			$AnimationPlayer.play("shaking")
-			$AnimationPlayer.playback_speed = 2
-	else:
-		if $AnimationPlayer.current_animation != "walking":
-			$AnimationPlayer.play("walking")
+
+	var animation_to_play = $AnimationPlayer.current_animation
+	$AnimationPlayer.playback_speed = 1
+
+	var left_right_move = false
+	
+	if animation_to_play == "walk_lr":
+		animation_to_play = "idle_lr"
+	elif animation_to_play == "walk_up":
+		animation_to_play = "idle_up"
+	elif animation_to_play == "walk_down":
+		animation_to_play = "idle_down"
+	
+
+	if abs(velocity.x) > abs(velocity.y):
+		if velocity.x < 0:
+			last_move_dir = -1.0
+	
+		if velocity.x > 0:
+			last_move_dir = 1.0
 		
+		if abs(velocity.x) > 1.0:
+			animation_to_play = "walk_lr"
+	else:
+	
+		if velocity.y > 1.0:
+			animation_to_play = "walk_down"
+		
+		if velocity.y < -1.0:
+			animation_to_play = "walk_up"
+			
+	if being_jumped and $EffectAnimations.current_animation != "shake":
+		$EffectAnimations.play("shake")
+		
+	if !being_jumped and $EffectAnimations.current_animation != "normal":
+		$EffectAnimations.play("normal")
+		
+	if !being_jumped:
 		$AnimationPlayer.playback_speed = (velocity.length() / MAX_SPEED) * 3
+		
+	if animation_to_play != $AnimationPlayer.current_animation:
+		$AnimationPlayer.play(animation_to_play)
+	
+	# maybe flip sprite, if supported (ending with _lr)
+	if animation_to_play.ends_with('_lr'):
+		if last_move_dir < 0:
+			$Sprite.flip_h = true
+		elif last_move_dir > 0:
+			$Sprite.flip_h = false
+
 
 
 func _process(delta):
@@ -107,10 +149,6 @@ func _process(delta):
 
 	set_alert_state(new_alert_state)
 
-	if velocity.x > 0:
-		$Sprite.flip_h = true
-	elif velocity.x < 0:
-		$Sprite.flip_h = false
 
 func set_alert_state(new_state):
 	if new_state != alert_state:
