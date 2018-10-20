@@ -106,8 +106,15 @@ func _process(delta):
 	
 	#Display da buttons.
 	if juice_button != 0 :
-		for child in ghost.get_children() :
-			child.emitting = true
+		if juice_button == 3 :
+			ghost.get_node( "OneOne" ).emitting = true
+			ghost.get_node( "OneTwo" ).emitting = true
+			juice_button += 1
+		elif juice_button >= 7 :
+			ghost.get_node( "TwoOne" ).emitting = true
+			ghost.get_node( "TwoTwo" ).emitting = true
+		else:
+			juice_button += 1
 		
 	else:
 		for child in ghost.get_children() :
