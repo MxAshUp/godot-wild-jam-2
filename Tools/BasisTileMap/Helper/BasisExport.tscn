@@ -651,3 +651,80 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dirt Top Right/StaticBody2D4"]
 shape = SubResource( 1 )
 
+[node name="Grass 1" type="Sprite" parent="."]
+position = Vector2( 640, 480 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( -10, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass 2" type="Sprite" parent="."]
+position = Vector2( 672, 480 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass 3" type="Sprite" parent="."]
+position = Vector2( 704, 480 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( -10, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Right" type="Sprite" parent="."]
+position = Vector2( 640, 544 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Left" type="Sprite" parent="."]
+position = Vector2( 704, 544 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Bottom" type="Sprite" parent="."]
+position = Vector2( 672, 512 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 288, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Top" type="Sprite" parent="."]
+position = Vector2( 672, 576 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Bottom Right" type="Sprite" parent="."]
+position = Vector2( 640, 512 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 288, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Bottom Left" type="Sprite" parent="."]
+position = Vector2( 704, 512 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 288, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Top Left" type="Sprite" parent="."]
+position = Vector2( 704, 576 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
+[node name="Grass Dirt Bottom Left3" type="Sprite" parent="."]
+position = Vector2( 640, 576 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+
