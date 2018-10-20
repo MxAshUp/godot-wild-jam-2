@@ -28,6 +28,7 @@ func continue_pressed():
 #	self.hide()
 #	SceneBrowser.get_current_scene().show()
 	unpause()
+	reset_ghost()
 
 
 func _ready():
@@ -51,9 +52,7 @@ func _process( delta ):
 		else:
 			unpause()
 			#Reset ghost.
-			var newGhostPos = $N/Panel/Continue/Point.global_position 
-			ghost_point = newGhostPos
-			current_focus = 0
+			reset_ghost()
 	
 	if visible == true :
 		process_ghost( delta )
@@ -92,7 +91,16 @@ func process_ghost( delta ):
 	ghost.global_position += ghostMove * delta
 	
 
+
+func reset_ghost():
+	#Put the ghost back at continue.
+	var newGhostPos = $N/Panel/Continue/Point.global_position 
+	ghost_point = newGhostPos
+	current_focus = 0
+
+
 func restart_pressed():
+	reset_ghost()
 	self.hide()
 	get_tree().paused = false
 	LevelHandler.restart()
