@@ -18,7 +18,7 @@ var velocity : Vector2 = Vector2()
 var can_see_follow_position = true
 var chaseable_bodies : Array = Array()
 var last_move_dir = 0.0
-var facing_direction = Vector2(0, 1)
+export (Vector2) var facing_direction = Vector2(0, 1)
 const PATROL_MAX_SPEED = 150
 const MAX_SPEED = 250
 const INVESTIGATE_MAX_SPEED = 60
@@ -53,6 +53,16 @@ func _ready():
 	#Stop sound if it reaches the end.
 	$Sounds.connect( "finished", self, "sound_finished" )
 	
+	if facing_direction.x < 0:
+		$AnimationPlayer.play("idle_lr")
+		last_move_dir = -1.0
+	elif facing_direction.x > 0:
+		$AnimationPlayer.play("idle_lr")
+		last_move_dir = 1.0
+	elif facing_direction.y < 0:
+		$AnimationPlayer.play("idle_up")
+	elif facing_direction.y > 0:
+		$AnimationPlayer.play("idle_down")
 
 func process_animation(delta):
 
