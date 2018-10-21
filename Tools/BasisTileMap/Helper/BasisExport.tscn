@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/tileset.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
@@ -587,6 +592,24 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 96, 0, 32, 32 )
 _sections_unfolded = [ "Region", "Transform", "Visibility" ]
+
+[node name="Darkness2" type="Sprite" parent="."]
+position = Vector2( 864, 288 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 32, 32 )
+_sections_unfolded = [ "Region", "Transform", "Visibility" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Darkness2"]
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+physics_material_override = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Darkness2/StaticBody2D"]
+shape = SubResource( 2 )
 
 [node name="Dirt Top Left" type="Sprite" parent="."]
 editor/display_folded = true
