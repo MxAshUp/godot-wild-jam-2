@@ -144,6 +144,7 @@ emitting = false
 
 [node name="Col" type="CollisionShape2D" parent="."]
 visible = false
+position = Vector2( 0, 4.97056 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "shape" ]
 
