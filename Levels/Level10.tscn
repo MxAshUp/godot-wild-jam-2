@@ -172,6 +172,7 @@ position = Vector2( 848, 548.463 )
 
 [node name="Goal" parent="." instance=ExtResource( 8 )]
 position = Vector2( 530.033, 825.325 )
+type_needed = "hostage"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 visible = false
