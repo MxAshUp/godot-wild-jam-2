@@ -109,7 +109,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 589849, 11, 0, 589850, 11, 0, 589851, 11, 0 )
+tile_data = PoolIntArray( 589849, 11, 0, 589850, 11, 0, 589851, 11, 0, 786461, 42, 0 )
 _sections_unfolded = [ "Cell", "Z Index" ]
 
 [node name="StaticJumpable" parent="." instance=ExtResource( 3 )]
