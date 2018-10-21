@@ -27,7 +27,7 @@ const CHASE_ACCELERATION = 1000
 const FOLLOW_THRESHOLD = 32
 const FRICTION = 1500
 const PERIPHERAL_ANGLE = PI * 0.45
-const HEAR_DISTANCE = 96
+const HEAR_DISTANCE = 48
 
 signal lost_follow_position
 signal found_follow_position
