@@ -4,4 +4,5 @@
 
 [node name="SceneBrowser" type="Node"]
 script = ExtResource( 1 )
+scene_map = null
 

@@ -11,6 +11,10 @@ var loader : ResourceInteractiveLoader
 
 export var scene_map : Dictionary = {
 	"Main Menu": "res://UI/MainMenu.tscn",
+	"Path Test": "res://PrototypeScenes/Patrol/PathTest.tscn",
+	"Integration Test": "res://PrototypeScenes/GameplayIntegration/Test-1.tscn",
+	"A Full Map": "res://PrototypeScenes/GameplayIntegration/AFullStage.tscn",
+	"Chase Test": "res://PrototypeScenes/GameplayIntegration/GuardChase.tscn",
 	"Level 1": "res://Levels/Level1.tscn",
 	"Level 2": "res://Levels/Level2.tscn",
 	"Level 3": "res://Levels/Level3.tscn",
@@ -20,7 +24,7 @@ export var scene_map : Dictionary = {
 	"Level 7": "res://Levels/Level7.tscn",
 	"Level 8": "res://Levels/Level8.tscn",
 	"Level 9": "res://Levels/Level9.tscn",
-	"Level 10": "res://Levels/Level10.tscn",
+	"Level 10": "res://Levels/Level10.tscn"
 }
 
 func change_scene( scene_name ):

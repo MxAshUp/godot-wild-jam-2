@@ -15,6 +15,9 @@ func _process( delta ):
 	
 	$SpiritParticles.emitting = being_controlled
 	
+	if Engine.editor_hint :
+		return
+	
 	var move : Vector2 = Vector2( 0,0 )
 	
 	if being_controlled :

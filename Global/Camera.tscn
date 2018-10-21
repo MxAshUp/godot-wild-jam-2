@@ -108,6 +108,7 @@ one_shot = false
 autostart = false
 
 [node name="Intro" type="Node2D" parent="."]
+visible = false
 position = Vector2( 495.78, 298.875 )
 script = ExtResource( 3 )
 

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tools/TileMap/TileSet/TileMap.tres" type="TileSet" id=1]
+[ext_resource path="res://Tools/TileMap/TileMap.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Blackout.png" type="Texture" id=3]
+
+[node name="TileMap" type="TileMap"]
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray(  )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Cell", "Collision" ]
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 14096.8, 5788.82 )
+scale = Vector2( 337.641, 175.536 )
+z_index = -5
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Visibility", "Z Index" ]
+
