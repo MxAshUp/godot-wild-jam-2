@@ -1,17 +1,16 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
-[ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
-[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=3]
-[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=4]
-[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=5]
-[ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=6]
-[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=7]
-[ext_resource path="res://LevelComponents/StaticJumpable.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/tileset.png" type="Texture" id=9]
-[ext_resource path="res://Assets/logo.png" type="Texture" id=10]
-[ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=11]
-[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Levels/Level1.gd" type="Script" id=1]
+[ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=2]
+[ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=3]
+[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=4]
+[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=7]
+[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=8]
+[ext_resource path="res://LevelComponents/StaticJumpable.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -37,55 +36,13 @@ radius = 10.0
 custom_solver_bias = 0.0
 extents = Vector2( 16, 60.4119 )
 
-[sub_resource type="Animation" id=5]
-
-resource_name = "logoFadeout"
-length = 1.5
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("StaticJumpable/logo:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("StaticJumpable/logo:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("StaticJumpable/bg:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-
 [node name="Level1" type="Node2D"]
 position = Vector2( 0, -16 )
+script = ExtResource( 1 )
 
 [node name="Base" type="TileMap" parent="."]
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -105,7 +62,7 @@ _sections_unfolded = [ "Cell", "Collision" ]
 
 [node name="BaseDeco" type="TileMap" parent="."]
 mode = 0
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -126,7 +83,7 @@ _sections_unfolded = [ "Cell", "Z Index", "tile_set" ]
 [node name="AboveDeco" type="TileMap" parent="."]
 z_index = 101
 mode = 0
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -144,7 +101,7 @@ format = 1
 tile_data = PoolIntArray( 524305, 32, 0, 524307, 32, 0, 589841, 32, 0, 589842, 32, 0, 589843, 32, 0, 655377, 32, 0, 655378, 32, 0, 655379, 32, 0, 720914, 1073741857, 0, 786449, 0, 0, 786450, -1610612697, 0, 786451, 0, 0, 851983, 30, 0, 852001, 34, 0, 852006, 34, 0, 917511, 34, 0, 917540, 536870947, 0, 983045, 34, 0, 983073, 34, 0, 983080, 34, 0, 1048609, 536870947, 0, 1048611, 536870914, 0, 1048614, 34, 0, 1114138, 2, 0, 1179651, 34, 0, 1179680, 35, 0, 1179685, 34, 0, 1179688, 34, 0, 1245191, 34, 0, 1245218, 34, 0, 1310749, 35, 0, 1310751, 34, 0, 1310756, 35, 0, 1310759, 34, 0, 1376285, 16, 0, 1376287, 35, 0, 1441798, 34, 0, 1441815, 34, 0, 1441818, 16, 0, 1441819, 16, 0, 1441820, 16, 0, 1441821, -1610612697, 0, 1441827, 34, 0, 1441831, 34, 0, 1507357, -1610612697, 0, 1507361, 35, 0, 1507364, 34, 0, 1638402, 36, 0, 1638403, 36, 0, 1638404, 36, 0, 1638405, 36, 0, 1638406, 36, 0, 1638407, 36, 0, 1638408, 36, 0, 1638409, 36, 0, 1638410, 36, 0, 1638411, 36, 0, 1638412, 36, 0, 1638413, 36, 0, 1638414, 19, 0, 1638415, 19, 0, 1638416, 19, 0, 1638417, 19, 0, 1638418, 19, 0, 1638419, 36, 0, 1638420, 36, 0, 1638421, 36, 0, 1638422, 36, 0, 1638423, 36, 0, 1638424, 36, 0, 1638425, 36, 0, 1638426, 36, 0, 1638427, 36, 0, 1638428, 36, 0, 1638429, 36, 0, 1638430, 36, 0, 1638431, 36, 0, 1638432, 36, 0, 1638433, 36, 0, 1638434, 36, 0, 1638435, 36, 0, 1638436, 36, 0, 1638437, 36, 0, 1638438, 36, 0, 1638439, 36, 0, 1638440, 36, 0, 1638441, 36, 0, 1638442, 36, 0, 1638443, 36, 0, 1703936, 22, 0, 1703937, 22, 0, 1703938, 22, 0, 1703939, 22, 0, 1703940, 22, 0, 1703941, 22, 0, 1703942, 22, 0, 1703943, 22, 0, 1703944, 22, 0, 1703945, 22, 0, 1703946, 22, 0, 1703947, 22, 0, 1703948, 22, 0, 1703949, 22, 0, 1703950, 22, 0, 1703951, 22, 0, 1703952, 22, 0, 1703953, 22, 0, 1703954, 22, 0, 1703955, 22, 0, 1703956, 22, 0, 1703957, 22, 0, 1703958, 22, 0, 1703959, 22, 0, 1703960, 22, 0, 1703961, 22, 0, 1703962, 22, 0, 1703963, 22, 0, 1703964, 22, 0, 1703965, 22, 0, 1703966, 22, 0, 1703967, 22, 0, 1703968, 22, 0, 1703969, 22, 0, 1703970, 22, 0, 1703971, 22, 0, 1703972, 22, 0, 1703973, 22, 0, 1703974, 22, 0, 1703975, 22, 0, 1703976, 22, 0, 1703977, 22, 0, 1703978, 22, 0, 1703979, 22, 0 )
 _sections_unfolded = [ "Cell", "Z Index", "tile_set" ]
 
-[node name="Patrol" parent="." instance=ExtResource( 3 )]
+[node name="Patrol" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
 position = Vector2( 276, 548 )
 move_speed = 50.0
@@ -157,10 +114,10 @@ loop = false
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 1 )
 
-[node name="Guard" parent="Patrol" instance=ExtResource( 4 )]
+[node name="Guard" parent="Patrol" instance=ExtResource( 5 )]
 position = Vector2( 316, -108 )
 
-[node name="Patrol2" parent="." instance=ExtResource( 3 )]
+[node name="Patrol2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 160, 768 )
 move_speed = 150.0
 
@@ -168,61 +125,37 @@ move_speed = 150.0
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 curve = SubResource( 2 )
 
-[node name="Guard" parent="Patrol2" instance=ExtResource( 4 )]
+[node name="Guard" parent="Patrol2" instance=ExtResource( 5 )]
 position = Vector2( 672, -288 )
 
-[node name="Guard2" parent="." instance=ExtResource( 4 )]
+[node name="Guard2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 448, 560 )
 
-[node name="Interactable" parent="." instance=ExtResource( 5 )]
+[node name="Interactable" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 position = Vector2( 656, 560 )
 
-[node name="Switch" parent="Interactable" instance=ExtResource( 6 )]
+[node name="Switch" parent="Interactable" instance=ExtResource( 7 )]
 position = Vector2( -240, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2( -208, -12 )
 shape = SubResource( 3 )
 
-[node name="Door" parent="Interactable" instance=ExtResource( 7 )]
+[node name="Door" parent="Interactable" instance=ExtResource( 8 )]
 position = Vector2( -64, -168 )
 
-[node name="StaticJumpable" parent="." instance=ExtResource( 8 )]
+[node name="StaticJumpable" parent="." instance=ExtResource( 9 )]
 position = Vector2( 848, 560 )
 being_controlled = true
 
-[node name="bg" type="Sprite" parent="StaticJumpable"]
-position = Vector2( -70.3235, -24.6132 )
-scale = Vector2( 60, 40 )
-z_index = 998
-texture = ExtResource( 9 )
-region_enabled = true
-region_rect = Rect2( 96, 0, 32, 32 )
-_sections_unfolded = [ "Region", "Transform", "Visibility", "Z Index" ]
-
-[node name="logo" type="Sprite" parent="StaticJumpable"]
-position = Vector2( -68.5654, -24.0826 )
-z_index = 999
-texture = ExtResource( 10 )
-_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
-
-[node name="Goal" parent="." instance=ExtResource( 11 )]
+[node name="Goal" parent="." instance=ExtResource( 10 )]
 position = Vector2( 592, 336 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 shape = SubResource( 4 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("..")
-autoplay = "logoFadeout"
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
-anims/logoFadeout = SubResource( 5 )
-blend_times = [  ]
-
-[node name="Candle" parent="." instance=ExtResource( 12 )]
+[node name="Candle" parent="." instance=ExtResource( 11 )]
 position = Vector2( 591.683, 376.613 )
 
 [connection signal="jumped_from_noargs" from="Patrol/Guard" to="Patrol" method="stop_moving"]

@@ -15,7 +15,6 @@ func _ready():
 	text.get_node( "Timer" ).connect( "timeout", self, "timer_done" )
 	
 	
-	
 
 func hide_timer():
 	text.get_node( "Timer" ).hide()
@@ -24,6 +23,10 @@ func hide_timer():
 
 func show_timer():
 	text.get_node( "Timer" ).show()
+
+
+func start_intro():
+	$Intro.start_intro()
 
 
 
@@ -68,7 +71,6 @@ func start_timer():
 
 
 func _process( delta ):
-	
 	var goto : Vector2 = current_target.global_position
 	goto -= camera.global_position
 	goto = goto.clamped( 20 )
