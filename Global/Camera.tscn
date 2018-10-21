@@ -1,7 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Global/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/SmallText.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Global/Intro.gd" type="Script" id=3]
+[ext_resource path="res://Assets/tileset.png" type="Texture" id=4]
+[ext_resource path="res://Assets/logo.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "logoFadeout"
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( -0.1, 0.8, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="GameCamera" type="Node"]
 script = ExtResource( 1 )
@@ -72,4 +106,34 @@ process_mode = 1
 wait_time = 300.0
 one_shot = false
 autostart = false
+
+[node name="Intro" type="Node2D" parent="."]
+position = Vector2( 495.78, 298.875 )
+script = ExtResource( 3 )
+
+[node name="bg" type="Sprite" parent="Intro"]
+light_mask = 0
+position = Vector2( -70.3235, -24.6132 )
+scale = Vector2( 60, 40 )
+z_index = 998
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 32, 32 )
+_sections_unfolded = [ "Region", "Transform", "Visibility", "Z Index" ]
+
+[node name="logo" type="Sprite" parent="Intro"]
+light_mask = 0
+position = Vector2( 0.338943, -24.0826 )
+z_index = 999
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Intro"]
+root_node = NodePath("..")
+autoplay = "logoFadeout"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/logoFadeout = SubResource( 1 )
+blend_times = [  ]
 
