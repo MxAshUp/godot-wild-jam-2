@@ -1,58 +1,78 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
 [ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://LevelComponents/Hostage.tscn" type="PackedScene" id=4]
-[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=5]
-[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=6]
-[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=7]
-[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=8]
-[ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=9]
-[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=10]
-[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.tscn" type="PackedScene" id=11]
-[ext_resource path="res://LevelComponents/StaticJumpable.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Blackout.png" type="Texture" id=5]
+[ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=6]
+[ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=7]
+[ext_resource path="res://LevelComponents/Interactable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://LevelComponents/Door.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=11]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.tscn" type="PackedScene" id=12]
+[ext_resource path="res://LevelComponents/StaticJumpable.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Animation" id=2]
+
+resource_name = "fade-in"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Curve2D" id=3]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 15.4923, -16.8856, 0, 0, 0, 0, 15.4923, 367.114, 0, 0, 0, 0, 127.492, 367.114, 0, 0, 0, 0, 15.4923, 367.114, 0, 0, 0, 0, 15.4923, -16.8856 )
 }
 
-[sub_resource type="RectangleShape2D" id=3]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 32 )
-
 [sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 31.9997, 23.4969 )
+extents = Vector2( 16, 32 )
 
 [sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 32 )
+extents = Vector2( 31.9997, 23.4969 )
 
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
+extents = Vector2( 16, 32 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=8]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 32, 224, 0, 0, 0, 0, 32, 416, 0, 0, 0, 0, 256, 416, 0, 0, 0, 0, 256, 224, 0, 0, 0, 0, 32, 224, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 448, 32, 0, 0, 0, 0, 448, 0, 0, 0, 0, 0, 512, 0, 0, 0, 0, 0, 512, 64, 0, 0, 0, 0, 448, 64, 0, 0, 0, 0, 448, 32, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 32, 224 )
 }
 
-[sub_resource type="Curve2D" id=8]
+[sub_resource type="Curve2D" id=9]
 
 bake_interval = 5.0
 _data = {
@@ -136,177 +156,199 @@ position = Vector2( 1552, 302 )
 _sections_unfolded = [ "Collision", "Z Index" ]
 being_controlled = true
 
-[node name="Patrol" parent="." instance=ExtResource( 5 )]
+[node name="Sprite" type="Sprite" parent="Hostage"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 10, 10 )
+z_index = 4096
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Hostage"]
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/fade-in = SubResource( 2 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="Patrol" parent="." instance=ExtResource( 6 )]
 position = Vector2( 624, 32 )
 
-[node name="Patrol2" parent="." instance=ExtResource( 5 )]
+[node name="Patrol2" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 position = Vector2( 320.508, 128.886 )
 
-[node name="Guard" parent="Patrol2" instance=ExtResource( 6 )]
+[node name="Guard" parent="Patrol2" instance=ExtResource( 7 )]
 position = Vector2( 15.4923, -16.8856 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol2"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 2 )
+curve = SubResource( 3 )
 
 [node name="Interactable-Prison Doors" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="Interactable" parent="Interactable-Prison Doors" instance=ExtResource( 7 )]
+[node name="Interactable" parent="Interactable-Prison Doors" instance=ExtResource( 8 )]
 
-[node name="Door3" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 8 )]
+[node name="Door3" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 9 )]
 position = Vector2( 1552, 280 )
 door_open = true
 
-[node name="Door4" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 8 )]
+[node name="Door4" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 9 )]
 position = Vector2( 1712, 280 )
 door_open = true
 
-[node name="Door5" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 8 )]
+[node name="Door5" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 9 )]
 position = Vector2( 1392, 280 )
 door_open = true
 
-[node name="Door6" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 8 )]
+[node name="Door6" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 9 )]
 position = Vector2( 1136, 280 )
 door_open = true
 
-[node name="Door7" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 8 )]
+[node name="Door7" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 9 )]
 position = Vector2( 976, 280 )
 door_open = true
 
-[node name="Door8" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 8 )]
+[node name="Door8" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 9 )]
 position = Vector2( 816, 280 )
 door_open = true
 
-[node name="Switch" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 9 )]
+[node name="Switch" parent="Interactable-Prison Doors/Interactable" instance=ExtResource( 10 )]
 position = Vector2( 1264, 256 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable-Prison Doors/Interactable"]
 position = Vector2( 1264, 272 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
-[node name="Interactable-1" parent="." instance=ExtResource( 7 )]
+[node name="Interactable-1" parent="." instance=ExtResource( 8 )]
 editor/display_folded = true
 position = Vector2( 528, 144 )
 
-[node name="Switch2" parent="Interactable-1" instance=ExtResource( 9 )]
+[node name="Switch2" parent="Interactable-1" instance=ExtResource( 10 )]
 
-[node name="Door" parent="Interactable-1" instance=ExtResource( 8 )]
+[node name="Door" parent="Interactable-1" instance=ExtResource( 9 )]
 position = Vector2( 32, 32 )
 door_open = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable-1"]
 position = Vector2( 16, 8 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Interactable-1"]
 position = Vector2( 0, -15.114 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
-[node name="Door2" parent="Interactable-1" instance=ExtResource( 8 )]
+[node name="Door2" parent="Interactable-1" instance=ExtResource( 9 )]
 position = Vector2( -192, 32 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Interactable-1"]
 position = Vector2( -208, 8 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
-[node name="Door3" parent="Interactable-1" instance=ExtResource( 8 )]
+[node name="Door3" parent="Interactable-1" instance=ExtResource( 9 )]
 position = Vector2( 160, 312 )
 
-[node name="Interactable-2" parent="." instance=ExtResource( 7 )]
+[node name="Interactable-2" parent="." instance=ExtResource( 8 )]
 editor/display_folded = true
 position = Vector2( 80, 302 )
 
-[node name="Switch2" parent="Interactable-2" instance=ExtResource( 9 )]
+[node name="Switch2" parent="Interactable-2" instance=ExtResource( 10 )]
 
-[node name="Door" parent="Interactable-2" instance=ExtResource( 8 )]
+[node name="Door" parent="Interactable-2" instance=ExtResource( 9 )]
 position = Vector2( 32, -125 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable-2"]
 position = Vector2( 16, 8 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
-[node name="Interactable-airlock" parent="." instance=ExtResource( 7 )]
+[node name="Interactable-airlock" parent="." instance=ExtResource( 8 )]
 editor/display_folded = true
 position = Vector2( 688, 464 )
 
-[node name="Door" parent="Interactable-airlock" instance=ExtResource( 8 )]
+[node name="Door" parent="Interactable-airlock" instance=ExtResource( 9 )]
 position = Vector2( 0, -136 )
 
-[node name="Switch" parent="Interactable-airlock" instance=ExtResource( 9 )]
+[node name="Switch" parent="Interactable-airlock" instance=ExtResource( 10 )]
 position = Vector2( 33.6, -32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable-airlock"]
 position = Vector2( 0, -32 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="EntranceSecion" type="Node2D" parent="."]
 editor/display_folded = true
 
-[node name="Candle" parent="EntranceSecion" instance=ExtResource( 10 )]
+[node name="Candle" parent="EntranceSecion" instance=ExtResource( 11 )]
 position = Vector2( 687.318, 87.7755 )
 
-[node name="Torch" parent="EntranceSecion" instance=ExtResource( 11 )]
+[node name="Torch" parent="EntranceSecion" instance=ExtResource( 12 )]
 position = Vector2( 560, 48 )
 
-[node name="Torch2" parent="EntranceSecion" instance=ExtResource( 11 )]
+[node name="Torch2" parent="EntranceSecion" instance=ExtResource( 12 )]
 position = Vector2( 336, 48 )
 
-[node name="Torch3" parent="EntranceSecion" instance=ExtResource( 11 )]
+[node name="Torch3" parent="EntranceSecion" instance=ExtResource( 12 )]
 position = Vector2( 112, 48 )
 
-[node name="Torch4" parent="EntranceSecion" instance=ExtResource( 11 )]
+[node name="Torch4" parent="EntranceSecion" instance=ExtResource( 12 )]
 position = Vector2( 224, 464 )
 
-[node name="Torch5" parent="EntranceSecion" instance=ExtResource( 11 )]
+[node name="Torch5" parent="EntranceSecion" instance=ExtResource( 12 )]
 position = Vector2( 448, 464 )
 
-[node name="Torch6" parent="EntranceSecion" instance=ExtResource( 11 )]
+[node name="Torch6" parent="EntranceSecion" instance=ExtResource( 12 )]
 position = Vector2( 640, 464 )
 
 [node name="Jail" type="Node2D" parent="."]
 editor/display_folded = true
 position = Vector2( 688, 272 )
 
-[node name="Torch" parent="Jail" instance=ExtResource( 11 )]
+[node name="Torch" parent="Jail" instance=ExtResource( 12 )]
 
-[node name="Torch2" parent="Jail" instance=ExtResource( 11 )]
+[node name="Torch2" parent="Jail" instance=ExtResource( 12 )]
 position = Vector2( 48, 0 )
 
-[node name="Torch3" parent="Jail" instance=ExtResource( 11 )]
+[node name="Torch3" parent="Jail" instance=ExtResource( 12 )]
 position = Vector2( 528, 0 )
 
-[node name="Torch4" parent="Jail" instance=ExtResource( 11 )]
+[node name="Torch4" parent="Jail" instance=ExtResource( 12 )]
 position = Vector2( 624, 0 )
 
-[node name="StaticJumpable" parent="." instance=ExtResource( 12 )]
+[node name="StaticJumpable" parent="." instance=ExtResource( 13 )]
 position = Vector2( 496, 489 )
 
-[node name="Patrol3" parent="." instance=ExtResource( 5 )]
+[node name="Patrol3" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
 position = Vector2( 80, 80 )
 
-[node name="Guard" parent="Patrol3" instance=ExtResource( 6 )]
+[node name="Guard" parent="Patrol3" instance=ExtResource( 7 )]
 position = Vector2( 32, 222 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol3"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 7 )
+curve = SubResource( 8 )
 
-[node name="Patrol4" parent="." instance=ExtResource( 5 )]
+[node name="Patrol4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 944, 288 )
 
-[node name="Guard" parent="Patrol4" instance=ExtResource( 6 )]
+[node name="Guard" parent="Patrol4" instance=ExtResource( 7 )]
 position = Vector2( 476, -50 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol4"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 8 )
+curve = SubResource( 9 )
 
-[node name="StaticJumpable2" parent="." instance=ExtResource( 12 )]
+[node name="StaticJumpable2" parent="." instance=ExtResource( 13 )]
 position = Vector2( 1171, 232 )
 
-[node name="Guard" parent="." instance=ExtResource( 6 )]
+[node name="Guard" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1136, 257.6 )
+facing_direction = Vector2( 0, 1 )
 
+[connection signal="ready" from="Hostage/AnimationPlayer2" to="Hostage/AnimationPlayer2" method="play" binds= [ "fade-in" ]]
