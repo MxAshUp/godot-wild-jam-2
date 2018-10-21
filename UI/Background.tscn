@@ -1,25 +1,27 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/Background.gd" type="Script" id=1]
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=2]
 [ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=3]
 [ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=1]
 
 bake_interval = 1.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 144, 96, 0, 0, 0, 0, 144, 320, 0, 0, 0, 0, 192, 320, 0, 0, 0, 0, 192, 384, 0, 0, 0, 0, 80, 384, 0, 0, 0, 0, 80, 352, 0, 0, 0, 0, 144, 352, 0, 0, 0, 0, 144, 96, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, -288, 192, 0, 0, 0, 0, -288, 0, 0, 0, 0, 0, -144, 0, 0, 0, 0, 0, -288, 0, 0, 0, 0, 0, -288, 192, 0, 0, 0, 0, -144, 192, 0, 0, 0, 0, -144, 352, 0, 0, 0, 0, 144, 352, 0, 0, 0, 0, 144, 96, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 192, 0, 0, 0, 0, -288, 192, 0, 0, 0, 0, -288, 0, 0, 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id=2]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 288, 160, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 144, 0, 0, 0, 0, 0, 144, -96, 0, 0, 0, 0, 288, -96, 0, 0, 0, 0, 288, 160, 0, 0, 0, 0, 0, 160, 0, 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id=3]
 
 bake_interval = 5.0
 _data = {
@@ -60,7 +62,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Path2D" type="Path2D" parent="Patrol1"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 2 )
+curve = SubResource( 1 )
 _sections_unfolded = [ "curve" ]
 
 [node name="Patrol2" parent="." instance=ExtResource( 3 )]
@@ -73,16 +75,16 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Path2D" type="Path2D" parent="Patrol2"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 3 )
+curve = SubResource( 2 )
 _sections_unfolded = [ "curve" ]
 
 [node name="Path2D" type="Path2D" parent="."]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 1 )
+curve = SubResource( 3 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2( 720, 560 )
-rotation = -1.5708
+rotation = -1.57078
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -117,4 +119,34 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Smoothing" ]
+
+[node name="Candle" parent="." instance=ExtResource( 5 )]
+position = Vector2( 776.599, 512 )
+
+[node name="Candle2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 662.037, 512 )
+
+[node name="Torch" parent="." instance=ExtResource( 6 )]
+position = Vector2( 720, 270.4 )
+
+[node name="Torch2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 672, 270.4 )
+
+[node name="Torch3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 625.576, 270.4 )
+
+[node name="Torch4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 429.622, 366.335 )
+
+[node name="Torch5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 480, 528 )
+
+[node name="Torch6" parent="." instance=ExtResource( 6 )]
+position = Vector2( 544, 528 )
+
+[node name="Torch7" parent="." instance=ExtResource( 6 )]
+position = Vector2( 608, 528 )
+
+[node name="Torch8" parent="." instance=ExtResource( 6 )]
+position = Vector2( 608, 528 )
 
