@@ -135,7 +135,7 @@ shape = SubResource( 1 )
 
 [node name="Hostage" parent="." instance=ExtResource( 4 )]
 editor/display_folded = true
-position = Vector2( 1552, 302 )
+position = Vector2( 1384.04, 302.949 )
 _sections_unfolded = [ "Collision", "Z Index" ]
 being_controlled = true
 
