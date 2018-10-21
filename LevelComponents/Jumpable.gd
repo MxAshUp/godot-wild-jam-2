@@ -93,6 +93,7 @@ func process_input(delta):
 		trying_to_jump = false
 		if selected_instance_to_jump:
 			selected_instance_to_jump.emit_signal("cancelled_jump", self)
+			selected_instance_to_jump = null
 	
 	
 	if trying_to_jump and !jump_cooling_off and jumpable_bodies.size() > 0:
