@@ -7,11 +7,13 @@ func _process(delta):
 
 func _ready():
 	set_process( false )
+	self.hide()
 	$AnimationPlayer.connect( "animation_finished", self, "anim_end" )
 
 
 func start_intro():
 	set_process( true )
+	self.show()
 	$AnimationPlayer.play( "logoFadeout" )
 
 
