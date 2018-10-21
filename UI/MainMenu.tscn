@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://UI/Background.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://LevelComponents/SpiritParticles.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Fonts/SmallText.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Assets/Blackout.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sounds/BodySwap.ogg" type="AudioStream" id=9]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -373,4 +374,13 @@ position = Vector2( 565, 308.5 )
 scale = Vector2( 9.82812, 5.82031 )
 texture = ExtResource( 8 )
 _sections_unfolded = [ "Visibility", "Z Index" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -1.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+mix_target = 0
+bus = "Master"
 
