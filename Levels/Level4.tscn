@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://LevelComponents/Switch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=9]
 [ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=10]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -197,5 +198,65 @@ shape = SubResource( 6 )
 
 [node name="Candle" parent="BeginRot" instance=ExtResource( 10 )]
 position = Vector2( 1030.49, 153.769 )
+
+[node name="HallWay" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1472, 336 )
+
+[node name="Torch" parent="HallWay" instance=ExtResource( 11 )]
+
+[node name="Torch3" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( -64, 0 )
+
+[node name="Torch4" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( -128, 0 )
+
+[node name="Torch5" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( -192, 0 )
+
+[node name="Torch6" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( -256, 0 )
+
+[node name="Torch7" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( -320, 0 )
+
+[node name="Torch8" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( -384, 0 )
+
+[node name="Torch9" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( -448, 0 )
+
+[node name="Torch2" parent="HallWay" instance=ExtResource( 11 )]
+position = Vector2( 81.605, 0 )
+
+[node name="Grid" type="Node2D" parent="."]
+position = Vector2( 832, 137.769 )
+
+[node name="Candle" parent="Grid" instance=ExtResource( 10 )]
+position = Vector2( 112, -185.769 )
+
+[node name="Torch" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( 79.9937, -26.6389 )
+
+[node name="Torch8" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( 79.9937, 166.46 )
+
+[node name="Torch2" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( 144.36, -26.6389 )
+
+[node name="Torch7" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( 144.36, 166.46 )
+
+[node name="Torch3" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( -78.7081, -26.6389 )
+
+[node name="Torch6" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( -78.7081, 166.46 )
+
+[node name="Torch4" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( -143.755, -26.6389 )
+
+[node name="Torch5" parent="Grid" instance=ExtResource( 11 )]
+position = Vector2( -143.755, 166.46 )
 
 [connection signal="jumped_noargs" from="Patrol4/Guard" to="Patrol4" method="start_moving"]
