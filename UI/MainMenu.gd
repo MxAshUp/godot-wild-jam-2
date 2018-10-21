@@ -11,6 +11,7 @@ onready var button_quit = $CanvasLayer/Center/VBox/Center/VBox_Menu/Quit
 onready var play_spot = $CanvasLayer/Center/VBox/Center/VBox_Menu/Play/Spot
 onready var quit_spot = $CanvasLayer/Center/VBox/Center/VBox_Menu/Quit/Spot
 onready var reveal = $CanvasLayer/Reveal
+
  
 var ghost_point : Vector2
 
@@ -38,6 +39,7 @@ func _ready():
 	button_quit.connect( "pressed", self, "quit_pressed" )
 	button_play.connect( "button_down", self, "juice" )
 	button_quit.connect( "button_down", self, "juice" )
+	$AudioStreamPlayer.connect( "finished", self, "stop_sound" )
 	#$VBox/Return.connect( "pressed", self, "return_pressed" )
 	#$VBox/TrueQuit.connect( "pressed", self, "true_quit_pressed" )
 	
@@ -83,12 +85,14 @@ func _process(delta):
 		ghost_point = quit_spot.global_position
 		current_focus = 1
 		juice_button = 0
+		$AudioStreamPlayer.play()
 	
 	if( current_focus == 1 &&
 			Input.is_action_just_pressed( "ui_up" ) ):
 		ghost_point = play_spot.global_position
 		current_focus = 0
 		juice_button = 0
+		$AudioStreamPlayer.play()
 	
 	
 	#Make the ghost particle go to ghost point
@@ -130,6 +134,11 @@ func return_pressed():
 	button_play.show()
 	button_play.grab_focus()
 	button_quit.show()
+
+
+
+func stop_sound():
+	$AudioStreamPlayer.stop()
 
 
 

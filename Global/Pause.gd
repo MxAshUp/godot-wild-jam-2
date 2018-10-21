@@ -18,6 +18,8 @@ var current_focus = 0
 #Engulfes buttons in spirit.
 var juice_button = 0
 
+var sound = AudioStreamPlayer.new( )
+
 
 
 func can_pause( allow_pause : bool ):
@@ -48,7 +50,9 @@ func _ready():
 	$N/Panel/Quit.connect( "button_down", self, "juice" )
 	$N/Panel/Restart.connect( "button_down", self, "juice" )
 	
-	
+	call_deferred( "add_child", sound )
+	sound.stream = load( "res://Assets/Sounds/BodySwap.ogg" )
+	sound.volume_db = -1
 
 func _process( delta ):
 	if Input.is_action_just_pressed( "pause" ):
@@ -80,6 +84,7 @@ func process_ghost( delta ):
 			ghost_point = $N/Panel/Restart/Point.global_position
 			current_focus += 1
 			juice_button = 0
+			sound.play()
 	
 	elif current_focus == 1 : #On Restart.
 		var move : int = int( Input.is_action_just_pressed("ui_down") ) - int( Input.is_action_just_pressed("ui_up") )
@@ -87,10 +92,12 @@ func process_ghost( delta ):
 			juice_button = 0
 			current_focus = 2
 			ghost_point = $N/Panel/Quit/Point.global_position
+			sound.play()
 		elif move == -1 :
 			current_focus = 0
 			ghost_point = $N/Panel/Continue/Point.global_position
 			juice_button = 0
+			sound.play()
 
 	#Heading from quit
 	
@@ -99,6 +106,7 @@ func process_ghost( delta ):
 			juice_button = 0
 			current_focus = 1
 			ghost_point = $N/Panel/Restart/Point.global_position
+			sound.play()
 	
 	#Calculate ghost movement.
 	#Make the ghost particle go to ghost point
@@ -143,8 +151,12 @@ func restart_pressed():
 func quit_pressed():
 	get_tree().quit()
 	
-	
-	
+
+func stop_sound():
+	sound.stop()
+
+
+
 func unpause():
 	get_tree().paused = false
 	self.hide()

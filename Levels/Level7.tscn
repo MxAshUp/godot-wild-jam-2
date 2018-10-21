@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://LevelComponents/Goal.tscn" type="PackedScene" id=9]
 [ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.tscn" type="PackedScene" id=10]
 [ext_resource path="res://LevelComponents/Hostage.tscn" type="PackedScene" id=11]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Candle.gd" type="Script" id=12]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.tscn" type="PackedScene" id=13]
+[ext_resource path="res://LevelComponents/SceneAsset/LightSource/Torch.gd" type="Script" id=14]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -177,4 +180,99 @@ position = Vector2( 1030.49, 153.769 )
 [node name="Hostage" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1520, 326 )
 being_controlled = true
+
+[node name="Grid" type="Node2D" parent="."]
+position = Vector2( 832, 137.769 )
+
+[node name="Candle" type="Node2D" parent="Grid" instance=ExtResource( 10 )]
+position = Vector2( 112, -185.769 )
+script = ExtResource( 12 )
+
+[node name="Torch" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( 79.9937, -26.6389 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch8" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( 79.9937, 166.46 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch2" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( 144.36, -26.6389 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch7" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( 144.36, 166.46 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch3" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( -78.7081, -26.6389 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch6" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( -78.7081, 166.46 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch4" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( -143.755, -26.6389 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch5" type="Node2D" parent="Grid" instance=ExtResource( 13 )]
+position = Vector2( -143.755, 166.46 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="HallWay" type="Node2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1472, 336 )
+
+[node name="Torch" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch3" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( -64, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch4" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( -128, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch5" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( -192, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch6" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( -256, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch7" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( -320, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch8" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( -384, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch9" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( -448, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Torch2" type="Node2D" parent="HallWay" instance=ExtResource( 13 )]
+position = Vector2( 81.605, 0 )
+script = ExtResource( 14 )
+_sections_unfolded = [ "Transform" ]
 
