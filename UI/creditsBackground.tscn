@@ -130,6 +130,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [ Vector2( 0, -114 ), Vector2( 0, -14.955 ), Vector2( 0, -14.955 ), Vector2( 39, -45.0751 ), Vector2( 39, -45.0751 ), Vector2( 0, 4.10559 ) ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite/Label_ByLine2:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 53.8, 54.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Credits" type="Node2D"]
 position = Vector2( 0, -16 )
@@ -177,9 +189,9 @@ tile_data = PoolIntArray( 1114112, 34, 0, 1114113, 34, 0, 1114114, 34, 0, 111411
 _sections_unfolded = [ "Cell", "Collision" ]
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 528, 634.036 )
+position = Vector2( 528, 2272 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, -100 )
+offset = Vector2( 0, 100 )
 hframes = 9
 frame = 1
 _sections_unfolded = [ "Animation", "Offset", "Transform", "texture" ]
@@ -212,7 +224,7 @@ _sections_unfolded = [ "Drag Margin", "Offset", "Smoothing" ]
 
 [node name="SpiritParticles" parent="Sprite" instance=ExtResource( 4 )]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, -114 )
+position = Vector2( 0, 4.10559 )
 _sections_unfolded = [ "Transform", "Visibility", "process_material" ]
 
 [node name="Sprite" type="Sprite" parent="Sprite"]
@@ -222,8 +234,9 @@ texture = ExtResource( 5 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Label_ByLine" parent="Sprite" instance=ExtResource( 6 )]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = -288.0
-margin_top = 149.0
+margin_top = -2150.0
 margin_right = 288.0
 margin_bottom = 1190.0
 text = "Made for the Godot Wild Jam #2
@@ -281,6 +294,15 @@ licensed under CC BY 4.0
 
 
 Hidden Within."
+_sections_unfolded = [ "Margin", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_fonts/font" ]
+
+[node name="Label_ByLine2" parent="Sprite" instance=ExtResource( 6 )]
+margin_left = -288.0
+margin_top = 0.0
+margin_right = 288.0
+margin_bottom = 0.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Thanks for Playing!"
 _sections_unfolded = [ "Margin", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_fonts/font" ]
 
 [node name="Sprite2" type="Sprite" parent="Sprite"]
