@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Tools/BasisTileMap/BasisTileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Tools/DecalTileMap/DecalTileMap.tres" type="TileSet" id=2]
@@ -11,62 +11,53 @@
 [ext_resource path="res://LevelComponents/Hostage.tscn" type="PackedScene" id=9]
 [ext_resource path="res://LevelComponents/Patrol.tscn" type="PackedScene" id=10]
 [ext_resource path="res://LevelComponents/Guard.tscn" type="PackedScene" id=11]
-[ext_resource path="res://LevelComponents/Patrol.gd" type="Script" id=12]
-[ext_resource path="res://LevelComponents/Guard.gd" type="Script" id=13]
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 92.0499, 16.4513 )
 
-[sub_resource type="Curve2D" id=9]
+[sub_resource type="Curve2D" id=3]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2.03339, 2.99475, 0, 0, 0, 0, -15.0655, 182.186, 0, 0, 0, 0, -39.5007, -58.0932, 0, 0, 0, 0, -5.29141, -125.697, 0, 0, 0, 0, 36.2484, -87.4154, 0, 0, 0, 0, 0.410126, 3.80927, 0, 0, 0, 0, -12.622, 185.444, 0, 0, 0, 0, -42.7587, -57.2787, 0, 0, 0, 0, -11.8075, -130.584, 0, 0, 0, 0, 45.208, -88.2299, 0, 0, 0, 0, -0.404388, 10.3253 )
 }
 
-[sub_resource type="Curve2D" id=10]
+[sub_resource type="Curve2D" id=4]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 2.74829, 2.20514, 0, 0, 0, 0, -652.929, 7.90668, 0, 0, 0, 0, 2.74829, 6.27765 )
 }
 
-[sub_resource type="Curve2D" id=11]
+[sub_resource type="Curve2D" id=5]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 1.18817, 4.23871, 0, 0, 0, 0, -0.807495, 1048.01, 0, 0, 0, 0, -58.4808, 1345.83 )
 }
 
-[sub_resource type="Curve2D" id=12]
+[sub_resource type="Curve2D" id=6]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -0.173096, 5.27478, 0, 0, 0, 0, -1.12799, 1046.87, 0, 0, 0, 0, 34.7962, 1398.93 )
 }
 
-[sub_resource type="Curve2D" id=14]
-
-bake_interval = 5.0
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -65.5786, -0.562866, 0, 0, 0, 0, 107.097, 1.0661, 0, 0, 0, 0, -67.2076, 0.251648, 0, 0, 0, 0, 106.282, 0.251648 )
-}
-
-[sub_resource type="Curve2D" id=5]
+[sub_resource type="Curve2D" id=8]
 
 bake_interval = 5.0
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -2.13153, 5.33203, 0, 0, 0, 0, -199.063, 1.14203 )
 }
 
-[sub_resource type="Curve2D" id=6]
+[sub_resource type="Curve2D" id=9]
 
 bake_interval = 5.0
 _data = {
@@ -166,7 +157,7 @@ position = Vector2( -240, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2( -208, -12 )
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 
 [node name="Door" parent="Interactable" instance=ExtResource( 5 )]
 position = Vector2( -64, -168 )
@@ -181,13 +172,13 @@ type_needed = "hostage"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 visible = false
-shape = SubResource( 8 )
+shape = SubResource( 2 )
 
 [node name="Candle" parent="." instance=ExtResource( 8 )]
 position = Vector2( 591.683, 376.613 )
 
 [node name="Hostage" parent="." instance=ExtResource( 9 )]
-position = Vector2( 593.146, 414.969 )
+position = Vector2( 599.386, 419.644 )
 _sections_unfolded = [ "Collision", "Transform" ]
 being_controlled = true
 
@@ -220,7 +211,7 @@ position = Vector2( 176.794, 575.809 )
 
 [node name="Path2D" type="Path2D" parent="GardenPatrol/Patrol"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 9 )
+curve = SubResource( 3 )
 
 [node name="Guard" parent="GardenPatrol/Patrol" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
@@ -230,7 +221,7 @@ position = Vector2( 1523.62, -20.8715 )
 
 [node name="Path2D" type="Path2D" parent="GardenPatrol/Patrol2"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 10 )
+curve = SubResource( 4 )
 
 [node name="Guard" parent="GardenPatrol/Patrol2" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
@@ -246,7 +237,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Path2D" type="Path2D" parent="TimerGuards/Patrol"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 11 )
+curve = SubResource( 5 )
 
 [node name="Guard" parent="TimerGuards/Patrol" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
@@ -258,7 +249,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Path2D" type="Path2D" parent="TimerGuards/Patrol2"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 12 )
+curve = SubResource( 6 )
 
 [node name="Guard" parent="TimerGuards/Patrol2" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
@@ -270,7 +261,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Path2D" type="Path2D" parent="TimerGuards/Patrol3"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 11 )
+curve = SubResource( 5 )
 
 [node name="Guard" parent="TimerGuards/Patrol3" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
@@ -280,20 +271,6 @@ position = Vector2( 516.942, 765.001 )
 
 [node name="Guard" parent="GoalGuards" instance=ExtResource( 11 )]
 position = Vector2( 68.421, 0 )
-facing_direction = Vector2( 0, 1 )
-
-[node name="Guard2" parent="GoalGuards" instance=ExtResource( 11 )]
-position = Vector2( -56.8082, 0 )
-facing_direction = Vector2( 0, 1 )
-
-[node name="Patrol" parent="GoalGuards" instance=ExtResource( 10 )]
-position = Vector2( -4.88702, -51.3139 )
-
-[node name="Path2D" type="Path2D" parent="GoalGuards/Patrol"]
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 14 )
-
-[node name="Guard" parent="GoalGuards/Patrol" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
 
 [node name="Castle" type="Node2D" parent="."]
@@ -313,143 +290,46 @@ position = Vector2( -271.395, 0 )
 facing_direction = Vector2( 0, 1 )
 
 [node name="Encrochers" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 499.759, 592.837 )
 
-[node name="Patrol" type="Node2D" parent="Encrochers" instance=ExtResource( 10 )]
+[node name="Patrol" parent="Encrochers" instance=ExtResource( 10 )]
 position = Vector2( 342.884, 44.6936 )
-script = ExtResource( 12 )
-move_speed = 100
-start_offset = 0
-preview = false
-persistent = false
-ping_pong = true
-moving = true
-loop = true
 
 [node name="Path2D" type="Path2D" parent="Encrochers/Patrol"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 5 )
+curve = SubResource( 8 )
 
-[node name="Guard" type="KinematicBody2D" parent="Encrochers/Patrol" instance=ExtResource( 11 )]
-input_pickable = false
-collision_layer = 10
-collision_mask = 1025
-collision/safe_margin = 0.08
-motion/sync_to_physics = false
-script = ExtResource( 13 )
-_sections_unfolded = [ "Collision" ]
-jump_radius = 100
-being_controlled = false
+[node name="Guard" parent="Encrochers/Patrol" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
 
-[node name="Patrol2" type="Node2D" parent="Encrochers" instance=ExtResource( 10 )]
+[node name="Patrol2" parent="Encrochers" instance=ExtResource( 10 )]
 position = Vector2( 231.296, 170.128 )
-script = ExtResource( 12 )
-move_speed = 100
-start_offset = 0
-preview = false
-persistent = false
-ping_pong = true
-moving = true
-loop = true
 
 [node name="Path2D" type="Path2D" parent="Encrochers/Patrol2"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 5 )
+curve = SubResource( 8 )
 
-[node name="Guard" type="KinematicBody2D" parent="Encrochers/Patrol2" instance=ExtResource( 11 )]
-input_pickable = false
-collision_layer = 10
-collision_mask = 1025
-collision/safe_margin = 0.08
-motion/sync_to_physics = false
-script = ExtResource( 13 )
-_sections_unfolded = [ "Collision" ]
-jump_radius = 100
-being_controlled = false
+[node name="Guard" parent="Encrochers/Patrol2" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
 
-[node name="Patrol3" type="Node2D" parent="Encrochers" instance=ExtResource( 10 )]
+[node name="Patrol3" parent="Encrochers" instance=ExtResource( 10 )]
 position = Vector2( 605.155, 32.476 )
-script = ExtResource( 12 )
-move_speed = 100
-start_offset = 0
-preview = false
-persistent = false
-ping_pong = true
-moving = true
-loop = true
 
 [node name="Path2D" type="Path2D" parent="Encrochers/Patrol3"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 5 )
+curve = SubResource( 8 )
 
-[node name="Guard" type="KinematicBody2D" parent="Encrochers/Patrol3" instance=ExtResource( 11 )]
-input_pickable = false
-collision_layer = 10
-collision_mask = 1025
-collision/safe_margin = 0.08
-motion/sync_to_physics = false
-script = ExtResource( 13 )
-_sections_unfolded = [ "Collision" ]
-jump_radius = 100
-being_controlled = false
+[node name="Guard" parent="Encrochers/Patrol3" instance=ExtResource( 11 )]
 facing_direction = Vector2( 0, 1 )
 
-[node name="Patrol4" type="Node2D" parent="Encrochers" instance=ExtResource( 10 )]
+[node name="Patrol4" parent="Encrochers" instance=ExtResource( 10 )]
 position = Vector2( -140.095, -8.14514 )
-script = ExtResource( 12 )
-move_speed = 100
-start_offset = 0
-preview = false
-persistent = false
-ping_pong = true
-moving = true
-loop = true
 
-[node name="Guard" type="KinematicBody2D" parent="Encrochers/Patrol4" instance=ExtResource( 11 )]
-position = Vector2( 184.078, 94.4828 )
-input_pickable = false
-collision_layer = 10
-collision_mask = 1025
-collision/safe_margin = 0.08
-motion/sync_to_physics = false
-script = ExtResource( 13 )
-_sections_unfolded = [ "Collision" ]
-jump_radius = 100
-being_controlled = false
+[node name="Guard" parent="Encrochers/Patrol4" instance=ExtResource( 11 )]
+position = Vector2( 120.336, 135.308 )
 facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Encrochers/Patrol4"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 6 )
-
-[node name="Patrol5" type="Node2D" parent="Encrochers" instance=ExtResource( 10 )]
-position = Vector2( -184.078, 26.8787 )
-script = ExtResource( 12 )
-move_speed = 100
-start_offset = 0
-preview = false
-persistent = false
-ping_pong = true
-moving = true
-loop = true
-
-[node name="Guard" type="KinematicBody2D" parent="Encrochers/Patrol5" instance=ExtResource( 11 )]
-position = Vector2( 184.078, 94.4828 )
-input_pickable = false
-collision_layer = 10
-collision_mask = 1025
-collision/safe_margin = 0.08
-motion/sync_to_physics = false
-script = ExtResource( 13 )
-_sections_unfolded = [ "Collision" ]
-jump_radius = 100
-being_controlled = false
-facing_direction = Vector2( 0, 1 )
-
-[node name="Path2D" type="Path2D" parent="Encrochers/Patrol5"]
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
-curve = SubResource( 6 )
+curve = SubResource( 9 )
 

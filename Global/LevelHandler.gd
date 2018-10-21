@@ -2,7 +2,7 @@ extends Node
 
 var current_level : int = 0
 
-var level_array : Array = [ "Level 1" , "Level 2", "Level 3", "Level 4" , "Level 5", "Level 6", "Level 7", "Level 8", "Level 9", "Level 10" ]
+var level_array : Array = [ "Level 1" , "Level 2", "Level 3", "Level 4" , "Level 5", "Level 6", "Level 7", "Level 8", "Level 9", "Level 10", "Credits" ]
 
 var hostage_rescue : bool = false
 
@@ -11,11 +11,9 @@ func next_level():
 	#Move onto the next level in the array of levels.
 	
 	current_level += 1
-	print(current_level)
 	if current_level >= level_array.size() :
-		#Play ending.
-		current_level = level_array.size()
-		SceneBrowser.change_scene( "Main Menu" )
+		#handled by credits
+		pass
 		
 	else:
 		SceneBrowser.change_scene( level_array[ current_level ] )

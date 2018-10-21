@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/SmallText.tres" type="DynamicFont" id=1]
+
+[node name="Label_ByLine" type="Label"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 296.0
+margin_right = 576.0
+margin_bottom = 483.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0.623529, 0.294118, 1 )
+custom_colors/font_color_shadow = Color( 0.294118, 0.184314, 0.0901961, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "Code by Dustin Woods & Zach777
+UI by Zach777 & JohnGabrielUK
+Graphics by Mago
+Music & sound by JohnGabrielUK
+
+\"Alkhemikal\" by jeti; licensed under CC BY 4.0
+Made for the Godot Wild Jam #2
+
+Source code available at:
+https://github.com/DustinWoods/godot-wild-jam-2/"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts", "custom_fonts/font" ]
+

@@ -51,7 +51,6 @@ func not_playing( check_song ):
 	return is_same_song
 
 
-
 func _ready():
 	#Play the title song.
 	at_title()

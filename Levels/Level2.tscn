@@ -108,6 +108,7 @@ position = Vector2( 592, 896 )
 [node name="Guard" parent="Patrol" instance=ExtResource( 5 )]
 position = Vector2( 288, 304 )
 being_controlled = true
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
@@ -118,6 +119,7 @@ position = Vector2( 944, 752 )
 
 [node name="Guard" parent="Patrol2" instance=ExtResource( 5 )]
 position = Vector2( 288, 272 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol2"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )

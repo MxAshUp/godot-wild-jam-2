@@ -238,7 +238,6 @@ func _on_alert_confused():
 			"res://Assets/Sounds/Orc/Groan3.ogg"  ]
 	$Sounds.stream = load( choose_array[ rand ] )
 	$Sounds.play()
-	print( "confused" )
 
 func _draw():
 	if ProjectSettings.get_setting("Global/debug_overlay") or Engine.is_editor_hint():

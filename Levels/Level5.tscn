@@ -162,6 +162,7 @@ curve = SubResource( 2 )
 [node name="Guard" parent="Patrol" instance=ExtResource( 8 )]
 position = Vector2( 64, 80 )
 being_controlled = true
+facing_direction = Vector2( 0, 1 )
 
 [node name="Patrol2" parent="." instance=ExtResource( 7 )]
 editor/display_folded = true
@@ -169,6 +170,7 @@ position = Vector2( 320.508, 128.886 )
 
 [node name="Guard" parent="Patrol2" instance=ExtResource( 8 )]
 position = Vector2( 15.4923, -16.8856 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol2"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
@@ -304,6 +306,7 @@ position = Vector2( 80, 80 )
 
 [node name="Guard" parent="Patrol3" instance=ExtResource( 8 )]
 position = Vector2( 32, 222 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol3"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
@@ -315,6 +318,7 @@ position = Vector2( 944, 288 )
 
 [node name="Guard" parent="Patrol4" instance=ExtResource( 8 )]
 position = Vector2( 112, 16 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Path2D" type="Path2D" parent="Patrol4"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )

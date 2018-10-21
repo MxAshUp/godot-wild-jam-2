@@ -160,28 +160,28 @@ z_index = 0
 _sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
 
 [node name="OneOne" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
-position = Vector2( -4.57764e-05, 12.5436 )
+position = Vector2( -4.57764e-005, 12.5436 )
 rotation = 0.0
 z_index = 0
 emitting = false
 _sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
 
 [node name="OneTwo" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
-position = Vector2( 4.57764e-05, -12.5436 )
+position = Vector2( 4.57764e-005, -12.5436 )
 rotation = 0.0
 z_index = 0
 emitting = false
 _sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
 
 [node name="TwoOne" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
-position = Vector2( -9.91821e-05, 26.7597 )
+position = Vector2( -9.91821e-005, 26.7597 )
 rotation = 0.0
 z_index = 0
 emitting = false
 _sections_unfolded = [ "Transform", "Visibility", "Z Index", "process_material" ]
 
 [node name="TwoTwo" parent="CanvasLayer/Center/VBox/Center/Ghost" instance=ExtResource( 6 )]
-position = Vector2( 9.15527e-05, -26.3416 )
+position = Vector2( 9.15527e-005, -26.3416 )
 rotation = 0.0
 z_index = 0
 emitting = false

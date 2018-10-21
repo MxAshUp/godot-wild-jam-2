@@ -116,6 +116,7 @@ curve = SubResource( 1 )
 
 [node name="Guard" parent="Patrol" instance=ExtResource( 5 )]
 position = Vector2( 316, -108 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Patrol2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 160, 768 )
@@ -127,9 +128,11 @@ curve = SubResource( 2 )
 
 [node name="Guard" parent="Patrol2" instance=ExtResource( 5 )]
 position = Vector2( 672, -288 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Guard2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 448, 560 )
+facing_direction = Vector2( 0, 1 )
 
 [node name="Interactable" parent="." instance=ExtResource( 6 )]
 editor/display_folded = true
