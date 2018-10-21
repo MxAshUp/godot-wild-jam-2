@@ -11,10 +11,6 @@ var loader : ResourceInteractiveLoader
 
 export var scene_map : Dictionary = {
 	"Main Menu": "res://UI/MainMenu.tscn",
-	"Path Test": "res://PrototypeScenes/Patrol/PathTest.tscn",
-	"Integration Test": "res://PrototypeScenes/GameplayIntegration/Test-1.tscn",
-	"A Full Map": "res://PrototypeScenes/GameplayIntegration/AFullStage.tscn",
-	"Chase Test": "res://PrototypeScenes/GameplayIntegration/GuardChase.tscn",
 	"Level 1": "res://Levels/Level1.tscn",
 	"Level 2": "res://Levels/Level2.tscn",
 	"Level 3": "res://Levels/Level3.tscn",
