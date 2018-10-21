@@ -224,6 +224,7 @@ position = Vector2( -66, 15.4969 )
 position = Vector2( -194, 14.4 )
 
 [node name="OB" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 1408, 1132.49 )
 
 [node name="Torch" parent="OB" instance=ExtResource( 11 )]
