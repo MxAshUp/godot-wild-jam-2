@@ -1,8 +1,8 @@
 extends Node
 
-var current_level : int = 0
+var current_level : int = 4
 
-var level_array : Array = [ "Level 1" , "Level 2", "Level 3", "Level 4" , "Level 5" ]
+var level_array : Array = [ "Level 1" , "Level 2", "Level 3", "Level 4" , "Level 5", "Level 6" ]
 
 
 
