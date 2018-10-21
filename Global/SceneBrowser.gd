@@ -19,8 +19,7 @@ export var scene_map : Dictionary = {
 	"Level 2": "res://Levels/Level2.tscn",
 	"Level 3": "res://Levels/Level3.tscn",
 	"Level 4": "res://Levels/Level4.tscn",
-	"Level 5": "res://Levels/Level5.tscn",
-	"Level 6": "res://Levels/Level6.tscn",
+	"Level 5": "res://Levels/Level5.tscn"
 }
 
 func change_scene( scene_name ):

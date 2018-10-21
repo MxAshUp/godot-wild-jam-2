@@ -18,7 +18,6 @@ var velocity : Vector2 = Vector2()
 var can_see_follow_position = true
 var chaseable_bodies : Array = Array()
 var last_move_dir = 0.0
-var facing_direction = Vector2(0, 1)
 const PATROL_MAX_SPEED = 150
 const MAX_SPEED = 250
 const INVESTIGATE_MAX_SPEED = 60
@@ -26,8 +25,6 @@ const PATROL_ACCELERATION = 500
 const CHASE_ACCELERATION = 1000
 const FOLLOW_THRESHOLD = 32
 const FRICTION = 1500
-const PERIPHERAL_ANGLE = PI * 0.45
-const HEAR_DISTANCE = 96
 
 signal lost_follow_position
 signal found_follow_position
@@ -127,24 +124,22 @@ func _process(delta):
 	if chaseable_bodies.size() > 0 and !chasing:
 		for maybe_chase in chaseable_bodies:
 			if can_see_position(maybe_chase.global_position, [maybe_chase]):
-				var chase_diff : Vector2 = (maybe_chase.global_position - global_position)
-				if abs(chase_diff.angle_to(facing_direction)) < PERIPHERAL_ANGLE or chase_diff.length() < HEAR_DISTANCE:
-					see_something = true
-					var distance_away = chase_diff.length()
-					chase_alert_level += delta * max(0 , 1 - (distance_away / MAX_VISION_DISTANCE)) * ALERT_INCREASE_FACTOR
-
-					if chase_alert_level > STOP_ON_ALERT_LEVEL:
-						new_alert_state = "confused"
-
-					if chase_alert_level > INVESTIGATE_ON_ALERT_LEVEL:
-						new_alert_state = "alert"
-
-					if chase_alert_level > MAX_CHASE_ALERT_LEVEL:
-						chase_alert_level = MAX_CHASE_ALERT_LEVEL
-
-					if chase_alert_level >= CHASE_ON_ALERT_LEVEL:
-						chasing = maybe_chase
-						break
+				see_something = true
+				var distance_away = (maybe_chase.global_position - global_position).length()
+				chase_alert_level += delta * max(0 , 1 - (distance_away / MAX_VISION_DISTANCE)) * ALERT_INCREASE_FACTOR
+				
+				if chase_alert_level > STOP_ON_ALERT_LEVEL:
+					new_alert_state = "confused"
+					
+				if chase_alert_level > INVESTIGATE_ON_ALERT_LEVEL:
+					new_alert_state = "alert"
+				
+				if chase_alert_level > MAX_CHASE_ALERT_LEVEL:
+					chase_alert_level = MAX_CHASE_ALERT_LEVEL
+				
+				if chase_alert_level >= CHASE_ON_ALERT_LEVEL:
+					chasing = maybe_chase
+					break
 		
 	if !see_something and chase_alert_level > 0:
 		chase_alert_level -= delta
@@ -318,25 +313,8 @@ func process_movement(delta):
 				#OOF! Hit something that slowed us down
 #				pass
 			pass
-		
-		velocity = new_velocity
-
-	if abs(velocity.x) > abs(velocity.y):
-		if abs(velocity.x) > 1.0:
-			if velocity.x < 0:
-				facing_direction = Vector2(-1,0)
-		
-			if velocity.x > 0:
-				facing_direction = Vector2(1,0)
 			
-	elif abs(velocity.y) > 1.0:
-	
-		if velocity.y > 1.0:
-				facing_direction = Vector2(0,1)
-		
-		if velocity.y < -1.0:
-				facing_direction = Vector2(0,-1)
-
+		velocity = new_velocity
 
 
 func _physics_process(delta):
